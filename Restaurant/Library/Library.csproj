@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DatabaseLayer\" />
     <Folder Include="Utils\DTO\" />
   </ItemGroup>
 
