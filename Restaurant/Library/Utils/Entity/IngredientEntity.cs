@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Utils.DTO
+namespace Library.Utils.Entity
 {
     internal class IngredientEntity
     {
