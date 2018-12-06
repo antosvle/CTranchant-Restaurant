@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 {
   "runtimeOptions": {
     "tfm": "netcoreapp2.1",
@@ -6,4 +7,14 @@
       "version": "2.1.0"
     }
   }
+=======
+{
+  "runtimeOptions": {
+    "tfm": "netcoreapp2.1",
+    "framework": {
+      "name": "Microsoft.NETCore.App",
+      "version": "2.1.0"
+    }
+  }
+>>>>>>> Stashed changes
 }

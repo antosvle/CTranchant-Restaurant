@@ -688,23 +688,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Anto\\.nuget\\packages\\": {},
+    "C:\\Users\\MMoul\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\cesi\\cesi_y_3\\projet\\Prog système\\CTranchant-Restaurant\\Restaurant\\Library\\Library.csproj",
+      "projectUniqueName": "C:\\Users\\MMoul\\Desktop\\CTranchant-Restaurant\\Restaurant\\Library\\Library.csproj",
       "projectName": "Library",
-      "projectPath": "D:\\cesi\\cesi_y_3\\projet\\Prog système\\CTranchant-Restaurant\\Restaurant\\Library\\Library.csproj",
-      "packagesPath": "C:\\Users\\Anto\\.nuget\\packages\\",
-      "outputPath": "D:\\cesi\\cesi_y_3\\projet\\Prog système\\CTranchant-Restaurant\\Restaurant\\Library\\obj\\",
+      "projectPath": "C:\\Users\\MMoul\\Desktop\\CTranchant-Restaurant\\Restaurant\\Library\\Library.csproj",
+      "packagesPath": "C:\\Users\\MMoul\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\MMoul\\Desktop\\CTranchant-Restaurant\\Restaurant\\Library\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Anto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\MMoul\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
