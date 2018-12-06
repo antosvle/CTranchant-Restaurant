@@ -1,0 +1,11 @@
+D:\cesi\cesi_y_3\projet\Prog système\CTranchant-Restaurant\Restaurant\Kitchen\bin\Debug\netcoreapp2.1\Kitchen.deps.json
+D:\cesi\cesi_y_3\projet\Prog système\CTranchant-Restaurant\Restaurant\Kitchen\bin\Debug\netcoreapp2.1\Kitchen.runtimeconfig.json
+D:\cesi\cesi_y_3\projet\Prog système\CTranchant-Restaurant\Restaurant\Kitchen\bin\Debug\netcoreapp2.1\Kitchen.runtimeconfig.dev.json
+D:\cesi\cesi_y_3\projet\Prog système\CTranchant-Restaurant\Restaurant\Kitchen\bin\Debug\netcoreapp2.1\Kitchen.dll
+D:\cesi\cesi_y_3\projet\Prog système\CTranchant-Restaurant\Restaurant\Kitchen\bin\Debug\netcoreapp2.1\Kitchen.pdb
+D:\cesi\cesi_y_3\projet\Prog système\CTranchant-Restaurant\Restaurant\Kitchen\obj\Debug\netcoreapp2.1\Kitchen.csprojAssemblyReference.cache
+D:\cesi\cesi_y_3\projet\Prog système\CTranchant-Restaurant\Restaurant\Kitchen\obj\Debug\netcoreapp2.1\Kitchen.csproj.CoreCompileInputs.cache
+D:\cesi\cesi_y_3\projet\Prog système\CTranchant-Restaurant\Restaurant\Kitchen\obj\Debug\netcoreapp2.1\Kitchen.AssemblyInfoInputs.cache
+D:\cesi\cesi_y_3\projet\Prog système\CTranchant-Restaurant\Restaurant\Kitchen\obj\Debug\netcoreapp2.1\Kitchen.AssemblyInfo.cs
+D:\cesi\cesi_y_3\projet\Prog système\CTranchant-Restaurant\Restaurant\Kitchen\obj\Debug\netcoreapp2.1\Kitchen.dll
+D:\cesi\cesi_y_3\projet\Prog système\CTranchant-Restaurant\Restaurant\Kitchen\obj\Debug\netcoreapp2.1\Kitchen.pdb
