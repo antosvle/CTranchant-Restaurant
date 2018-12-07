@@ -9,7 +9,7 @@
             this.dishType = dishType;
         }
 
-        public DishType type
+        public DishType Type
         {
             get { return this.dishType; }
         }

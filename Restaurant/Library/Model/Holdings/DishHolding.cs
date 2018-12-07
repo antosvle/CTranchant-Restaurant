@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
-
-namespace Library.Model
+﻿namespace Library.Model
 {
-    class DishHolding : Holding<Dish>
-    {}
+    public class DishHolding : Holding<Dish>
+    {
+        DishHolding(IHolder holder):
+            base(holder)
+        {}
+    }
 }

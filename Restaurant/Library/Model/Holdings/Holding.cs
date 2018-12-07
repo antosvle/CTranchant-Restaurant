@@ -1,12 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Library.Model
 {
-    class Holding<Holdable> where Holdable : IHoldable
+    public abstract class Holding<Holdable> where Holdable : IHoldable
     {
         private HashSet<Holdable> holdables;
+
+        private IHolder holder;
+
+        public Holding(IHolder holder)
+        {
+            this.holdables = new HashSet<Holdable>();
+            this.holder = holder;
+        }
+
+        public IHolder Holder
+        {
+            get { return this.holder; }
+        }
 
         public Holdable Give(Holdable holdable)
         {
