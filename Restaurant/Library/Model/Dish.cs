@@ -1,15 +1,15 @@
 ﻿namespace Library.Model
 {
-    public abstract class Dish<SpecificDishType> where SpecificDishType : DishType
+    public abstract class Dish : IHoldable
     {
-        protected SpecificDishType dishType;
+        protected DishType dishType;
 
-        public Dish(SpecificDishType dishType)
+        public Dish(DishType dishType)
         {
             this.dishType = dishType;
         }
 
-        public SpecificDishType type
+        public DishType type
         {
             get { return this.dishType; }
         }

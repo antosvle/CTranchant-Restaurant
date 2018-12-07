@@ -2,10 +2,10 @@
 
 namespace Library.Model
 {
-    public sealed class Order<SpecificDishType> where SpecificDishType : DishType
+    public sealed class Order
     {
         private Table table;
 
-        private Dictionary<DishType, Dish<SpecificDishType>> dishes;
+        private Dictionary<DishType, Dish> dishes;
     }
 }
