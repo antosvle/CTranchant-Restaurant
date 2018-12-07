@@ -17,7 +17,7 @@ namespace Library.Model.Types
         {
             foreach (Type type in types)
             {
-                if (name == type.Name.String)
+                if (name == type.Name)
                 {
                     return null;
                 }
