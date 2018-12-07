@@ -4,6 +4,6 @@ using System.Text;
 
 namespace Library.Model
 {
-    class Table
+    class Table : Entity
     {}
 }

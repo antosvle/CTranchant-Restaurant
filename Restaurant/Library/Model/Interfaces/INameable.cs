@@ -1,6 +1,6 @@
 ﻿namespace Library.Model
 {
-    public interface INamed
+    public interface INameable
     {
         string Name { get; set; }
     }

@@ -1,6 +1,6 @@
 ﻿namespace Library.Model
 {
-    public class Person : Entity, INamed
+    public class Person : Entity, INameable
     {
         private string name;
 
