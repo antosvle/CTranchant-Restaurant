@@ -1,17 +1,18 @@
 ﻿namespace Library.Model
 {
-    public class Type : IReadableName
+    public class Type : INamed
     {
-        private INameManager nameManager;
+        private string name;
 
         protected Type(string name)
         {
-            nameManager = new NameManager(name);
+            this.name = name;
         }
 
-        public INameReader name
+        public string Name
         {
-            get { return this.nameManager; }
+            get { return this.name; }
+            set { this.name = value; }
         }
     }
 }

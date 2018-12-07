@@ -1,17 +1,18 @@
 ﻿namespace Library.Model
 {
-    public class Person : Entity, IReadableName
+    public class Person : Entity, INamed
     {
-        private INameManager nameManager;
+        private string name;
 
         public Person()
         {
-            nameManager = new NameManager("Unnamed person");
+            this.name = "Unnamed person";
         }
 
-        public INameReader name
+        public string Name
         {
-            get { return this.nameManager; }
+            get { return this.name; }
+            set { this.name = value }
         }
     }
 }
