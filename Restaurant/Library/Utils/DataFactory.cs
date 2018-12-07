@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using Library.Utils.Entity;
+using Library.DatabaseLayer;
+using Library.DatabaseLayer.DAO;
+using Library.DatabaseLayer.DAOimpl;
+using Library.Utils.DTO;
 
 namespace Library
 {
@@ -21,7 +25,71 @@ namespace Library
         }
 
 
-        //ENTITIES GETTERS
+        // DATABASE SERVICES
+
+        public KitchenService GetKitchenService(DataFactory Injector)
+        {
+            return new KitchenService(Injector);
+        }
+
+        public LogService GetLogService()
+        {
+            return new LogService();
+        }
+
+        public RoomService GetRoomService()
+        {
+            return new RoomService();
+        }
+
+
+        // DAO GETTERS
+
+        internal IFurnitureDAO GetFurnitureDAO()
+        {
+            return new FurnitureDAO();
+        }
+
+        internal IIngredientDAO GetIngredientDAO()
+        {
+            return new IngredientDAO();
+        }
+
+        internal ILogDAO GetLogDAO()
+        {
+            return new LogDAO();
+        }
+
+        internal IRecipeDAO GetRecipeDAO()
+        {
+            return new RecipeDAO();
+        }
+
+        internal IStockDAO GetStockDAO()
+        {
+            return new StockDAO();
+        }
+
+        internal ITablewareDAO GetTablewareDAO()
+        {
+            return new TablewareDAO();
+        }
+
+        internal ITaskDAO GetTaskDAO()
+        {
+            return new TaskDAO();
+        }
+
+
+        // DTO GETTERS
+
+        public IngredientDTO GetIngredientDTO()
+        {
+            return new IngredientDTO();
+        }
+
+
+        // ENTITIES GETTERS
 
         internal FurnitureEntity GetFurnitureEntity(int id, String name, int quantity)
         {
