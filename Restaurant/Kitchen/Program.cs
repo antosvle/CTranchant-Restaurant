@@ -1,23 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using Library;
+using Library.DatabaseLayer;
+using Library.Utils.DTO;
+
 
 
 namespace Kitchen
 {
     class Program
     {
-        //private static DataFactory Injector;
+        private static DataFactory Injector;
 
 
         static void Main(string[] args)
         {
-            /*Injector = DataFactory.GetInstance();
+            Injector = DataFactory.GetInstance();
             KitchenService KitchenDB = Injector.GetKitchenService(Injector);
 
             List<IngredientDTO> listIngredient = KitchenDB.GetIngredients();
-           
-            Console.WriteLine(listIngredient[0].Name);*/
-            Console.WriteLine("test");
+
+            Console.WriteLine("-- Test --");
+            Console.WriteLine(listIngredient[0].Name);
             Console.ReadLine();
         }
     }
