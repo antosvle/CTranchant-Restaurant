@@ -4,8 +4,7 @@ using System.Text;
 
 namespace Library.DatabaseLayer
 {
-    public class RoomService
+    public class LogService
     {
-
     }
 }
