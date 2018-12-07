@@ -16,7 +16,7 @@ namespace Kitchen
         static void Main(string[] args)
         {
             Injector = DataFactory.GetInstance();
-            KitchenService KitchenDB = Injector.GetKitchenService(Injector);
+            KitchenService KitchenDB = Injector.GetKitchenService();
 
             List<IngredientDTO> listIngredient = KitchenDB.GetIngredients();
 

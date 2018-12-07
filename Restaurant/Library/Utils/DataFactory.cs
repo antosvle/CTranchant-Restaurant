@@ -6,30 +6,49 @@ using Library.DatabaseLayer;
 using Library.DatabaseLayer.DAO;
 using Library.DatabaseLayer.DAOimpl;
 using Library.Utils.DTO;
+using System.Data.SqlClient;
 
 namespace Library
 {
     public class DataFactory
     {
-        private static DataFactory Instance = null;
+        private static DataFactory instance = null;
+        private static SqlConnection driverSql = null;
+        readonly private static String connectionString = "Data Source=tcp:192.168.1.1,1433;Initial Catalog = Restaurant_simulator_2018; User ID = DATABASELAYER; Password=BIGOUNE;";
 
 
         private DataFactory() {}
 
+
+        // SINGLETON
            
         public static DataFactory GetInstance()
-        {         
-            if (Instance == null) return new DataFactory();
+        {
+            if (instance == null)
+            {
+                instance = new DataFactory();
+                return instance;
+            }
+            else return instance;
+        }
 
-            else return Instance;
+        public static SqlConnection GetSqlDriver()
+        {
+            if (driverSql == null)
+            {
+                driverSql = new SqlConnection(connectionString);
+                return driverSql;
+            }
+
+            else return driverSql;
         }
 
 
         // DATABASE SERVICES
 
-        public KitchenService GetKitchenService(DataFactory Injector)
+        public KitchenService GetKitchenService()
         {
-            return new KitchenService(Injector);
+            return new KitchenService(GetInstance());
         }
 
         public LogService GetLogService()
@@ -47,37 +66,37 @@ namespace Library
 
         internal IFurnitureDAO GetFurnitureDAO()
         {
-            return new FurnitureDAO();
+            return new FurnitureDAO(GetSqlDriver(), GetInstance());
         }
 
         internal IIngredientDAO GetIngredientDAO()
         {
-            return new IngredientDAO();
+            return new IngredientDAO(GetSqlDriver(), GetInstance());
         }
 
         internal ILogDAO GetLogDAO()
         {
-            return new LogDAO();
+            return new LogDAO(GetSqlDriver(), GetInstance());
         }
 
         internal IRecipeDAO GetRecipeDAO()
         {
-            return new RecipeDAO();
+            return new RecipeDAO(GetSqlDriver(), GetInstance());
         }
 
         internal IStockDAO GetStockDAO()
         {
-            return new StockDAO();
+            return new StockDAO(GetSqlDriver(), GetInstance());
         }
 
         internal ITablewareDAO GetTablewareDAO()
         {
-            return new TablewareDAO();
+            return new TablewareDAO(GetSqlDriver(), GetInstance());
         }
 
         internal ITaskDAO GetTaskDAO()
         {
-            return new TaskDAO();
+            return new TaskDAO(GetSqlDriver(), GetInstance());
         }
 
 
