@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Library.Utils.Entity;
 using Library.DatabaseLayer;
 using Library.DatabaseLayer.DAO;
@@ -14,7 +12,7 @@ namespace Library
     {
         private static DataFactory instance = null;
         private static SqlConnection driverSql = null;
-        readonly private static String connectionString = "Data Source=tcp:192.168.1.1,1433;Initial Catalog = Restaurant_simulator_2018; User ID = DATABASELAYER; Password=BIGOUNE;";
+        readonly private static String connectionString = "Data Source=tcp:192.168.1.1,1433;Initial Catalog = Restaurant_simulator_2018; User ID = DATABASELAYER; Password = BIGOUNE";
 
 
         private DataFactory() {}

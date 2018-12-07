@@ -20,8 +20,13 @@ namespace Kitchen
 
             List<IngredientDTO> listIngredient = KitchenDB.GetIngredients();
 
-            Console.WriteLine("-- Test --");
-            Console.WriteLine(listIngredient[0].Name);
+            Console.WriteLine("-- Test --\n");
+
+            for(int i=0; i<listIngredient.Count; i++)
+            {
+                Console.WriteLine(listIngredient[i].Name);
+            }
+            
             Console.ReadLine();
         }
     }

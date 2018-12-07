@@ -10,6 +10,7 @@ namespace Library.DatabaseLayer.DAO
     {
         protected SqlConnection driverSql;
         protected DataFactory injector;
+        protected SqlDataReader sdr = null;
 
         internal GenericDAO(SqlConnection driverSql, DataFactory injector)
         {
@@ -27,7 +28,25 @@ namespace Library.DatabaseLayer.DAO
             if(driverSql != null)
             {
                 driverSql.Close();
+                sdr.Close();
             }        
+        }
+
+        protected SqlDataReader InitDatabaseService(String sqlRequest)
+        {
+            try
+            {
+                OpenConnection();
+                SqlCommand cmd = new SqlCommand(sqlRequest, driverSql);
+                sdr = cmd.ExecuteReader();
+                return sdr;
+            }
+            catch(DataException e)
+            {
+                Console.WriteLine(e.Source);
+                Environment.Exit(0);
+                return null;
+            }
         }
     }
 }
