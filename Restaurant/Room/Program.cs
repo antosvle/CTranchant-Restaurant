@@ -6,7 +6,8 @@ namespace Room
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Room room = Room.GetInstance();
+            room.Run();
         }
     }
 }
