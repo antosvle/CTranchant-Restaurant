@@ -733,8 +733,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "D:\\cesi\\cesi_y_3\\projet\\Prog système\\CTranchant-Restaurant\\Restaurant\\Library\\Library.csproj": {
-              "projectPath": "D:\\cesi\\cesi_y_3\\projet\\Prog système\\CTranchant-Restaurant\\Restaurant\\Library\\Library.csproj"
+            "C:\\Users\\MMoul\\Desktop\\CTranchant-Restaurant\\Restaurant\\Library\\Library.csproj": {
+              "projectPath": "C:\\Users\\MMoul\\Desktop\\CTranchant-Restaurant\\Restaurant\\Library\\Library.csproj"
             }
           }
         }
@@ -767,7 +767,11 @@
       "code": "Undefined",
       "level": "Warning",
       "warningLevel": 1,
+<<<<<<< Updated upstream
       "message": "Problem reading the cache file D:\\cesi\\cesi_y_3\\projet\\Prog système\\CTranchant-Restaurant\\Restaurant\\Kitchen\\obj\\Kitchen.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+=======
+      "message": "Problème de lecture du fichier cache C:\\Users\\MMoul\\Desktop\\CTranchant-Restaurant\\Restaurant\\Kitchen\\obj\\Kitchen.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+>>>>>>> Stashed changes
     }
   ]
 }
