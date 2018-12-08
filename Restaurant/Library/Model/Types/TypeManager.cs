@@ -11,7 +11,7 @@ namespace Library.Model.Types
             this.types = new HashSet<SpecificType>();
         }
 
-        public abstract SpecificType NewType(string name);
+        protected abstract SpecificType NewType(string name);
         
         public SpecificType CreateType(string name)
         {
