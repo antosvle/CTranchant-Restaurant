@@ -17,7 +17,7 @@ namespace Room.Persons
             Console.WriteLine("Welcoming client");
             for(int i = 0; i < room.Tables.Count; i++)
             {
-                if (room.Tables[i].Size >= cust.nbrOfPeople)
+                if (room.Tables[i].Size >= cust.NbrOfPeople)
                 {
                     cust.Table = room.Tables[i];
                     room.Tables.Customer = cust;
