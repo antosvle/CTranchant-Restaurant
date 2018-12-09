@@ -30,8 +30,6 @@ namespace Kitchen
             
             Console.ReadLine();*/
 
-            Timeline.UnitDuration = 1000;
-
             new Thread(() => {
 
                 Console.WriteLine("Yo");

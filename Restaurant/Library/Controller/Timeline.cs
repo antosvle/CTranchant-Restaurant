@@ -8,7 +8,7 @@ namespace Library.Controller
     {
         private static IDictionary<long, List<ManualResetEvent>> lockers = new SortedDictionary<long, List<ManualResetEvent>>();
 
-        public static int UnitDuration { get; set; } = 0;
+        public static int UnitDuration { get; set; } = 1000;
 
         private static long CurrentTime = 0;
         
