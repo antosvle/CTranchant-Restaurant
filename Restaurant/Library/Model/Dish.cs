@@ -1,17 +1,17 @@
 ﻿namespace Library.Model
 {
-    public abstract class Dish : IHoldable
+    public class Dish : ITyped<DishType>, IHoldable
     {
-        protected DishType dishType;
+        private DishType type;
 
-        public Dish(DishType dishType)
+        public Dish(DishType type)
         {
-            this.dishType = dishType;
+            this.type = type;
         }
 
         public DishType Type
         {
-            get { return this.dishType; }
+            get { return this.type; }
         }
     }
 }

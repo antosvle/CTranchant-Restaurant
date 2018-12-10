@@ -2,7 +2,7 @@
 {
     class DishTypeManager : TypeManager<DishType>
     {
-        public override DishType NewType(string name)
+        protected override DishType NewType(string name)
         {
             return new DishType(name);
         }
