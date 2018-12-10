@@ -64,9 +64,6 @@ namespace Kitchen
             
             Timeline.Start();*/
 
-
-            ServerSocket Server = new ServerSocket(LocationEnum.KITCHEN);
-            Server.Start();
         }
     }
 }

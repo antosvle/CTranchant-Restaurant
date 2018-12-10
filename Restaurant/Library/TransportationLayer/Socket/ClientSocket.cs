@@ -7,20 +7,20 @@ using Library.Utils;
 
 namespace Library.TransportationLayer.Socket
 {
-    public class ClientSocket
+    internal class ClientSocket
     {
         private LocationEnum Destination;
         private LocationEnum Acteur;
-            
 
-        public ClientSocket(LocationEnum acteur, LocationEnum destination)
+
+        internal ClientSocket(LocationEnum acteur, LocationEnum destination)
         {
             this.Destination = destination;
             this.Acteur = acteur;
         }
 
 
-        public void Send(String message)
+        internal void Send(String message)
         {
             int port;
             String ipAdress;

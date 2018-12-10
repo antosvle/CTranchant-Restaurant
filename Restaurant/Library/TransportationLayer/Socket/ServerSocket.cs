@@ -8,14 +8,14 @@ using System.Threading;
 
 namespace Library.TransportationLayer.Socket
 {
-    public class ServerSocket
+    internal class ServerSocket
     {
         private TcpListener Server = null;
         private Thread WaitConnection;
         private LocationEnum Acteur;
 
 
-        public ServerSocket(LocationEnum acteur)
+        internal ServerSocket(LocationEnum acteur)
         {
             this.Acteur = acteur;
             IPAddress localAddr = IPAddress.Parse(NetworkConfig.LOCAL_IP);
@@ -68,7 +68,7 @@ namespace Library.TransportationLayer.Socket
         }
 
 
-        public void Start()
+        internal void Start()
         {
             try { WaitConnection.Start(); }
             catch (SocketException e) { Console.WriteLine("SOCKET_SERVER <> Exception: {0}\n", e); }

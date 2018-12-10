@@ -12,11 +12,6 @@ namespace Room
         {
             /*Room room = Room.GetInstance();
             room.Run();*/
-
-            ClientSocket Client = new ClientSocket(LocationEnum.ROOM, LocationEnum.KITCHEN);
-            Client.Send("Bigoune a un gros penis");
-
-            Client.Send("Whallahsss");
         }
     }
 }
