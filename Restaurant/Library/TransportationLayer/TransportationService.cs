@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.TransportationLayer.Server
+namespace Library.TransportationLayer
 {
-    class Server
+    class TransportationService
     {
     }
 }
