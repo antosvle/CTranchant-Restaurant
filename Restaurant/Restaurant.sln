@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.106
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kitchen", "Kitchen\Kitchen.csproj", "{2543AFD6-FD78-4D73-BA03-5F89ADC59D84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kitchen", "Kitchen\Kitchen.csproj", "{2543AFD6-FD78-4D73-BA03-5F89ADC59D84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Room", "Room\Room.csproj", "{37031AA9-2CFD-440E-90FC-705CD206AB0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Room", "Room\Room.csproj", "{37031AA9-2CFD-440E-90FC-705CD206AB0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.csproj", "{3296DE65-635A-4825-8C2C-260E9980AC3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library", "Library\Library.csproj", "{3296DE65-635A-4825-8C2C-260E9980AC3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ihm", "Ihm\Ihm.csproj", "{93C21E3B-82B9-4432-8912-3066CF6C742D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{3296DE65-635A-4825-8C2C-260E9980AC3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3296DE65-635A-4825-8C2C-260E9980AC3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3296DE65-635A-4825-8C2C-260E9980AC3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93C21E3B-82B9-4432-8912-3066CF6C742D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93C21E3B-82B9-4432-8912-3066CF6C742D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93C21E3B-82B9-4432-8912-3066CF6C742D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93C21E3B-82B9-4432-8912-3066CF6C742D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
