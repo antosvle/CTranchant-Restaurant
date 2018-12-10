@@ -5,15 +5,17 @@ namespace Room.Components
 {
     public class Reception
     {
-        int menusLeft { get; set; }
+        private int menusLeft;
+        public int MenusLeft { get => menusLeft; set => menusLeft = value; }
 
-        Queue<Customer> waitingCustomers;
-        Queue<Customer> inQueueCustomers;
+        private Queue<Customer> waitingCustomers;
+        private Queue<Customer> inQueueCustomers;
 
         public Reception(int nbrMenus)
         {
             menusLeft = nbrMenus;
             waitingCustomers = new Queue<Customer>();
+            inQueueCustomers = new Queue<Customer>();
         }
 
         public int GetMenus(int nbr)
@@ -34,7 +36,23 @@ namespace Room.Components
 
         public Customer GetNextCustomer()
         {
-            return waitingCustomers.Dequeue();
+            if (waitingCustomers.Count > 0)
+                return waitingCustomers.Dequeue();
+            else
+                return null;
+        }
+
+        public void AddCustomerToQueue(Customer cust)
+        {
+            inQueueCustomers.Enqueue(cust);
+        }
+
+        public Customer GetNextCustomerInQueue()
+        {
+            if (inQueueCustomers.Count > 0)
+                return inQueueCustomers.Dequeue();
+            else
+                return null;
         }
     }
 }

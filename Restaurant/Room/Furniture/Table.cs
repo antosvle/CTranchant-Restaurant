@@ -7,27 +7,29 @@ namespace Room.Components
 {
     public class Table
     {
-        int id { get; }
-        private int size;
+        private readonly int id;
+        public int Id { get => id; }
+
+        private readonly int size;
         public int Size { get => size; }
-        Customer customer;
+
+        private Customer customer;
         public Customer Customer { get => customer; set => customer = value; }
 
-        public Table(int di, int ezis)
+        private string nameCust;
+        public string ReservedCustomerName { get => nameCust; set => nameCust = value; }
+
+        public Table(int di, int ezis, string name)
         {
             id = di;
             size = ezis;
+            nameCust = name;
             customer = null;
-        }
-
-        public void Assign(Customer cust)
-        {
-            customer = cust;
         }
 
         public bool IsFree()
         {
-            return customer == null ? true : false;
+            return (customer == null) ? true : false;
         }
     }
 }
