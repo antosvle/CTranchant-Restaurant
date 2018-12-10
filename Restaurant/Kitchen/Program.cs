@@ -30,16 +30,36 @@ namespace Kitchen
             
             Console.ReadLine();*/
 
-            new Thread(() => {
+            new Thread(() =>
+            {
+                Console.WriteLine("0");
 
-                Console.WriteLine("Yo");
-
-                Timeline.Wait(10);
-
-                Console.WriteLine("Oy");
+                Timeline.Wait(5);
+                
+                Console.WriteLine("5");
 
             }).Start();
 
+            new Thread(() => {
+
+                Timeline.Wait(2);
+                
+                Console.WriteLine("2");
+
+                new Thread(() => {
+
+                    Timeline.Wait(2);
+                    
+                    Console.WriteLine("4");
+
+                    Timeline.Wait(2);
+                    
+                    Console.WriteLine("6");
+
+                }).Start();
+
+            }).Start();
+            
             Timeline.Start();
         }
     }

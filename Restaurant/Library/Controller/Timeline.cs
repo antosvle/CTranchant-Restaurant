@@ -6,45 +6,54 @@ namespace Library.Controller
 {
     public class Timeline
     {
-        private static IDictionary<long, List<ManualResetEvent>> lockers = new SortedDictionary<long, List<ManualResetEvent>>();
+        private static volatile IDictionary<long, List<ManualResetEvent>> lockers = new SortedDictionary<long, List<ManualResetEvent>>();
 
-        public static int UnitDuration { get; set; } = 1000;
+        private static volatile int unitDuration = 1000;
 
-        private static long CurrentTime = 0;
+        private static volatile int CurrentTime = 0;
         
+        public static int UnitDuration
+        {
+            get { return Timeline.unitDuration; }
+            set { Timeline.unitDuration = value;  }
+        }
+
         public static void Start()
         {
             while (true)
             {
-                Thread.Sleep(UnitDuration);
+                Thread.Sleep(unitDuration);
 
                 Timeline.Advance();
             }
         }
 
-        public static void Wait(long units)
+        public static void Wait(int units)
         {
             Timeline.AddLocker(Timeline.CurrentTime + units).WaitOne();
         }
 
         private static void Advance()
         {
-            Timeline.CurrentTime++;
-
-            List<ManualResetEvent> lockers = Timeline.GetLocker(Timeline.CurrentTime);
-
-            if (lockers != null)
+            lock (Timeline.lockers)
             {
-                foreach (ManualResetEvent locker in lockers)
-                {
-                    locker.Set();
-                }
+                Timeline.CurrentTime++;
 
-                Timeline.lockers.Remove(Timeline.CurrentTime);
+                List<ManualResetEvent> lockers = Timeline.GetLocker(Timeline.CurrentTime);
+
+                if (lockers != null)
+                {
+                    foreach (ManualResetEvent locker in lockers)
+                    {
+                        locker.Set();
+                    }
+
+                    Timeline.lockers.Remove(Timeline.CurrentTime);
+                }
             }
         }
 
-        private static ManualResetEvent AddLocker(long time)
+        private static ManualResetEvent AddLocker(int time)
         {
             List<ManualResetEvent> lockers = Timeline.GetLocker(time);
 
@@ -60,26 +69,26 @@ namespace Library.Controller
 
                 locks.Add(locker);
 
-                Timeline.lockers.Add(time, locks);
+                lock (Timeline.lockers)
+                {
+                    Timeline.lockers.Add(time, locks);
+                }
             }
 
             return locker;
         }
 
-        private static List<ManualResetEvent> GetLocker(long time)
+        private static List<ManualResetEvent> GetLocker(int time)
         {
-            List<ManualResetEvent> lockers;
-
-            try
+            lock (Timeline.lockers)
             {
-                lockers = Timeline.lockers[time];
-            }
-            catch(Exception)
-            {
-                lockers = null;
-            }
+                if (!Timeline.lockers.ContainsKey(time))
+                {
+                    return null;
+                }
 
-            return lockers;
+                return Timeline.lockers[time];
+            }
         }
     }
 }
