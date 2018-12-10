@@ -1,6 +1,8 @@
 ﻿using Room.Components;
+using Room.Events;
 using Room.Persons;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Room
 {
@@ -13,11 +15,14 @@ namespace Room
         public HashSet<Table> Tables { get => tables; }
         readonly HashSet<Customer> customers;
         readonly Butler butler;
+        
+        static Queue<RoomClerkEvent> roomClerkEvents;
 
         private Room()
         {
             butler = new Butler(this);
             customers = new HashSet<Customer>(0);
+            roomClerkEvents = new Queue<RoomClerkEvent>();
         }
 
         private void BuildRoom()
@@ -42,9 +47,19 @@ namespace Room
             cust = null;
         }
 
+        public static void AddRoomClerkEvent(RoomClerkEvent evt)
+        {
+            roomClerkEvents.Enqueue(evt);
+        }
+
+        public static RoomClerkEvent GetRoomClerkEvent()
+        {
+            return roomClerkEvents.Dequeue();
+        }
+
         public void Run()
         {
-            while(true)
+            while (true)
             {
                 Customer cust = new Customer(5);
                 customers.Add(cust);

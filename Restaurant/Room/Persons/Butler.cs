@@ -1,4 +1,5 @@
 ﻿using Room;
+using Room.Components;
 using System;
 
 namespace Room.Persons
@@ -15,12 +16,13 @@ namespace Room.Persons
         public bool WelcomeCustomer(Customer cust)
         {
             Console.WriteLine("Welcoming client");
-            for(int i = 0; i < room.Tables.Count; i++)
+
+            foreach (Table table in room.Tables)
             {
-                if (room.Tables[i].Size >= cust.NbrOfPeople)
+                if (table.Size >= cust.NbrOfPeople)
                 {
-                    cust.Table = room.Tables[i];
-                    room.Tables.Customer = cust;
+                    cust.Table = table;
+                    table.Customer = cust;
                     return true;
                 }
             }

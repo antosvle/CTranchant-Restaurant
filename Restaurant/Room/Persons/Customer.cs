@@ -1,4 +1,5 @@
 ﻿using Room.Components;
+using Room.Events;
 
 namespace Room.Persons
 {
@@ -28,6 +29,9 @@ namespace Room.Persons
             nbrOfPeople = nbr;
         }
 
-
+        public void AskBread()
+        {
+            Room.AddRoomClerkEvent(new RoomClerkEvent());
+        }
     }
 }
