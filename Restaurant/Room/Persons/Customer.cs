@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace Room.Persons
 {
-    enum EStatus
+    public enum EStatus
     {
         arriving,
         waiting,
@@ -40,12 +40,17 @@ namespace Room.Persons
 
         public void AskBread()
         {
-            Room.AddRoomClerkEvent(new RoomClerkEvent());
+            Room.AddRoomClerkEvent(new RoomClerkEvent(RCEvent.Bread));
         }
 
         public void AskWater()
         {
-            Room.AddRoomClerkEvent(new RoomClerkEvent());
+            Room.AddRoomClerkEvent(new RoomClerkEvent(RCEvent.Water));
+        }
+
+        public void AskWine()
+        {
+            Room.AddRoomClerkEvent(new RoomClerkEvent(RCEvent.Wine));
         }
 
         public void Run()
@@ -53,7 +58,7 @@ namespace Room.Persons
             Console.WriteLine("Run : " + name);
             Thread.Sleep(2000);
             status = EStatus.waitingPaying;
-            
+            Room.AddRoomClerkEvent(new RoomClerkEvent(RCEvent.Bread));
         }
     }
 }

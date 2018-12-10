@@ -10,8 +10,8 @@ namespace Room
     {
         static void Main(string[] args)
         {
-            /*Room room = Room.GetInstance();
-            room.Run();*/
+            Room room = Room.GetInstance();
+            room.Run();
         }
     }
 }

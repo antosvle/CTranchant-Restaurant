@@ -16,9 +16,12 @@ namespace Room
         private HashSet<Table> tables;
         public HashSet<Table> Tables { get => tables; }
         readonly HashSet<Customer> customers;
+
         readonly Butler butler;
+        RoomClerk roomClerk;
 
         Thread tButler;
+        Thread tClerk;
         Thread t;
         
         static Queue<RoomClerkEvent> roomClerkEvents;
@@ -26,11 +29,17 @@ namespace Room
         private Room()
         {
             butler = new Butler(this);
+            roomClerk = new RoomClerk();
+
             customers = new HashSet<Customer>(0);
             roomClerkEvents = new Queue<RoomClerkEvent>();
             BuildRoom();
+
             tButler = new Thread(new ThreadStart(butler.Run));
             tButler.Start();
+
+            tClerk = new Thread(new ThreadStart(roomClerk.Run));
+            tClerk.Start();
         }
 
         private void BuildRoom()
@@ -62,7 +71,10 @@ namespace Room
 
         public static RoomClerkEvent GetRoomClerkEvent()
         {
-            return roomClerkEvents.Dequeue();
+            if(roomClerkEvents.Count > 0)
+                return roomClerkEvents.Dequeue();
+            else
+                return null;
         }
 
         public void Run()
