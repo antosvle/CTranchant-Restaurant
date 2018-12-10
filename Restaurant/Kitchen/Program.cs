@@ -5,6 +5,8 @@ using Library;
 using Library.DatabaseLayer;
 using Library.Utils.DTO;
 using Library.Controller;
+using Library.TransportationLayer.Socket;
+using Library.Utils;
 
 namespace Kitchen
 {
@@ -28,7 +30,7 @@ namespace Kitchen
                 Console.WriteLine(listIngredient[i].Name);
             }
             
-            Console.ReadLine();*/
+            Console.ReadLine();
 
             new Thread(() =>
             {
@@ -60,7 +62,11 @@ namespace Kitchen
 
             }).Start();
             
-            Timeline.Start();
+            Timeline.Start();*/
+
+
+            ServerSocket Server = new ServerSocket(LocationEnum.KITCHEN);
+            Server.Start();
         }
     }
 }

@@ -3,45 +3,52 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net.Sockets;
 using System.Threading;
+using Library.Utils;
 
 namespace Library.TransportationLayer.Socket
 {
-    internal class ClientSocket
+    public class ClientSocket
     {
-        private TcpClient Client = null;
-        private Thread Sender;
-        private String message;
+        private LocationEnum Destination;
+        private LocationEnum Acteur;
+            
 
-
-        internal ClientSocket()
+        public ClientSocket(LocationEnum acteur, LocationEnum destination)
         {
-            Client = new TcpClient(NetworkConfig.SERVER_IP, NetworkConfig.PORT);
-            message = null;
-
-            try { Init(); }
-            catch (SocketException e) { Console.WriteLine("SOCKET_CLIENT <> SocketException: {0}", e); }
+            this.Destination = destination;
+            this.Acteur = acteur;
         }
 
 
-        private void Init()
+        public void Send(String message)
         {
-            message = null;
+            int port;
+            String ipAdress;
 
-            Sender = new Thread(delegate ()
+            if (Destination == LocationEnum.KITCHEN)
             {
+                port = NetworkConfig.PORT_KITCHEN;
+                ipAdress = NetworkConfig.IP_SERVER_KITCHEN;
+            }
+            else
+            {
+                port = NetworkConfig.PORT_ROOM;
+                ipAdress = NetworkConfig.IP_SERVER_ROOM;
+            }
+
+
+            try {
+
+                TcpClient Client = new TcpClient(ipAdress, port);
                 Byte[] Data = Encoding.ASCII.GetBytes(message);
                 NetworkStream stream = Client.GetStream();
 
                 stream.Write(Data, 0, Data.Length);
-                Console.WriteLine("SOCKET_CLIENT <> Sent: {0}", message);
-            });
-        }
+                Console.WriteLine("SOCKET_CLIENT <> Sent: {0}\n", message);
 
-
-        internal void Send(String message)
-        {
-            this.message = message;
-            try { Sender.Start(); }
+                stream.Close();
+                Client.Close();
+            }
             catch (SocketException e) { Console.WriteLine("SOCKET_CLIENT <> SocketException: {0}", e); }
         }
     }
