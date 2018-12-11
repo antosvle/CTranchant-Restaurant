@@ -56,9 +56,12 @@ namespace Room.Persons
         public void Run()
         {
             Console.WriteLine("Run : " + name);
-            Thread.Sleep(2000);
-            status = EStatus.waitingPaying;
-            Room.AddRoomClerkEvent(new RoomClerkEvent(RCEvent.Bread));
+            if (table != null)
+            {
+                Room.AddRoomClerkEvent(new RoomClerkEvent(RCEvent.Bread));
+                Thread.Sleep(2000);
+                status = EStatus.waitingPaying;
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Room.Components;
 using Room.Events;
 using Room.Persons;
+using Library.Controller;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -10,47 +11,68 @@ namespace Room
     public class Room
     {
         static Room instance;
-        private Reception reception;
+
+        private readonly Reception reception;
         public Reception Reception { get => reception; } 
-        HashSet<Area> areas;
-        private HashSet<Table> tables;
-        public HashSet<Table> Tables { get => tables; }
-        readonly HashSet<Customer> customers;
+
+        private List<Table> tables;
+        public List<Table> Tables { get => tables; }
+
+        private readonly List<Row> rows;
+        public List<Row> Rows { get => rows; }
+
+        private readonly List<Area> areas;
+        public List<Area> Areas { get => areas; }
+
+        private readonly Dictionary<Customer, Thread> customers;
+        private readonly Dictionary<RowChief, Thread> rowChiefs;
 
         readonly Butler butler;
-        RoomClerk roomClerk;
+        readonly RoomClerk roomClerk;
 
         Thread tButler;
         Thread tClerk;
-        Thread t;
         
         static Queue<RoomClerkEvent> roomClerkEvents;
 
         private Room()
         {
+            // Furnitures
+            reception = new Reception(40);
+
+            tables = new List<Table>();
+            for(int i = 0; i < 7; i++)
+            { Tables.Add(new Table(i, 2 + 2 * i, "")); }
+
+            rows = new List<Row>();
+            for(int i = 0; i < 4; i++)
+            { rows.Add(new Row()); }
+
+            areas = new List<Area>();
+            areas.Add(new Area());
+            areas.Add(new Area());
+            
+            // Events
+            roomClerkEvents = new Queue<RoomClerkEvent>();
+
+            // People
+            customers = new Dictionary<Customer, Thread>();
             butler = new Butler(this);
             roomClerk = new RoomClerk();
 
-            customers = new HashSet<Customer>(0);
-            roomClerkEvents = new Queue<RoomClerkEvent>();
-            BuildRoom();
+            rowChiefs = new Dictionary<RowChief, Thread>();
+            for(int i = 0; i < rows.Count; i++)
+            {
+                RowChief rc = new RowChief(this, rows[i]);
+                rowChiefs.Add(rc, new Thread(new ThreadStart(rc.Run)));
+                rowChiefs[rc].Start();
+            }
 
             tButler = new Thread(new ThreadStart(butler.Run));
             tButler.Start();
 
             tClerk = new Thread(new ThreadStart(roomClerk.Run));
             tClerk.Start();
-        }
-
-        private void BuildRoom()
-        {
-            reception = new Reception(40);
-            areas = new HashSet<Area>(2);
-            tables = new HashSet<Table>();
-            for(int i = 0; i < 7; i++)
-            {
-                tables.Add(new Table(i, 2*i+2, ""));
-            }
         }
 
         public static Room GetInstance()
@@ -84,12 +106,10 @@ namespace Room
             {
                 Console.WriteLine("");
                 Customer cust = new Customer(5, "");
-                customers.Add(cust);
                 reception.AddCustomer(cust);
-                t = new Thread(new ThreadStart(cust.Run));
-                t.Start();
-                Thread.Sleep(500);
-
+                customers.Add(cust, new Thread(new ThreadStart(cust.Run)));
+                customers.GetValueOrDefault(cust).Start();
+                Timeline.Wait(30);
             }
             while(true);
         }

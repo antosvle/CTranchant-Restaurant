@@ -13,6 +13,9 @@ namespace Room.Components
         private readonly int size;
         public int Size { get => size; }
 
+        private Row row;
+        public Row Row { get => row; set => row = value; }
+
         private Customer customer;
         public Customer Customer { get => customer; set => customer = value; }
 
@@ -30,6 +33,11 @@ namespace Room.Components
         public bool IsFree()
         {
             return (customer == null) ? true : false;
+        }
+
+        public void Reserve(string eman)
+        {
+            nameCust = eman;
         }
     }
 }

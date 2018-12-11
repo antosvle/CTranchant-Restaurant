@@ -10,10 +10,16 @@ namespace Room.Components
         private int id;
         public int Id { get => id; set => id = value; }
 
-        private HashSet<Row> rows;
+        private List<Row> rows;
         private Queue<WaiterEvent> waiterEvents;
 
-        public Area(HashSet<Row> rws)
+        public Area()
+        {
+            rows = new List<Row>();
+            waiterEvents = new Queue<WaiterEvent>();
+        }
+
+        public Area(List<Row> rws)
         {
             rows = rws;
             waiterEvents = new Queue<WaiterEvent>();

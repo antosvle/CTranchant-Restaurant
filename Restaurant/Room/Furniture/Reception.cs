@@ -49,7 +49,7 @@ namespace Room.Components
 
         public Customer GetNextCustomerInQueue()
         {
-            if (inQueueCustomers.Count > 0)
+            if(inQueueCustomers.Count > 0)
                 return inQueueCustomers.Dequeue();
             else
                 return null;

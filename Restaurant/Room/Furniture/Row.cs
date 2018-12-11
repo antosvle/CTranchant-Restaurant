@@ -10,12 +10,21 @@ namespace Room.Components
         private int id;
         public int Id { get => id; set => id = value; }
 
+        private readonly Area area;
+        public Area Area { get => area; }
+
         HashSet<Table> tables;
         Queue<RowChiefEvent> rowChiefEvents;
 
-        public Row(HashSet<Table> tbls)
+        public Row()
         {
-            tables = tbls;
+            tables = new HashSet<Table>();
+            rowChiefEvents = new Queue<RowChiefEvent>();
+        }
+
+        public Row(Area are)
+        {
+            area = are;
             rowChiefEvents = new Queue<RowChiefEvent>();
         }
 
