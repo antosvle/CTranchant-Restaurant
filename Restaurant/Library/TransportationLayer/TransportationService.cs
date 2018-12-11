@@ -11,6 +11,7 @@ namespace Library.Utils
         private LocationEnum Hote;
         private LocationEnum Destination;
         private ClientSocket Client;
+        private ServerSocket HoteServer;
 
 
         public TransportationService(LocationEnum hote, LocationEnum destination)
@@ -18,12 +19,16 @@ namespace Library.Utils
             this.Hote = hote;
             this.Destination = destination;
             Client = new ClientSocket(hote, destination);
+
+            HoteServer = new ServerSocket(hote, this);
+            HoteServer.Start();
         }
 
 
         public bool UpdateExternalSide(CommandeEnum commande, String arg)
         {
-            String SocketString = '$' + commande + '&' + arg + '$';
+            String SocketString = "$" + (int)commande + "&" + arg + "$";
+            Console.WriteLine((int)commande);
             try
             {
                 Client.Send(SocketString);
@@ -44,12 +49,12 @@ namespace Library.Utils
             int Commande = int.Parse(socketData.Split('&')[0]);
             String arg = socketData.Split('&')[1];
 
-            TransportationFactory ModelInjector = TransportationFactory.GetInstance();
+            GlobalFactory Injector = GlobalFactory.GetInstance();
 
             switch (Commande)
             {
                 //Case pour les commandes.
-            }
+            }*/
         }
     }
 }

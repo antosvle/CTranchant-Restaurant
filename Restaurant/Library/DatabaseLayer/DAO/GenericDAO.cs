@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -11,6 +9,7 @@ namespace Library.DatabaseLayer.DAO
         protected SqlConnection driverSql;
         protected DataFactory injector;
         protected SqlDataReader sdr = null;
+        private readonly object _locker = new object();
 
         internal GenericDAO(SqlConnection driverSql, DataFactory injector)
         {
@@ -18,12 +17,12 @@ namespace Library.DatabaseLayer.DAO
             this.injector = injector;
         }
 
-        internal void OpenConnection()
+        protected void OpenConnection()
         {
             driverSql.Open();
         }
 
-        internal void CloseConnection()
+        protected void CloseConnection()
         {
             if(driverSql != null)
             {
@@ -36,9 +35,12 @@ namespace Library.DatabaseLayer.DAO
         {
             try
             {
-                OpenConnection();
-                SqlCommand cmd = new SqlCommand(sqlRequest, driverSql);
-                sdr = cmd.ExecuteReader();
+                lock(_locker) 
+                {
+                    OpenConnection();
+                    SqlCommand cmd = new SqlCommand(sqlRequest, driverSql);
+                    sdr = cmd.ExecuteReader();
+                }
                 return sdr;
             }
             catch(DataException e)

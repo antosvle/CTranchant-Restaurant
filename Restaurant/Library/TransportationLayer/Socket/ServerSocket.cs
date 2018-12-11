@@ -12,18 +12,20 @@ namespace Library.TransportationLayer.Socket
     {
         private TcpListener Server = null;
         private Thread WaitConnection;
-        private LocationEnum Acteur;
+        private LocationEnum Hote;
+        private TransportationService Callback;
 
 
-        internal ServerSocket(LocationEnum acteur)
+        internal ServerSocket(LocationEnum hote, TransportationService callback)
         {
-            this.Acteur = acteur;
+            this.Hote = hote;
+            this.Callback = callback;
             IPAddress localAddr = IPAddress.Parse(NetworkConfig.LOCAL_IP);
-            if(acteur == LocationEnum.KITCHEN) Server = new TcpListener(localAddr, NetworkConfig.PORT_KITCHEN);
+            if(hote == LocationEnum.KITCHEN) Server = new TcpListener(localAddr, NetworkConfig.PORT_KITCHEN);
             else Server = new TcpListener(localAddr, NetworkConfig.PORT_ROOM);
 
             try { InitServerTask(); }
-            catch (SocketException e) { Console.WriteLine("SOCKET_SERVER <> Exception: {0}", e); }
+            catch (SocketException e) { Console.WriteLine("(!)  SERVER_" + Hote + " <> Exception: {0}\n", e); }
             finally { Server.Stop(); }
         }
 
@@ -33,12 +35,13 @@ namespace Library.TransportationLayer.Socket
             WaitConnection = new Thread(delegate ()
             {
                 Server.Start();
-
+    
                 while (true)
                 {
-                    Console.Write("SOCKET_SERVER <> Waiting for a connection...\n");
+                    Thread.Sleep(1000);
+                    Console.Write("(?)  SERVER_" + Hote + " <> Waiting for a connection...\n\n");
                     TcpClient Client = Server.AcceptTcpClient();
-                    Console.WriteLine("SOCKET_SERVER <> Connected!\n");
+                    Console.WriteLine("(?)  SERVER_" + Hote + " <> Connected!\n");
 
                     ListenClient(Client);
                 }
@@ -60,8 +63,8 @@ namespace Library.TransportationLayer.Socket
                     while ((i = stream.Read(ByteBufffer, 0, ByteBufffer.Length)) != 0)
                     {
                         Data = Encoding.ASCII.GetString(ByteBufffer, 0, i);
-                        Console.WriteLine("     SOCKET_SERVER <> Received: {0}\n", Data);
-                            
+                        Console.WriteLine("<-----  SERVER_" + Hote + " <> Received: {0}\n", Data);
+                        Callback.UpdateHostSide(Data);
                     }
                 }
             }).Start();
@@ -71,7 +74,7 @@ namespace Library.TransportationLayer.Socket
         internal void Start()
         {
             try { WaitConnection.Start(); }
-            catch (SocketException e) { Console.WriteLine("SOCKET_SERVER <> Exception: {0}\n", e); }
+            catch (SocketException e) { Console.WriteLine("(!)  SERVER_" + Hote + " <> Exception: {0}\n", e); }
             finally { Server.Stop(); }
         }
     }

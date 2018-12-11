@@ -51,7 +51,7 @@ namespace Library
 
         public LogService GetLogService()
         {
-            return new LogService();
+            return new LogService(GetInstance());
         }
 
         public RoomService GetRoomService()

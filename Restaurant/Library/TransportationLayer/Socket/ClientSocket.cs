@@ -10,13 +10,13 @@ namespace Library.TransportationLayer.Socket
     internal class ClientSocket
     {
         private LocationEnum Destination;
-        private LocationEnum Acteur;
+        private LocationEnum Hote;
 
 
-        internal ClientSocket(LocationEnum acteur, LocationEnum destination)
+        internal ClientSocket(LocationEnum hote, LocationEnum destination)
         {
             this.Destination = destination;
-            this.Acteur = acteur;
+            this.Hote = hote;
         }
 
 
@@ -38,18 +38,20 @@ namespace Library.TransportationLayer.Socket
 
 
             try {
+                new Thread(delegate ()
+                {
+                    TcpClient Client = new TcpClient(ipAdress, port);
+                    Byte[] Data = Encoding.ASCII.GetBytes(message);
+                    NetworkStream stream = Client.GetStream();
 
-                TcpClient Client = new TcpClient(ipAdress, port);
-                Byte[] Data = Encoding.ASCII.GetBytes(message);
-                NetworkStream stream = Client.GetStream();
+                    stream.Write(Data, 0, Data.Length);
+                    Console.WriteLine("-----> CLIENT_" + Hote + " <> Sent: {0}\n", message);
 
-                stream.Write(Data, 0, Data.Length);
-                Console.WriteLine("SOCKET_CLIENT <> Sent: {0}\n", message);
-
-                stream.Close();
-                Client.Close();
+                    stream.Close();
+                    Client.Close();
+                }).Start();
             }
-            catch (SocketException e) { Console.WriteLine("SOCKET_CLIENT <> SocketException: {0}", e); }
+            catch (SocketException e) { Console.WriteLine("(!)  CLIENT_" + Hote + " <> SocketException: {0}\n", e); }
         }
     }
 }
