@@ -12,6 +12,8 @@ namespace Library.Controller
 
         private static volatile int CurrentTime = 0;
         
+        private static volatile ManualResetEvent running = new ManualResetEvent(false);
+
         public static int UnitDuration
         {
             get { return Timeline.unitDuration; }
@@ -20,12 +22,26 @@ namespace Library.Controller
 
         public static void Start()
         {
+            Timeline.running.Set();
+
             while (true)
             {
                 Thread.Sleep(unitDuration);
 
+                Timeline.running.WaitOne();
+
                 Timeline.Advance();
             }
+        }
+
+        public static void Pause()
+        {
+            Timeline.running.Reset();
+        }
+
+        public static void Resume()
+        {
+            Timeline.running.Set();
         }
 
         public static void Wait(int units)

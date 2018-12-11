@@ -12,9 +12,7 @@ namespace Kitchen
 {
     class Program
     {
-        private static DataFactory Injector;
-
-        private static EventWaitHandle wh = new ManualResetEvent(false);
+        //private static DataFactory Injector;
 
         static void Main(string[] args)
         {
@@ -30,7 +28,7 @@ namespace Kitchen
                 Console.WriteLine(listIngredient[i].Name);
             }
             
-            Console.ReadLine();
+            Console.ReadLine();*/
 
             new Thread(() =>
             {
@@ -39,6 +37,8 @@ namespace Kitchen
                 Timeline.Wait(5);
                 
                 Console.WriteLine("5");
+
+                Timeline.Pause();
 
             }).Start();
 
@@ -60,9 +60,13 @@ namespace Kitchen
 
                 }).Start();
 
+                Thread.Sleep(7000);
+
+                Timeline.Resume();
+
             }).Start();
             
-            Timeline.Start();*/
+            Timeline.Start();
 
         }
     }

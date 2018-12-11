@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Model
+namespace Kitchen.Model
 {
-    class Table : Entity
-    {}
+    public class Washer
+    {
+    }
 }
