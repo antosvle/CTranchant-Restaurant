@@ -53,7 +53,7 @@ namespace Library.Utils
 
             switch (Commande)
             {
-                
+                //Case pour les commandes.
             }
         }
     }

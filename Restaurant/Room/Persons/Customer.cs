@@ -2,6 +2,7 @@
 using Room.Events;
 using System;
 using System.Threading;
+using Library.Controller;
 
 namespace Room.Persons
 {
@@ -23,8 +24,8 @@ namespace Room.Persons
         readonly private int nbrOfPeople;
         public int NbrOfPeople { get => nbrOfPeople; }
 
-        private string name;
-        public string Name { get => name; set => name = value; }
+        private readonly string name;
+        public string Name { get => name; }
 
         private Table table;
         internal Table Table { get => table; set => table = value; }
@@ -40,26 +41,33 @@ namespace Room.Persons
 
         public void AskBread()
         {
-            Room.AddRoomClerkEvent(new RoomClerkEvent(RCEvent.Bread));
+            Room.AddRoomClerkEvent(new RoomClerkEvent(RCEvent.Bread, this));
         }
 
         public void AskWater()
         {
-            Room.AddRoomClerkEvent(new RoomClerkEvent(RCEvent.Water));
+            Room.AddRoomClerkEvent(new RoomClerkEvent(RCEvent.Water, this));
         }
 
         public void AskWine()
         {
-            Room.AddRoomClerkEvent(new RoomClerkEvent(RCEvent.Wine));
+            Room.AddRoomClerkEvent(new RoomClerkEvent(RCEvent.Wine, this));
+        }
+
+        public void GiveOrder()
+        {
+            table.Row.AddRowChiefEvent(new RowChiefEvent(RowChiefEventEnum.getOrder, table));
         }
 
         public void Run()
         {
-            Console.WriteLine("Run : " + name);
+            Console.WriteLine("customer : " + name);
             if (table != null)
             {
-                Room.AddRoomClerkEvent(new RoomClerkEvent(RCEvent.Bread));
-                Thread.Sleep(2000);
+                AskBread();
+                Timeline.Wait(300);
+                GiveOrder();
+
                 status = EStatus.waitingPaying;
             }
         }

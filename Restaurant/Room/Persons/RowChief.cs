@@ -1,4 +1,6 @@
-﻿using Room.Components;
+﻿using Library.Controller;
+using Room.Components;
+using Room.Events;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,9 +23,22 @@ namespace Room.Persons
             while (true)
             {
                 Customer cust = room.Reception.GetNextCustomerInQueue();
-                if (cust == null)
-                    continue;
-
+                RowChiefEvent evt;
+                if (cust != null)
+                {
+                    // call IHM 
+                }
+                else if((evt = row.GetRowChiefEvent()) != null)
+                {
+                    if(evt.Event == RowChiefEventEnum.getMenu)
+                    {
+                        Timeline.Wait(60);
+                    }
+                    else if(evt.Event == RowChiefEventEnum.getOrder)
+                    {
+                        Timeline.Wait(30 * evt.Table.Customer.NbrOfPeople);
+                    }
+                }
 
             }
         }

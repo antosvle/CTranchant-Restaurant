@@ -23,7 +23,7 @@ namespace Room.Persons
                 
                 if(cust.Status == EStatus.arriving)
                 {
-                    if (WelcomeCustomer(cust))
+                    if (WelcomeCustomer(ref cust))
                     {
                         cust.Status = EStatus.waiting;
                         room.Reception.AddCustomerToQueue(cust);
@@ -41,13 +41,13 @@ namespace Room.Persons
             }
         }
 
-        public bool WelcomeCustomer(Customer cust)
+        public bool WelcomeCustomer(ref Customer cust)
         {
             Console.WriteLine("Welcoming client");
 
-            foreach (Table table in room.Tables)
+            foreach(Table table in room.Tables) // search if they had reserved a table
             {
-                if (table.IsFree() && table.Size >= cust.NbrOfPeople && (table.ReservedCustomerName == cust.Name || table.ReservedCustomerName == ""))
+                if(table.ReservedCustomerName == cust.Name)
                 {
                     cust.Table = table;
                     table.Customer = cust;
@@ -55,7 +55,17 @@ namespace Room.Persons
                 }
             }
 
-            Console.WriteLine("not enough place");
+            foreach (Table table in room.Tables)
+            {
+                if (table.IsFree() && table.Size >= cust.NbrOfPeople && table.ReservedCustomerName == "")
+                {
+                    cust.Table = table;
+                    table.Customer = cust;
+                    return true;
+                }
+            }
+
+            Console.WriteLine("not enough place, rejecting client");
             return false;
         }
 

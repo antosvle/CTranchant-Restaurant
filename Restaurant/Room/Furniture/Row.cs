@@ -40,7 +40,10 @@ namespace Room.Components
 
         public RowChiefEvent GetRowChiefEvent()
         {
-            return rowChiefEvents.Dequeue();
+            if(rowChiefEvents.Count > 0)
+                return rowChiefEvents.Dequeue();
+            else
+                return null;
         }
     }
 }
