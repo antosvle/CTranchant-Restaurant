@@ -14,7 +14,7 @@ namespace Room.Components
         public Area Area { get => area; }
 
         HashSet<Table> tables;
-        Queue<RowChiefEvent> rowChiefEvents;
+        public Queue<RowChiefEvent> rowChiefEvents;
 
         public Row()
         {

@@ -8,10 +8,13 @@ namespace Room.Persons
 {
     public enum EStatus
     {
+        nothing,
         arriving,
         waiting,
         paying,
         waitingPaying,
+        waitingForEmployee,
+        waitingForMenus,
         eating,
         gone
     }
@@ -42,21 +45,29 @@ namespace Room.Persons
         public void AskBread()
         {
             Room.AddRoomClerkEvent(new RoomClerkEvent(RCEvent.Bread, this));
+            status = EStatus.waitingForEmployee;
+            while (status == EStatus.waitingForEmployee);
         }
 
         public void AskWater()
         {
             Room.AddRoomClerkEvent(new RoomClerkEvent(RCEvent.Water, this));
+            status = EStatus.waitingForEmployee;
+            while (status == EStatus.waitingForEmployee);
         }
 
         public void AskWine()
         {
             Room.AddRoomClerkEvent(new RoomClerkEvent(RCEvent.Wine, this));
+            status = EStatus.waitingForEmployee;
+            while (status == EStatus.waitingForEmployee);
         }
 
         public void GiveOrder()
         {
             table.Row.AddRowChiefEvent(new RowChiefEvent(RowChiefEventEnum.getOrder, table));
+            status = EStatus.waitingForEmployee;
+            while (status == EStatus.waitingForEmployee);
         }
 
         public void Run()
@@ -64,8 +75,11 @@ namespace Room.Persons
             Console.WriteLine("customer : " + name);
             if (table != null)
             {
+                // ask for bread
                 AskBread();
                 Timeline.Wait(300);
+
+                // order the meal
                 GiveOrder();
 
                 status = EStatus.waitingPaying;

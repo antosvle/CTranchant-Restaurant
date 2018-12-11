@@ -38,7 +38,7 @@ namespace Room
         private Room()
         {
             // Furnitures
-            reception = new Reception(40);
+            reception = new Reception(6);
 
             rows = new List<Row>();
             for(int i = 0; i < 4; i++)

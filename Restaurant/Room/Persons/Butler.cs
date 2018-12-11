@@ -1,5 +1,6 @@
 ﻿using Room;
 using Room.Components;
+using Room.Events;
 using System;
 
 namespace Room.Persons
@@ -51,6 +52,7 @@ namespace Room.Persons
                 {
                     cust.Table = table;
                     table.Customer = cust;
+                    table.Row.AddRowChiefEvent(new RowChiefEvent(RowChiefEventEnum.getMenu, table));
                     return true;
                 }
             }
@@ -61,6 +63,7 @@ namespace Room.Persons
                 {
                     cust.Table = table;
                     table.Customer = cust;
+                    table.Row.AddRowChiefEvent(new RowChiefEvent(RowChiefEventEnum.getMenu, table));
                     return true;
                 }
             }
