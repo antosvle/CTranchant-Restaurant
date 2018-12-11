@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Threading;
 
 namespace Kitchen.Model
 {
     public class Kitchen
     {
+        private static int cookersNumber = 6;
+
+        private static int lackeysNumber = 1;
+
+        private static int washersNumber = 2;
+
         public static Kitchen Instance { get; } = new Kitchen();
-
-        private static int CookersNumber = 6;
-
-        private static int LackeysNumber = 1;
-
-        private static int WashersNumber = 2;
 
         public Chief Chief { get; private set; }
 
@@ -22,19 +21,23 @@ namespace Kitchen.Model
 
         public ISet<Washer> Washers { get; private set; } = new HashSet<Washer>();
 
+        public ManualResetEvent cookersAvailability = new ManualResetEvent(false);
+        
         private Kitchen()
         {
-            for (int i = 0; i < CookersNumber ; i++)
+            Chief = new Chief();
+
+            for (int i = 0; i < cookersNumber; i++)
             {
                 Cookers.Add(new Cooker());
             }
 
-            for (int i = 0; i < LackeysNumber; i++)
+            for (int i = 0; i < lackeysNumber; i++)
             {
                 Lackeys.Add(new Lackey());
             }
 
-            for (int i = 0; i < WashersNumber; i++)
+            for (int i = 0; i < washersNumber; i++)
             {
                 Washers.Add(new Washer());
             }
@@ -42,10 +45,28 @@ namespace Kitchen.Model
 
         public Cooker WaitAvailableCooker()
         {
-            return null;
+            while(true)
+            {
+                foreach (Cooker cooker in Cookers)
+                {
+                    if (cooker.Available)
+                    {
+                        cookersAvailability.Reset();
+
+                        return cooker;
+                    }
+                }
+
+                lock (cookersAvailability)
+                {
+                    cookersAvailability.WaitOne();
+                }
+            }
         }
 
         public void UpdateCookersAvailability()
-        {}
+        {
+            cookersAvailability.Set();
+        }
     }
 }

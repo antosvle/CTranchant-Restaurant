@@ -6,9 +6,9 @@ namespace Kitchen.Model
 {
     public class Order
     {
-        public ISet<string> Dishes { get; private set; } = new HashSet<string>();
+        public IList<string> Dishes { get; private set; }
 
-        public Order(ISet<string> dishes)
+        public Order(IList<string> dishes)
         {
             this.Dishes = dishes;
         }

@@ -1,68 +1,45 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
-using Library;
-using Library.DatabaseLayer;
-using Library.Utils.DTO;
 using Library.Controller;
-using Library.TransportationLayer.Socket;
-using Library.Utils;
+using Kitchen.Model;
+using System.Collections.Generic;
 
 namespace Kitchen
 {
     class Program
     {
-        //private static DataFactory Injector;
-
         static void Main(string[] args)
         {
-            /*Injector = DataFactory.GetInstance();
-            KitchenService KitchenDB = Injector.GetKitchenService();
-
-            List<IngredientDTO> listIngredient = KitchenDB.GetIngredients();
-
-            Console.WriteLine("-- Test --\n");
-
-            for(int i=0; i<listIngredient.Count; i++)
-            {
-                Console.WriteLine(listIngredient[i].Name);
-            }
-            
-            Console.ReadLine();*/
-
             new Thread(() =>
             {
-                Console.WriteLine("0");
+                Random random = new Random();
 
-                Timeline.Wait(5);
-                
-                Console.WriteLine("5");
+                string[] recipes = {"Carbonara Pasta", "Pasta Bolognese", "Norvegian Pizza", "Squeegee", "Sushis", "Nems", "Pancakes"};
 
-                Timeline.Pause();
+                while (true)
+                {
+                    Timeline.Wait(random.Next(120, 240));
 
-            }).Start();
+                    IList<string> dishes = new List<string>();
 
-            new Thread(() => {
+                    for (int i = 0, n = random.Next(1, 10); i < n; i++)
+                    {
+                        dishes.Add(recipes[random.Next(0, 4)]);
+                    }
 
-                Timeline.Wait(2);
-                
-                Console.WriteLine("2");
+                    string message = "A new order has been asked:";
 
-                new Thread(() => {
+                    foreach (string dish in dishes)
+                    {
+                        message += " {" + dish + "}";
+                    }
 
-                    Timeline.Wait(2);
-                    
-                    Console.WriteLine("4");
+                    message += ".";
 
-                    Timeline.Wait(2);
-                    
-                    Console.WriteLine("6");
+                    Console.WriteLine(message);
 
-                }).Start();
-
-                Thread.Sleep(7000);
-
-                Timeline.Resume();
+                    Model.Kitchen.Instance.Chief.Manage(new Order(dishes));
+                }
 
             }).Start();
             
