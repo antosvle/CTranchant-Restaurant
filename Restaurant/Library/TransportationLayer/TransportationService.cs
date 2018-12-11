@@ -28,7 +28,7 @@ namespace Library.Utils
         public bool UpdateExternalSide(CommandeEnum commande, String arg)
         {
             String SocketString = "$" + (int)commande + "&" + arg + "$";
-            Console.WriteLine((int)commande);
+         
             try
             {
                 Client.Send(SocketString);
