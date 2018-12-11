@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace Library.Controller
 {
-    public class Timeline
+    public static class Timeline
     {
         private static volatile IDictionary<long, List<ManualResetEvent>> lockers = new SortedDictionary<long, List<ManualResetEvent>>();
 

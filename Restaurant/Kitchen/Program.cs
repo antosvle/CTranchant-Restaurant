@@ -14,11 +14,11 @@ namespace Kitchen
             {
                 Random random = new Random();
 
-                string[] recipes = {"Carbonara Pasta", "Pasta Bolognese", "Norvegian Pizza", "Squeegee", "Sushis", "Nems", "Pancakes"};
+                string[] recipes = {"Carbonara Pasta", "Pasta Bolognese", "Norwegian Pizza", "Squeegee", "Sushis", "Nems", "Pancakes"};
 
                 while (true)
                 {
-                    Timeline.Wait(random.Next(120, 240));
+                    Timeline.Wait(random.Next(240, 420));
 
                     IList<string> dishes = new List<string>();
 
@@ -42,9 +42,8 @@ namespace Kitchen
                 }
 
             }).Start();
-            
-            Timeline.Start();
 
+            Restaurant.Start();
         }
     }
 }

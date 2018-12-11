@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Kitchen.Model
 {
@@ -9,6 +8,8 @@ namespace Kitchen.Model
         private static ISet<Recipe> recipes = new HashSet<Recipe>();
 
         public string Name { get; private set; }
+
+        public ISet<Ingredient> Ingredients { get; private set; } = new HashSet<Ingredient>();
 
         private Recipe(string name)
         {
@@ -27,6 +28,8 @@ namespace Kitchen.Model
 
             {
                 Recipe recipe = new Recipe(name);
+                
+                recipe.Ingredients.Add(Ingredient.Get("Potato", 30));
 
                 recipes.Add(recipe);
 

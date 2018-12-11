@@ -1,5 +1,4 @@
 ﻿using Library.Controller;
-using System;
 
 namespace Kitchen.Model
 {
@@ -30,11 +29,11 @@ namespace Kitchen.Model
         {
             this.Available = false;
 
-            Console.WriteLine("A cooker is preparing the recipe {" + recipe.Name + "}.");
+            Shell.Log("A cooker is preparing the recipe {" + recipe.Name + "}.");
 
-            Timeline.Wait(300);
+            Timeline.Wait(600);
 
-            Console.WriteLine("A cooker has prepared the recipe {" + recipe.Name + "}.");
+            Shell.Log("A cooker has prepared the recipe {" + recipe.Name + "}.");
 
             this.Available = true;
         }

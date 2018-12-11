@@ -1,5 +1,4 @@
 ﻿using Library.Controller;
-using System;
 using System.Threading;
 
 namespace Kitchen.Model
@@ -8,7 +7,7 @@ namespace Kitchen.Model
     {
         public void Manage(Order order)
         {
-            Console.WriteLine("The chief is managing an order.");
+            Shell.Log("The chief is managing an order.");
 
             new Thread(() =>
             {
@@ -20,7 +19,7 @@ namespace Kitchen.Model
                 {
                     new Thread(() =>
                     {
-                        Console.WriteLine("The chief is distributing a recipe {" + name + "}.");
+                        Shell.Log("The chief is distributing a recipe {" + name + "}.");
 
                         Kitchen.Instance.WaitAvailableCooker().Prepare(Recipe.Get(name));
 
@@ -36,7 +35,7 @@ namespace Kitchen.Model
                     semaphore.WaitOne();
                 }
 
-                Console.WriteLine("The chief has satisfied an order.");
+                Shell.Log("The chief has satisfied an order.");
 
             }).Start();
         }
