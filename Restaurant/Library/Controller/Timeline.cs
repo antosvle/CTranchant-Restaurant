@@ -71,27 +71,27 @@ namespace Library.Controller
 
         private static ManualResetEvent AddLocker(int time)
         {
-            List<ManualResetEvent> lockers = Timeline.GetLocker(time);
-
-            ManualResetEvent locker = new ManualResetEvent(false);
-
-            if (lockers != null)
+            lock (Timeline.lockers)
             {
-                lockers.Add(locker);
-            }
-            else
-            {
-                List<ManualResetEvent> locks = new List<ManualResetEvent>();
+                List<ManualResetEvent> lockers = Timeline.GetLocker(time);
 
-                locks.Add(locker);
+                ManualResetEvent locker = new ManualResetEvent(false);
 
-                lock (Timeline.lockers)
+                if (lockers != null)
                 {
+                    lockers.Add(locker);
+                }
+                else
+                {
+                    List<ManualResetEvent> locks = new List<ManualResetEvent>();
+
+                    locks.Add(locker);
+
                     Timeline.lockers.Add(time, locks);
                 }
-            }
 
-            return locker;
+                return locker;
+            }
         }
 
         private static List<ManualResetEvent> GetLocker(int time)

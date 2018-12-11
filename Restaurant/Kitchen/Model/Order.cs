@@ -10,5 +10,17 @@ namespace Kitchen.Model
         {
             this.Dishes = dishes;
         }
+
+        public string Description()
+        {
+            string description = "";
+
+            foreach (string dish in Dishes)
+            {
+                description += "{" + dish + "}";
+            }
+
+            return description;
+        }
     }
 }

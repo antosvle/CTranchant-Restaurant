@@ -1,6 +1,6 @@
 ﻿namespace Kitchen.Model
 {
-    public class Washer
+    public class Washer : Worker
     {
     }
 }

@@ -7,7 +7,7 @@ namespace Kitchen.Model
     {
         private static int cookersNumber = 6;
 
-        private static int lackeysNumber = 1;
+        private static int lackeysNumber = 2;
 
         private static int washersNumber = 2;
 
@@ -21,8 +21,8 @@ namespace Kitchen.Model
 
         public ISet<Washer> Washers { get; private set; } = new HashSet<Washer>();
 
-        public ManualResetEvent cookersAvailability = new ManualResetEvent(false);
-        
+        public ManualResetEvent workersAvailability = new ManualResetEvent(false);
+
         private Kitchen()
         {
             Chief = new Chief();
@@ -51,22 +51,43 @@ namespace Kitchen.Model
                 {
                     if (cooker.Available)
                     {
-                        cookersAvailability.Reset();
+                        workersAvailability.Reset();
 
                         return cooker;
                     }
                 }
 
-                lock (cookersAvailability)
+                lock (workersAvailability)
                 {
-                    cookersAvailability.WaitOne();
+                    workersAvailability.WaitOne();
                 }
             }
         }
 
-        public void UpdateCookersAvailability()
+        public Lackey WaitAvailableLackey()
         {
-            cookersAvailability.Set();
+            while (true)
+            {
+                foreach (Lackey lackey in Lackeys)
+                {
+                    if (lackey.Available)
+                    {
+                        workersAvailability.Reset();
+
+                        return lackey;
+                    }
+                }
+
+                lock (workersAvailability)
+                {
+                    workersAvailability.WaitOne();
+                }
+            }
+        }
+
+        public void UpdateWorkersAvailability()
+        {
+            workersAvailability.Set();
         }
     }
 }

@@ -3,20 +3,32 @@ using System.Collections.Generic;
 
 namespace Kitchen.Model
 {
-    public class Lackey
+    public class Lackey : Worker
     {
-        public ISet<Ingredient> GatherIngredients(IDictionary<string, int> entries)
+        public Lackey():
+            base()
+        {}
+
+        public void GatherIngredients(ISet<Ingredient> ingredients)
         {
-            ISet<Ingredient> ingredients = new HashSet<Ingredient>();
+            Available = false;
 
-            Timeline.Wait(60);
+            string message = "LACKEY START TASK: "; foreach (Ingredient ingredient in ingredients) { message += ingredient.Description(); } message += ".";
 
-            foreach (KeyValuePair<string, int> entry in entries)
+            Shell.Log(message);
+
+            Timeline.Wait(20);
+
+            foreach (Ingredient ingredient in ingredients)
             {
-                Ingredient.Get(entry.Key, entry.Value);
+                Ingredient.Get(ingredient);
             }
 
-            return ingredients;
+            message = "LACKEY END TASK: "; foreach (Ingredient ingredient in ingredients) { message += ingredient.Description(); } message += ".";
+
+            Shell.Log(message);
+
+            Available = true;
         }
     }
 }

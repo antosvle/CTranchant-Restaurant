@@ -22,16 +22,16 @@ namespace Kitchen
 
                     IList<string> dishes = new List<string>();
 
-                    for (int i = 0, n = random.Next(1, 10); i < n; i++)
+                    for (int i = 0, n = random.Next(1, 8); i < n; i++)
                     {
                         dishes.Add(recipes[random.Next(0, 4)]);
                     }
 
-                    string message = "A new order has been asked:";
+                    string message = "ORDER EMITTED: ";
 
                     foreach (string dish in dishes)
                     {
-                        message += " {" + dish + "}";
+                        message += "{" + dish + "}";
                     }
 
                     message += ".";

@@ -2,3 +2,5 @@
 *obj/
 *.user
 Restaurant/.vs/*
+
+Restaurant/\.vs/

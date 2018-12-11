@@ -7,7 +7,7 @@ namespace Kitchen.Model
     {
         public void Manage(Order order)
         {
-            Shell.Log("The chief is managing an order.");
+            Shell.Log("CHIEF START TASK");
 
             new Thread(() =>
             {
@@ -19,8 +19,6 @@ namespace Kitchen.Model
                 {
                     new Thread(() =>
                     {
-                        Shell.Log("The chief is distributing a recipe {" + name + "}.");
-
                         Kitchen.Instance.WaitAvailableCooker().Prepare(Recipe.Get(name));
 
                         semaphore.Release();
@@ -35,7 +33,7 @@ namespace Kitchen.Model
                     semaphore.WaitOne();
                 }
 
-                Shell.Log("The chief has satisfied an order.");
+                Shell.Log("CHIEF END TASK");
 
             }).Start();
         }

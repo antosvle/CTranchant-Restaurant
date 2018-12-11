@@ -29,12 +29,19 @@ namespace Kitchen.Model
             {
                 Recipe recipe = new Recipe(name);
                 
-                recipe.Ingredients.Add(Ingredient.Get("Potato", 30));
+                recipe.Ingredients.Add(new Ingredient("Potato", 30));
+
+                recipe.Ingredients.Add(new Ingredient("Chocolate", 20));
 
                 recipes.Add(recipe);
 
                 return recipe;
             }
+        }
+
+        public string Description()
+        {
+            return "{" + Name + "}";
         }
     }
 }
