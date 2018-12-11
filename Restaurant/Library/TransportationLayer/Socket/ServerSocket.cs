@@ -20,9 +20,15 @@ namespace Library.TransportationLayer.Socket
         {
             this.Hote = hote;
             this.Callback = callback;
-            IPAddress localAddr = IPAddress.Parse(NetworkConfig.LOCAL_IP);
-            if(hote == LocationEnum.KITCHEN) Server = new TcpListener(localAddr, NetworkConfig.PORT_KITCHEN);
-            else Server = new TcpListener(localAddr, NetworkConfig.PORT_ROOM);
+
+            if(hote == LocationEnum.KITCHEN) Server = new TcpListener(
+                IPAddress.Parse(NetworkConfig.IP_SERVER_KITCHEN), NetworkConfig.PORT);
+
+            else if (hote == LocationEnum.ROOM) Server = new TcpListener(
+                IPAddress.Parse(NetworkConfig.IP_SERVER_ROOM), NetworkConfig.PORT);
+
+            else Server = new TcpListener(
+                IPAddress.Parse(NetworkConfig.IP_SERVER_IHM), NetworkConfig.PORT);
 
             try { InitServerTask(); }
             catch (SocketException e) { Console.WriteLine("(!)  SERVER_" + Hote + " <> Exception: {0}\n", e); }

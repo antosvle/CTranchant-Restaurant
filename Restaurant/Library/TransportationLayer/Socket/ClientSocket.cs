@@ -22,19 +22,18 @@ namespace Library.TransportationLayer.Socket
 
         internal void Send(String message)
         {
-            int port;
-            String ipAdress;
+            int port = NetworkConfig.PORT;
+            String ipAdress = NetworkConfig.LOCAL_IP;
+
 
             if (Destination == LocationEnum.KITCHEN)
-            {
-                port = NetworkConfig.PORT_KITCHEN;
                 ipAdress = NetworkConfig.IP_SERVER_KITCHEN;
-            }
-            else
-            {
-                port = NetworkConfig.PORT_ROOM;
+
+            else if (Destination == LocationEnum.ROOM)
                 ipAdress = NetworkConfig.IP_SERVER_ROOM;
-            }
+
+            else if (Destination == LocationEnum.IHM)
+                ipAdress = NetworkConfig.IP_SERVER_IHM;
 
 
             try {
