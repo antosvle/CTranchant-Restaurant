@@ -5,6 +5,7 @@ using Library.DatabaseLayer.DAO;
 using Library.DatabaseLayer.DAOimpl;
 using Library.Utils.DTO;
 using System.Data.SqlClient;
+using Library.TransportationLayer;
 
 namespace Library
 {
@@ -12,7 +13,7 @@ namespace Library
     {
         private static DataFactory instance = null;
         private static SqlConnection driverSql = null;
-        readonly private static String connectionString = "Data Source=tcp:192.168.1.1,1433;Initial Catalog = Restaurant_simulator_2018; User ID = DATABASELAYER; Password = BIGOUNE";
+        readonly private static String connectionString = "Data Source=tcp:" + NetworkConfig.IP_DATABASE + ",1433;Initial Catalog = Restaurant_simulator_2018; User ID = DATABASELAYER; Password = BIGOUNE";
 
 
         private DataFactory() {}
