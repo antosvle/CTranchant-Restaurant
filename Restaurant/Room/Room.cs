@@ -13,6 +13,8 @@ namespace Room
     {
         static Room instance;
 
+        public static TransportationService socketManager;
+
         private readonly Reception reception;
         public Reception Reception { get => reception; } 
 
@@ -25,7 +27,6 @@ namespace Room
         private readonly List<Area> areas;
         public List<Area> Areas { get => areas; }
 
-        public static TransportationService socketManager;
 
         private readonly Dictionary<Customer, Thread> customers;
         private readonly Dictionary<RowChief, Thread> rowChiefs;
@@ -51,7 +52,7 @@ namespace Room
             tables = new List<Table>();
             for(int i = 0; i < 7; i++)
             {
-                tables.Add(new Table(i, 4 + 2 * i, ""));
+                tables.Add(new Table(i, 2 + 2 * i, ""));
                 tables[i].Row = rows[i%4];
             }
 
@@ -131,7 +132,8 @@ namespace Room
             while(i++ < 7)
             {
                 Console.WriteLine("");
-                Customer cust = new Customer(5, i.ToString(), new Order());
+                List<string> dishes = new List<string>() { "", "", "", "", "" };
+                Customer cust = new Customer(5, i.ToString(), new Order(dishes));
                 reception.AddCustomer(cust);
                 customers.Add(cust, new Thread(new ThreadStart(cust.Run)));
                 customers.GetValueOrDefault(cust).Name = "customer " + cust.Name;

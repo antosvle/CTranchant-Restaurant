@@ -99,8 +99,11 @@ namespace Room.Persons
                 Timeline.Wait(200);
 
                 // order the meal
-                if(haveMenus)
+                if (haveMenus)
+                {
+                    order.Table = table.Id;
                     GiveOrder();
+                }
 
                 if(haveOrdered)
                 {

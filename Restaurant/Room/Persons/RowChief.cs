@@ -61,7 +61,7 @@ namespace Room.Persons
                             evt.Table.Row.Area.AddWaiterEvent(new WaiterEvent(WaiterEventEnum.cleanTable, evt.Table));
 
                             // send order to socket
-                            Room.socketManager.UpdateExternalSide(LocationEnum.KITCHEN, Library.Utils.Nomenclature.CommandeEnum.SEND_ORDER, "");
+                            //Room.socketManager.UpdateExternalSide(LocationEnum.KITCHEN, Library.Utils.Nomenclature.CommandeEnum.SEND_ORDER, "");
                         }
                     }
                 }

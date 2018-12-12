@@ -6,13 +6,12 @@ namespace Room
 {
     public class Order
     {
-        public int Table { get; private set; }
+        public int Table { get; set; }
 
         public IList<string> Dishes { get; private set; }
 
-        public Order(int table, IList<string> dishes)
+        public Order(IList<string> dishes)
         {
-            Table = table;
             Dishes = dishes;
         }
     }
