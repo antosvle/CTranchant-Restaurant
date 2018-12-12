@@ -6,7 +6,9 @@ namespace Room
 {
     public class Bar
     {
-        public static void TreatResponse()
-        { }
+        public static void GetResponseFromKitchen()
+        {
+
+        }
     }
 }
