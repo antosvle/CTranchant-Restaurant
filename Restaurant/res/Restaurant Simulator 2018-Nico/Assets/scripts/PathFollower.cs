@@ -33,7 +33,7 @@ public class PathFollower : MonoBehaviour {
         timer += Time.deltaTime * moveSpeed;
         if(player.transform.position != currentPositionHolder)
         {
-            player.transform.position = Vector3.Lerp(player.transform.position, currentPositionHolder, timer);
+            player.transform.position = Vector3.MoveTowards(player.transform.position, currentPositionHolder, timer);
         }
         else
         {

@@ -61,11 +61,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\scripts\chefDeRangPath.cs" />
-    <Compile Include="Assets\scripts\clientsScript.cs" />
+    <Compile Include="Assets\scripts\chefDeRang\ChefDeRang.cs" />
+    <Compile Include="Assets\scripts\client\Client.cs" />
     <Compile Include="Assets\scripts\Cuisinier\CookerMovement.cs" />
+    <Compile Include="Assets\scripts\IWorkers.cs" />
     <Compile Include="Assets\scripts\Kitchen Chief\KitchenChief.cs" />
     <Compile Include="Assets\scripts\Kitchen Chief\KitchenChiefMovement.cs" />
+    <Compile Include="Assets\scripts\KitchenParty.cs" />
     <Compile Include="Assets\scripts\MainMenu\MainMenu.cs" />
     <Compile Include="Assets\scripts\Node.cs" />
     <Compile Include="Assets\scripts\Observer Pattern\IObservable.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="Assets\scripts\PartyChief\PartyChiefMovement.cs" />
     <Compile Include="Assets\scripts\PathFollower.cs" />
     <Compile Include="Assets\scripts\Plongeur\PlongeurMovement.cs" />
+    <Compile Include="Assets\scripts\Serveur\Serveur.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\kenney_sokobanpack\Spritesheet\sokoban_spritesheet@2.xml" />

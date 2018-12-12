@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Nico\.Rider2018.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Nico\.Rider2018.2\system\resharper-host\local\Transient\ReSharperHost\v182\SolutionCaches\_Restaurant.41906318.00" t="ExcludeRecursive" />
+    <e p="D:\dev\projets\CTranchant-Restaurant\Restaurant" t="IncludeFlat">
+      <e p="Ihm" t="IncludeRecursive">
+        <e p="Ihm.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="Kitchen" t="IncludeRecursive">
+        <e p="Kitchen.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="Library" t="IncludeRecursive">
+        <e p="Library.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="Restaurant.sln" t="IncludeFlat" />
+      <e p="Room" t="IncludeRecursive">
+        <e p="Room.csproj" t="IncludeRecursive" />
+      </e>
+    </e>
+  </component>
+</project>
