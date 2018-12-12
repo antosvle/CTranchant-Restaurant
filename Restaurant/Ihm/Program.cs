@@ -23,6 +23,7 @@ namespace Ihm
                 Console.WriteLine(ingredient.Name);
             }
             Console.Read();
+
         }
     }
 }

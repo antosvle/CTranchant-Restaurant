@@ -58,7 +58,11 @@ namespace Library.Utils
 
             GlobalFactory Injector = GlobalFactory.GetInstance();
 
-            //appeler classe du module
+
+            if (Hote == LocationEnum.ROOM)
+                Bar.GetResponseFromKitchen();
+            //else if (Hote == LocationEnum.KITCHEN)
+            //else if (Hote == LocationEnum.IHM)
         }
     }
 }
