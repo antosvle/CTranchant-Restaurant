@@ -35,12 +35,10 @@ namespace Library.DatabaseLayer.DAO
         {
             try
             {
-                lock(_locker) 
-                {
-                    OpenConnection();
-                    SqlCommand cmd = new SqlCommand(sqlRequest, driverSql);
-                    sdr = cmd.ExecuteReader();
-                }
+                OpenConnection();
+                SqlCommand cmd = new SqlCommand(sqlRequest, driverSql);
+                sdr = cmd.ExecuteReader();
+                
                 return sdr;
             }
             catch(DataException e)

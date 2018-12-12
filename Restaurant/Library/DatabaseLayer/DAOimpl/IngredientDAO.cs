@@ -18,7 +18,7 @@ namespace Library.DatabaseLayer.DAOimpl
 
             while (sdr.Read())
             {
-                list.Add(injector.GetIngredientEntity(sdr.GetInt32(0), sdr.GetString(1), sdr.GetInt32(2)));
+                list.Add(injector.GetIngredientEntity(sdr.GetInt32(0), sdr.GetString(1)));
             }
 
             CloseConnection();
@@ -28,11 +28,11 @@ namespace Library.DatabaseLayer.DAOimpl
         IngredientEntity IIngredientDAO.GetOneIngredients(int ingredient_id)
         {
             IngredientEntity ingredient = null;
-            sdr = InitDatabaseService("SELECT * FROM Ingredients WHERE ingredient_id = " + ingredient_id);
+            sdr = InitDatabaseService("SELECT * FROM Ingredients WHERE id = " + ingredient_id);
 
             while (sdr.Read())
             {
-                ingredient = injector.GetIngredientEntity(sdr.GetInt32(0), sdr.GetString(1), sdr.GetInt32(2));
+                ingredient = injector.GetIngredientEntity(sdr.GetInt32(0), sdr.GetString(1));
             }
 
             CloseConnection();

@@ -19,7 +19,7 @@ namespace Library.DatabaseLayer.DAOimpl
 
             while (sdr.Read())
             {
-                ingredient_TaskEntity.SetIngredientData(sdr.GetInt32(1), sdr.GetInt32(2));
+                //ingredient_TaskEntity.SetIngredientData(sdr.GetInt32(1), sdr.GetInt32(2));
             }
 
             CloseConnection();

@@ -19,9 +19,9 @@ namespace Library.Utils
             return Instance;
         }
 
-        public TransportationService GetTransportationService(LocationEnum hote, LocationEnum destination)
+        public TransportationService GetTransportationService(LocationEnum hote)
         {
-            return new TransportationService(hote, destination);
+            return new TransportationService(hote);
         }
     }
 }

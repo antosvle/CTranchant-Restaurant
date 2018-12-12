@@ -9,29 +9,37 @@ namespace Library.Utils
     public class TransportationService
     {
         private LocationEnum Hote;
-        private LocationEnum Destination;
-        private ClientSocket Client;
+        
+        private ClientSocket ClientIHM;
+        private ClientSocket ClientROOM;
+        private ClientSocket ClientKITCHEN;
         private ServerSocket HoteServer;
 
 
-        public TransportationService(LocationEnum hote, LocationEnum destination)
+        public TransportationService(LocationEnum hote)
         {
             this.Hote = hote;
-            this.Destination = destination;
-            Client = new ClientSocket(hote, destination);
-
             HoteServer = new ServerSocket(hote, this);
             HoteServer.Start();
+
+            ClientROOM = new ClientSocket(Hote, LocationEnum.ROOM);
+            ClientKITCHEN = new ClientSocket(Hote, LocationEnum.KITCHEN);
+            ClientIHM = new ClientSocket(Hote, LocationEnum.IHM);
         }
 
 
-        public bool UpdateExternalSide(CommandeEnum commande, String arg)
+        public bool UpdateExternalSide(LocationEnum destination, CommandeEnum commande, String arg)
         {
             String SocketString = "$" + (int)commande + "&" + arg + "$";
          
             try
             {
-                Client.Send(SocketString);
+                if(destination == LocationEnum.IHM)
+                    ClientIHM.Send(SocketString);
+                else if (destination == LocationEnum.KITCHEN)
+                    ClientKITCHEN.Send(SocketString);
+                else
+                    ClientROOM.Send(SocketString);
             }
             catch(SocketException e)
             {
@@ -50,10 +58,7 @@ namespace Library.Utils
 
             GlobalFactory Injector = GlobalFactory.GetInstance();
 
-            switch (Commande)
-            {
-                //Case pour les commandes.
-            }
+            //appeler classe du module
         }
     }
 }

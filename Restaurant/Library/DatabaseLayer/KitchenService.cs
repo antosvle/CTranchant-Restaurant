@@ -58,17 +58,19 @@ namespace Library.DatabaseLayer
             RecipeEntity recipeEntity = DaoRecipe.GetOneRecipe(name);
             Recipe_IngredientEntity recipe_Ingredients = DaoRecipe.GetAllRecipeIngredients(recipeEntity.Recipe_id);
 
-            for(int i=0; i < recipe_Ingredients.Ingredient_id.Count; i++)
+            if (recipe_Ingredients.Ingredient_id != null)
             {
-                IngredientEntity ingredient = DaoIngredient.GetOneIngredients(recipe_Ingredients.Ingredient_id[i]);
+   
+                for (int i = 0; i < recipe_Ingredients.Ingredient_id.Count; i++)
+                {
+                    IngredientEntity ingredient = DaoIngredient.GetOneIngredients(recipe_Ingredients.Ingredient_id[i]);
+                    IngredientDTO ingredientDTO = Injector.GetIngredientDTO();
+                    ingredientDTO.Name = ingredient.Ingredient_name;
+                    ingredientDTO.Quantity = recipe_Ingredients.Quantity[i];
 
-                IngredientDTO ingredientDTO = Injector.GetIngredientDTO();
-                ingredientDTO.Name = ingredient.Ingredient_name;
-                ingredientDTO.Quantity = recipe_Ingredients.Quantity[i];
-
-                recipe.Ingredients.Add(ingredientDTO);
+                    recipe.Ingredients.Add(ingredientDTO);
+                }
             }
-
             return recipe;
         }
     }

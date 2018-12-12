@@ -15,11 +15,12 @@ namespace Library.DatabaseLayer.DAOimpl
         Recipe_IngredientEntity IRecipeDAO.GetAllRecipeIngredients(int recipe_id)
         {
             Recipe_IngredientEntity recipe_ingredients = injector.GetRecipe_IngredientEntity(recipe_id);
-            sdr = InitDatabaseService("SELECT * FROM Recipe_ingredient WHERE recipe_id = " + recipe_id);
+            sdr = InitDatabaseService("SELECT * FROM Recipe_ingredient WHERE recipe_id = '" + recipe_id + "'");
 
             while (sdr.Read())
             {
                 recipe_ingredients.Ingredient_id.Add(sdr.GetInt32(1));
+                recipe_ingredients.Quantity.Add(sdr.GetInt32(2));
             }
 
             CloseConnection();
@@ -30,7 +31,7 @@ namespace Library.DatabaseLayer.DAOimpl
         RecipeEntity IRecipeDAO.GetOneRecipe(String name)
         {
             RecipeEntity recipeEntity = null;
-            sdr = InitDatabaseService("SELECT * FROM Recipes WHERE recipe_name = " + name);
+            sdr = InitDatabaseService("SELECT * FROM Recipes WHERE name = '" + name + "'");
 
             while (sdr.Read())
             {

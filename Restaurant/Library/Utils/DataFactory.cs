@@ -13,7 +13,7 @@ namespace Library
     {
         private static DataFactory instance = null;
         private static SqlConnection driverSql = null;
-        readonly private static String connectionString = "Data Source=tcp:" + NetworkConfig.IP_DATABASE + ",1433;Initial Catalog = Restaurant_simulator_2018; User ID = DATABASELAYER; Password = BIGOUNE";
+        readonly private static String connectionString = "Data Source=tcp:" + NetworkConfig.IP_DATABASE + ",1433;Initial Catalog = Restaurant_Simulator_2018; User ID = DATABASELAYER; Password = BIGOUNE";
 
 
         private DataFactory() {}
@@ -134,9 +134,9 @@ namespace Library
             return new LogEntity(id, date, source, message);
         }
 
-        internal IngredientEntity GetIngredientEntity(int id, String name, int fresh)
+        internal IngredientEntity GetIngredientEntity(int id, String name)
         {
-            return new IngredientEntity(id, name, fresh);
+            return new IngredientEntity(id, name);
         }
 
         internal UstensilEntity GetUstensilEntity(int id, String name, int quantity)

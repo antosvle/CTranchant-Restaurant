@@ -7,8 +7,8 @@ namespace Library.Utils.Entity
     internal class Recipe_IngredientEntity
     {
         private int recipe_id;
-        private List<int> ingredient_id;
-        private List<int> quantity;
+        private List<int> ingredient_id = new List<int>();
+        private List<int> quantity = new List<int>();
 
         internal Recipe_IngredientEntity(int recipe_id)
         {

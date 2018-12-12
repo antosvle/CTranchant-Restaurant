@@ -8,17 +8,12 @@ namespace Library.Utils.Entity
     {
         private int ingredient_id;
         private String ingredient_name;
-        private int fresh_duration;
 
-
-        internal IngredientEntity(int id, String name, int fresh)
+        internal IngredientEntity(int id, String name)
         {
             this.Ingredient_id = id;
             this.Ingredient_name = name;
-            this.fresh_duration = fresh;
         }
-
-        internal int Fresh_duration { get => fresh_duration; set => fresh_duration = value; }
 
         internal string Ingredient_name { get => ingredient_name; set => ingredient_name = value; }
 
