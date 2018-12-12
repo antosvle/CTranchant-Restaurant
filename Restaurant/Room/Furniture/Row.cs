@@ -10,8 +10,8 @@ namespace Room.Components
         private int id;
         public int Id { get => id; set => id = value; }
 
-        private readonly Area area;
-        public Area Area { get => area; }
+        private  Area area;
+        public Area Area { get => area; set => area = value; }
 
         HashSet<Table> tables;
         public Queue<RowChiefEvent> rowChiefEvents;

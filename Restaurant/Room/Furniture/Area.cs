@@ -37,7 +37,13 @@ namespace Room.Components
 
         public WaiterEvent GetWaiterEvent()
         {
-            return waiterEvents.Dequeue();
+            lock(waiterEvents)
+            {
+                if (waiterEvents.Count > 0)
+                    return waiterEvents.Dequeue();
+                else
+                    return null;
+            }
         }
     }
 }

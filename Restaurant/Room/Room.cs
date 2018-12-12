@@ -5,6 +5,7 @@ using Library.Controller;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using Library.Utils;
 
 namespace Room
 {
@@ -24,8 +25,11 @@ namespace Room
         private readonly List<Area> areas;
         public List<Area> Areas { get => areas; }
 
+        public static TransportationService socketManager;
+
         private readonly Dictionary<Customer, Thread> customers;
         private readonly Dictionary<RowChief, Thread> rowChiefs;
+        private readonly Dictionary<Waiter, Thread> waiters;
 
         readonly Butler butler;
         readonly RoomClerk roomClerk;
@@ -47,7 +51,7 @@ namespace Room
             tables = new List<Table>();
             for(int i = 0; i < 7; i++)
             {
-                tables.Add(new Table(i, 2 + 2 * i, ""));
+                tables.Add(new Table(i, 4 + 2 * i, ""));
                 tables[i].Row = rows[i%4];
             }
 
@@ -58,6 +62,11 @@ namespace Room
             areas.Add(new Area());
             areas[1].AddRow(rows[2]);
             areas[1].AddRow(rows[3]);
+
+            rows[0].Area = areas[0];
+            rows[1].Area = areas[0];
+            rows[2].Area = areas[1];
+            rows[3].Area = areas[1];
             
             // Events
             roomClerkEvents = new Queue<RoomClerkEvent>();
@@ -66,6 +75,14 @@ namespace Room
             customers = new Dictionary<Customer, Thread>();
             butler = new Butler(this);
             roomClerk = new RoomClerk();
+            waiters = new Dictionary<Waiter, Thread>();
+
+            for(int i = 0; i < 4; i++)
+            {
+                Waiter waiter = new Waiter(areas[i % 2]);
+                waiters.Add(waiter, new Thread(new ThreadStart(waiter.Run)));
+                waiters[waiter].Start();
+            }
 
             rowChiefs = new Dictionary<RowChief, Thread>();
             for(int i = 0; i < rows.Count; i++)
@@ -89,6 +106,8 @@ namespace Room
 
         public void DeleteClient(Customer cust)
         {
+            if(cust.Table != null)
+                cust.Table.Row.Area.AddWaiterEvent(new WaiterEvent(WaiterEventEnum.cleanTable, cust.Table));
             customers.Remove(cust);
             cust = null;
         }
@@ -112,7 +131,7 @@ namespace Room
             while(i++ < 7)
             {
                 Console.WriteLine("");
-                Customer cust = new Customer(5, i.ToString());
+                Customer cust = new Customer(5, i.ToString(), new Order());
                 reception.AddCustomer(cust);
                 customers.Add(cust, new Thread(new ThreadStart(cust.Run)));
                 customers.GetValueOrDefault(cust).Name = "customer " + cust.Name;

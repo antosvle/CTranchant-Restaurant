@@ -39,10 +39,13 @@ namespace Room.Persons
         private bool haveOrdered;
         public bool HaveOrdered { get => haveOrdered; set => haveOrdered = value; }
 
-        public Customer(int nbr, string eman)
+        private readonly Order order;
+
+        public Customer(int nbr, string eman, Order ordre)
         {
             name = eman;
             nbrOfPeople = nbr;
+            order = ordre;
             status = EStatus.arriving;
             haveMenus = false;
             table = null;
@@ -82,9 +85,13 @@ namespace Room.Persons
             Room.GetInstance().Reception.AddCustomerToQueue(this);
         }
 
+        public Order GetOrder()
+        {
+            return order;
+        }
+
         public void Run()
         {
-            Console.WriteLine("customer : " + name);
             if (table != null)
             {
                 // ask for bread
@@ -97,9 +104,9 @@ namespace Room.Persons
 
                 if(haveOrdered)
                 {
-                    Console.WriteLine("Customer " + name + "is eating");
+                    Console.WriteLine("Customer " + name + " is eating");
                     Timeline.Wait(200);
-                    Console.WriteLine("Customer " + name + "have finished eating");
+                    Console.WriteLine("Customer " + name + " have finished eating");
                     status = EStatus.waitingPaying;
                     IWannaPay();
                 }

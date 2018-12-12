@@ -10,11 +10,15 @@ namespace Room
     {
         static void Main(string[] args)
         {
+            GlobalFactory factory = GlobalFactory.GetInstance();
+
             Room room = Room.GetInstance();
+            room.socketManager = factory.GetTransportationService(LocationEnum.ROOM);
             new Thread(() =>
             {
                 room.Run();
             }).Start();
+
             Restaurant.Start();
         }
     }

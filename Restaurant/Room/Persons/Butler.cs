@@ -45,7 +45,7 @@ namespace Room.Persons
 
         public bool WelcomeCustomer(Customer cust)
         {
-            Console.WriteLine("Welcoming client");
+            Console.WriteLine("Welcoming client " + cust.Name + " : " + cust.NbrOfPeople.ToString() + " people");
 
             foreach(Table table in room.Tables) // search if they had reserved a table
             {
