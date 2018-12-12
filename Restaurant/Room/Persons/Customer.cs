@@ -33,12 +33,18 @@ namespace Room.Persons
         private Table table;
         internal Table Table { get => table; set => table = value; }
 
+        private bool haveMenus;
+        public bool HaveMenus { get => haveMenus; set => haveMenus = value; }
+
+        private bool haveOrdered;
+        public bool HaveOrdered { get => haveOrdered; set => haveOrdered = value; }
 
         public Customer(int nbr, string eman)
         {
             name = eman;
             nbrOfPeople = nbr;
             status = EStatus.arriving;
+            haveMenus = false;
             table = null;
         }
 
@@ -68,6 +74,12 @@ namespace Room.Persons
             table.Row.AddRowChiefEvent(new RowChiefEvent(RowChiefEventEnum.getOrder, table));
             status = EStatus.waitingForEmployee;
             while (status == EStatus.waitingForEmployee);
+            haveOrdered = true;
+        }
+
+        public void IWannaPay()
+        {
+            Room.GetInstance().Reception.AddCustomerToQueue(this);
         }
 
         public void Run()
@@ -77,12 +89,20 @@ namespace Room.Persons
             {
                 // ask for bread
                 AskBread();
-                Timeline.Wait(300);
+                Timeline.Wait(200);
 
                 // order the meal
-                GiveOrder();
+                if(haveMenus)
+                    GiveOrder();
 
-                status = EStatus.waitingPaying;
+                if(haveOrdered)
+                {
+                    Console.WriteLine("Customer " + name + "is eating");
+                    Timeline.Wait(200);
+                    Console.WriteLine("Customer " + name + "have finished eating");
+                    status = EStatus.waitingPaying;
+                    IWannaPay();
+                }
             }
         }
     }

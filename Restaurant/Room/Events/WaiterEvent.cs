@@ -4,6 +4,10 @@ using System.Text;
 
 namespace Room.Events
 {
+    public enum WaiterEventEnum
+    {
+        cleanTable,
+    }
     public class WaiterEvent
     {
 

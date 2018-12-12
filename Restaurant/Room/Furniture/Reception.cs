@@ -36,10 +36,13 @@ namespace Room.Components
 
         public Customer GetNextCustomer()
         {
-            if (waitingCustomers.Count > 0)
-                return waitingCustomers.Dequeue();
-            else
-                return null;
+            lock(waitingCustomers)
+            {
+                if (waitingCustomers.Count > 0)
+                    return waitingCustomers.Dequeue();
+                else
+                    return null;
+            }
         }
 
         public void AddCustomerToQueue(Customer cust)
@@ -49,10 +52,13 @@ namespace Room.Components
 
         public Customer GetNextCustomerInQueue()
         {
-            if(inQueueCustomers.Count > 0)
-                return inQueueCustomers.Dequeue();
-            else
-                return null;
+            lock(inQueueCustomers)
+            {
+                if(inQueueCustomers.Count > 0)
+                    return inQueueCustomers.Dequeue();
+                else
+                    return null;
+            }
         }
     }
 }

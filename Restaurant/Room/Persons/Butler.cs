@@ -1,4 +1,5 @@
-﻿using Room;
+﻿using Library.Controller;
+using Room;
 using Room.Components;
 using Room.Events;
 using System;
@@ -24,7 +25,7 @@ namespace Room.Persons
                 
                 if(cust.Status == EStatus.arriving)
                 {
-                    if (WelcomeCustomer(ref cust))
+                    if (WelcomeCustomer(cust))
                     {
                         cust.Status = EStatus.waiting;
                         room.Reception.AddCustomerToQueue(cust);
@@ -42,13 +43,13 @@ namespace Room.Persons
             }
         }
 
-        public bool WelcomeCustomer(ref Customer cust)
+        public bool WelcomeCustomer(Customer cust)
         {
             Console.WriteLine("Welcoming client");
 
             foreach(Table table in room.Tables) // search if they had reserved a table
             {
-                if(table.ReservedCustomerName == cust.Name)
+                if(table.ReservedCustomerName == cust.Name && cust.Name != "")
                 {
                     cust.Table = table;
                     table.Customer = cust;
@@ -74,8 +75,9 @@ namespace Room.Persons
 
         public void PayBill(Customer cust)
         {
-            Console.WriteLine("Client is paying bill");
+            Console.WriteLine("Client " + cust.Name + " is paying bill");
             cust.Status = EStatus.paying;
+            Timeline.Wait(20 * cust.NbrOfPeople);
             room.DeleteClient(cust);
         }
     }

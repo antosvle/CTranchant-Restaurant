@@ -36,6 +36,7 @@ namespace Room.Persons
                         {
                             room.Reception.MenusLeft -= evt.Table.Customer.NbrOfPeople;
                             evt.Table.Customer.Status = EStatus.nothing;
+                            evt.Table.Customer.HaveMenus = true;
                             Console.WriteLine("giving " + evt.Table.Customer.NbrOfPeople.ToString() + " menus to table " + evt.Table.Customer.Name + ", " + room.Reception.MenusLeft.ToString() + " menus left");
                         }
                         else
@@ -49,8 +50,10 @@ namespace Room.Persons
                     else if(evt.Event == RowChiefEventEnum.getOrder)
                     {
                         Console.WriteLine("Taking Order of Table " + evt.Table.Customer.Name);
-                        Timeline.Wait(30 * evt.Table.Customer.NbrOfPeople);
                         room.Reception.MenusLeft += evt.Table.Customer.NbrOfPeople;
+                        evt.Table.Customer.HaveMenus = false;
+                        Console.WriteLine("new " + room.Reception.MenusLeft.ToString() + " menus left");
+                        Timeline.Wait(2 * evt.Table.Customer.NbrOfPeople);
                         evt.Table.Customer.Status = EStatus.nothing;
                     }
                 }

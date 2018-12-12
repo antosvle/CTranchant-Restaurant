@@ -38,7 +38,7 @@ namespace Room
         private Room()
         {
             // Furnitures
-            reception = new Reception(6);
+            reception = new Reception(40);
 
             rows = new List<Row>();
             for(int i = 0; i < 4; i++)
@@ -115,6 +115,7 @@ namespace Room
                 Customer cust = new Customer(5, i.ToString());
                 reception.AddCustomer(cust);
                 customers.Add(cust, new Thread(new ThreadStart(cust.Run)));
+                customers.GetValueOrDefault(cust).Name = "customer " + cust.Name;
                 customers.GetValueOrDefault(cust).Start();
                 Timeline.Wait(30);
             }
