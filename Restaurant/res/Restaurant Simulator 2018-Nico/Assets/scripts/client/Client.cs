@@ -20,6 +20,7 @@ public class Client : MonoBehaviour, IObserver {
     private float x;
     private float y;
     private float yRow;
+    private int id;
 
 
 
