@@ -10,13 +10,11 @@ namespace Library.DatabaseLayer.DAOimpl
     {
 
         internal IngredientDAO(SqlConnection driverSql, DataFactory injector) : base(driverSql, injector) {}
-        
 
-        public List<IngredientEntity> GetAllIngredients()
+        List<IngredientEntity> IIngredientDAO.GetAllIngredients()
         {
             List<IngredientEntity> list = new List<IngredientEntity>();
-
-            sdr = InitDatabaseService("select * from Ingredients");
+            sdr = InitDatabaseService("SELECT * FROM Ingredients");
 
             while (sdr.Read())
             {
@@ -24,8 +22,21 @@ namespace Library.DatabaseLayer.DAOimpl
             }
 
             CloseConnection();
-           
             return list;
+        }
+
+        IngredientEntity IIngredientDAO.GetOneIngredients(int ingredient_id)
+        {
+            IngredientEntity ingredient = null;
+            sdr = InitDatabaseService("SELECT * FROM Ingredients WHERE ingredient_id = " + ingredient_id);
+
+            while (sdr.Read())
+            {
+                ingredient = injector.GetIngredientEntity(sdr.GetInt32(0), sdr.GetString(1), sdr.GetInt32(2));
+            }
+
+            CloseConnection();
+            return ingredient;
         }
     }
 }

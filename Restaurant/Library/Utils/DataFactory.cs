@@ -82,16 +82,6 @@ namespace Library
             return new RecipeDAO(GetSqlDriver(), GetInstance());
         }
 
-        internal IStockDAO GetStockDAO()
-        {
-            return new StockDAO(GetSqlDriver(), GetInstance());
-        }
-
-        internal ITablewareDAO GetTablewareDAO()
-        {
-            return new TablewareDAO(GetSqlDriver(), GetInstance());
-        }
-
         internal ITaskDAO GetTaskDAO()
         {
             return new TaskDAO(GetSqlDriver(), GetInstance());
@@ -103,6 +93,11 @@ namespace Library
         public IngredientDTO GetIngredientDTO()
         {
             return new IngredientDTO();
+        }
+
+        public RecipeDTO GetRecipeDTO()
+        {
+            return new RecipeDTO();
         }
 
 
@@ -148,5 +143,14 @@ namespace Library
             return new UstensilEntity(id, name, quantity);
         }
 
+        internal Task_IngredientEntity GetTask_EntityEntity(int task_id)
+        {
+            return new Task_IngredientEntity(task_id);
+        }
+
+        internal Recipe_IngredientEntity GetRecipe_IngredientEntity(int recipe_id)
+        {
+            return new Recipe_IngredientEntity(recipe_id);
+        }
     }
 }

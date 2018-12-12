@@ -6,5 +6,7 @@ namespace Library.DatabaseLayer.DAO
     internal interface IIngredientDAO
     {
         List<IngredientEntity> GetAllIngredients();
+
+        IngredientEntity GetOneIngredients(int ingredient_id);
     }
 }

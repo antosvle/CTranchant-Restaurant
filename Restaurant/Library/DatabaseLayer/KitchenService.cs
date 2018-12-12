@@ -16,22 +16,25 @@ namespace Library.DatabaseLayer
         //Factory attribute
         private DataFactory Injector;
         //List of needed Data access object (DAO)
-        private IIngredientDAO Dao;
-
+        private IIngredientDAO DaoIngredient;
+        private IRecipeDAO DaoRecipe;
+        private ITaskDAO DaoTask;
 
         //Constructor
         public KitchenService(DataFactory Injector)
         {
             this.Injector = Injector;
             //DAO creation thanks to Factory and dependency injection
-            Dao = Injector.GetIngredientDAO();
+            DaoIngredient = Injector.GetIngredientDAO();
+            DaoRecipe = Injector.GetRecipeDAO();
+            DaoTask = Injector.GetTaskDAO();
         }
 
 
         //Ingredients recuperation
         public List<IngredientDTO> GetIngredients()
         {
-            List<IngredientEntity> listDao = Dao.GetAllIngredients();
+            List<IngredientEntity> listDao = DaoIngredient.GetAllIngredients();
 
             List<IngredientDTO> ingredientList = new List<IngredientDTO>();
 
@@ -43,6 +46,30 @@ namespace Library.DatabaseLayer
             }
 
             return ingredientList;
+        }
+
+
+        //Recipe recuperation
+        public RecipeDTO GetOneRecipe(String name)
+        {
+            RecipeDTO recipe = Injector.GetRecipeDTO();
+            recipe.Name = name;
+
+            RecipeEntity recipeEntity = DaoRecipe.GetOneRecipe(name);
+            Recipe_IngredientEntity recipe_Ingredients = DaoRecipe.GetAllRecipeIngredients(recipeEntity.Recipe_id);
+
+            for(int i=0; i < recipe_Ingredients.Ingredient_id.Count; i++)
+            {
+                IngredientEntity ingredient = DaoIngredient.GetOneIngredients(recipe_Ingredients.Ingredient_id[i]);
+
+                IngredientDTO ingredientDTO = Injector.GetIngredientDTO();
+                ingredientDTO.Name = ingredient.Ingredient_name;
+                ingredientDTO.Quantity = recipe_Ingredients.Quantity[i];
+
+                recipe.Ingredients.Add(ingredientDTO);
+            }
+
+            return recipe;
         }
     }
 }
