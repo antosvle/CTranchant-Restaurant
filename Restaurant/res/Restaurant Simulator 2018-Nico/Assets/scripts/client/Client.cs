@@ -5,7 +5,7 @@ using System.Threading;
 using TMPro;
 using UnityEngine;
 
-public class Client : MonoBehaviour {
+public class Client : MonoBehaviour, IObserver {
    [SerializeField]
    private float speed;
     [SerializeField]
@@ -17,6 +17,9 @@ public class Client : MonoBehaviour {
     private bool isWalking = true;
     private string state;
     public bool tableAvailable;
+    private float x;
+    private float y;
+    private float yRow;
 
 
 
@@ -71,7 +74,7 @@ public class Client : MonoBehaviour {
         }
         if(state == "sit")
         {
-            target = new Vector3(-5f, -2.5f);   //Coordonnées du rang
+            target = new Vector3(-6f, yRow);   //Coordonnées du rang
             GetComponent<PathFollower>().enabled = false;
             dir = delegate ()
             {
@@ -82,9 +85,17 @@ public class Client : MonoBehaviour {
                 }
                 else
                 {
-                    target = new Vector3(-19.5f, 1f); //Coordonnées de la table
+                    target = new Vector3(x, y); //Coordonnées de la table
                 }
             };
         }
+    }
+
+    public void OnNotify(string str)
+    {
+        x = float.Parse(str.Split(' ')[1]);
+        y = float.Parse(str.Split(' ')[2]);
+        yRow = float.Parse(str.Split(' ')[3]);
+        target = new Vector3(x, y);
     }
 }

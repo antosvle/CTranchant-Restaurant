@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChefDeRang : MonoBehaviour, IWorkers
+public class ChefDeRang : MonoBehaviour, IWorkers, IObserver
 {
 
 
@@ -15,6 +15,8 @@ public class ChefDeRang : MonoBehaviour, IWorkers
     private bool ascendant = true;
 
     public Vector3 targetToGo;
+    private float x;
+    private float y;
 
 
 
@@ -50,12 +52,7 @@ public class ChefDeRang : MonoBehaviour, IWorkers
             }
         }
     }
- 
 
-    void Start () {
-		
-	}
-	
 	void Update () {
         if (looping)
         {
@@ -66,4 +63,16 @@ public class ChefDeRang : MonoBehaviour, IWorkers
             GoTo();
         }
 	}
+
+    public void getInfo(string str)
+    {
+        x = float.Parse(str.Split(' ')[1]);
+        y = float.Parse(str.Split(' ')[2]);
+        targetToGo = new Vector3(x, y);
+    }
+
+    public void OnNotify(string str)
+    {
+        getInfo(str);
+    }
 }

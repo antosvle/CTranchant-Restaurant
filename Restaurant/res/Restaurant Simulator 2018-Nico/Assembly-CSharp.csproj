@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\scripts\chefDeRang\ChefDeRang.cs" />
     <Compile Include="Assets\scripts\client\Client.cs" />
+    <Compile Include="Assets\scripts\Commis de salle\CommisDeSalle.cs" />
     <Compile Include="Assets\scripts\Cuisinier\CookerMovement.cs" />
     <Compile Include="Assets\scripts\IWorkers.cs" />
     <Compile Include="Assets\scripts\Kitchen Chief\KitchenChief.cs" />

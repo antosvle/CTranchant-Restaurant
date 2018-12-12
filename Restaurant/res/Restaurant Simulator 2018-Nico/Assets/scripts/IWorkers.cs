@@ -7,4 +7,5 @@ interface IWorkers
 
     void LoopMovement();
     void GoTo();
+    void getInfo(string str);
 }

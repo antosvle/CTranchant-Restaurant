@@ -3,5 +3,5 @@ using UnityEngine;
 
 public abstract class Observer : MonoBehaviour, IObserver
 {
-    public abstract void OnNotify();
+    public abstract void OnNotify(string str);
 }

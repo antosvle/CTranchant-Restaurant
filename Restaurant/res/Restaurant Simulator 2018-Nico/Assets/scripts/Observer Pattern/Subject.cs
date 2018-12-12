@@ -12,7 +12,7 @@ public class Subject : MonoBehaviour, IObservable
     {
         foreach (var observer in observers) 
         { 
-            observer.OnNotify();
+            observer.OnNotify("");
         }
     }
 

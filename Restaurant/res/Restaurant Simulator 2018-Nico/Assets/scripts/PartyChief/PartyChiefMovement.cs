@@ -156,7 +156,7 @@ public class PartyChiefMovement : Observer
         walkCounter = walkTime;
     }
 
-    public override void OnNotify()
+    public override void OnNotify(string str)
     {
         Debug.Log("New order");
 

@@ -15,7 +15,7 @@ public class KitchenPartyChief : Observer
         }
     }
 
-    public override void OnNotify()
+    public override void OnNotify(string str)
     {
         if (isFree)
         {

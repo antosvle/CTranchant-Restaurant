@@ -2,6 +2,6 @@
 
 public interface IObserver
 {
-    void OnNotify();
+    void OnNotify(string str);
 }
 
