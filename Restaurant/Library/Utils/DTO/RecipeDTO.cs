@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Library.Utils.DTO
 {
-    public class IngredientDTO
+    public class RecipeDTO
     {
         public string Name { get; set; }
 
-        public int Quantity { get; set; }
+        public ISet<IngredientDTO> Ingredients { get; set; }
     }
 }
