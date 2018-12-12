@@ -14,6 +14,6 @@ namespace Library.TransportationLayer
 
         internal static readonly string IP_SERVER_ROOM = "192.168.1.3";
 
-        internal static readonly string IP_SERVER_IHM = "127.0.0.1";
+        internal static readonly string IP_SERVER_IHM = "192.168.1.4";
     }
 }

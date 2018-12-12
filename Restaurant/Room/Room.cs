@@ -38,19 +38,26 @@ namespace Room
         private Room()
         {
             // Furnitures
-            reception = new Reception(40);
-
-            tables = new List<Table>();
-            for(int i = 0; i < 7; i++)
-            { Tables.Add(new Table(i, 2 + 2 * i, "")); }
+            reception = new Reception(6);
 
             rows = new List<Row>();
             for(int i = 0; i < 4; i++)
             { rows.Add(new Row()); }
 
+            tables = new List<Table>();
+            for(int i = 0; i < 7; i++)
+            {
+                tables.Add(new Table(i, 2 + 2 * i, ""));
+                tables[i].Row = rows[i%4];
+            }
+
             areas = new List<Area>();
             areas.Add(new Area());
+            areas[0].AddRow(rows[0]);
+            areas[0].AddRow(rows[1]);
             areas.Add(new Area());
+            areas[1].AddRow(rows[2]);
+            areas[1].AddRow(rows[3]);
             
             // Events
             roomClerkEvents = new Queue<RoomClerkEvent>();
@@ -105,7 +112,7 @@ namespace Room
             while(i++ < 7)
             {
                 Console.WriteLine("");
-                Customer cust = new Customer(5, "");
+                Customer cust = new Customer(5, i.ToString());
                 reception.AddCustomer(cust);
                 customers.Add(cust, new Thread(new ThreadStart(cust.Run)));
                 customers.GetValueOrDefault(cust).Start();

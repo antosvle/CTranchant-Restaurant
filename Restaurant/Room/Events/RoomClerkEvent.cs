@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Room.Components;
+using Room.Persons;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,14 +12,19 @@ namespace Room.Events
         Water,
         Wine
     }
+
     public class RoomClerkEvent
     {
         private readonly RCEvent evt;
         public RCEvent Event { get => evt; }
 
-        public RoomClerkEvent(RCEvent evnt)
+        private readonly Customer customer;
+        public Customer Customer { get => customer; }
+
+        public RoomClerkEvent(RCEvent evnt, Customer cust)
         {
             evt = evnt;
+            customer = cust;
         }
     }
 }

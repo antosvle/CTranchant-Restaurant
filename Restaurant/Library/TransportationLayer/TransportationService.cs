@@ -28,7 +28,7 @@ namespace Library.Utils
         public bool UpdateExternalSide(CommandeEnum commande, String arg)
         {
             String SocketString = "$" + (int)commande + "&" + arg + "$";
-            Console.WriteLine((int)commande);
+         
             try
             {
                 Client.Send(SocketString);
@@ -38,7 +38,6 @@ namespace Library.Utils
                 Console.WriteLine(e.GetBaseException());
                 return false;
             }
-            
             return true;
         }
 
@@ -53,7 +52,7 @@ namespace Library.Utils
 
             switch (Commande)
             {
-                
+                //Case pour les commandes.
             }
         }
     }
