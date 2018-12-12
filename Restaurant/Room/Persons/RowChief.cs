@@ -58,7 +58,7 @@ namespace Room.Persons
                             evt.Table.Customer.HaveMenus = false;
                             Timeline.Wait(2 * evt.Table.Customer.NbrOfPeople);
                             evt.Table.Customer.Status = EStatus.nothing;
-                            evt.Table.Row.Area.AddWaiterEvent(new WaiterEvent(WaiterEventEnum.cleanTable, evt.Table));
+                            evt.Table.Row.Area.AddWaiterEvent(new WaiterEvent(WaiterEventEnum.mealReady, evt.Table));
 
                             // send order to socket
                             //Room.socketManager.UpdateExternalSide(LocationEnum.KITCHEN, Library.Utils.Nomenclature.CommandeEnum.SEND_ORDER, "");

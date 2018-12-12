@@ -39,6 +39,9 @@ namespace Room.Persons
         private bool haveOrdered;
         public bool HaveOrdered { get => haveOrdered; set => haveOrdered = value; }
 
+        private bool haveReceivedFood;
+        public bool HaveReceivedFood { get => haveReceivedFood; set => haveReceivedFood = value; }
+
         private readonly Order order;
 
         public Customer(int nbr, string eman, Order ordre)
@@ -51,28 +54,28 @@ namespace Room.Persons
             table = null;
         }
 
-        public void AskBread()
+        private void AskBread()
         {
             Room.AddRoomClerkEvent(new RoomClerkEvent(RCEvent.Bread, this));
             status = EStatus.waitingForEmployee;
             while (status == EStatus.waitingForEmployee);
         }
 
-        public void AskWater()
+        private void AskWater()
         {
             Room.AddRoomClerkEvent(new RoomClerkEvent(RCEvent.Water, this));
             status = EStatus.waitingForEmployee;
             while (status == EStatus.waitingForEmployee);
         }
 
-        public void AskWine()
+        private void AskWine()
         {
             Room.AddRoomClerkEvent(new RoomClerkEvent(RCEvent.Wine, this));
             status = EStatus.waitingForEmployee;
             while (status == EStatus.waitingForEmployee);
         }
 
-        public void GiveOrder()
+        private void GiveOrder()
         {
             table.Row.AddRowChiefEvent(new RowChiefEvent(RowChiefEventEnum.getOrder, table));
             status = EStatus.waitingForEmployee;
@@ -80,9 +83,14 @@ namespace Room.Persons
             haveOrdered = true;
         }
 
-        public void IWannaPay()
+        private void WaitForFood()
         {
-            Room.GetInstance().Reception.AddCustomerToQueue(this);
+            while (!haveReceivedFood) ;
+        }
+
+        private void Pay()
+        {
+            Room.GetInstance().Reception.AddCustomer(this);
         }
 
         public Order GetOrder()
@@ -107,11 +115,12 @@ namespace Room.Persons
 
                 if(haveOrdered)
                 {
+                    WaitForFood();
                     Console.WriteLine("Customer " + name + " is eating");
                     Timeline.Wait(200);
                     Console.WriteLine("Customer " + name + " have finished eating");
                     status = EStatus.waitingPaying;
-                    IWannaPay();
+                    Pay();
                 }
             }
         }

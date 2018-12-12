@@ -34,7 +34,8 @@ namespace Room.Persons
                 else if(evt.Event == WaiterEventEnum.mealReady)
                 {
                     // Goto comptoir and get meals
-                    Console.WriteLine("Meals ready");
+                    Console.WriteLine("Meals " + evt.Table.Customer.Name + " ready");
+                    evt.Table.Customer.HaveReceivedFood = true;
                 }
             }
         }

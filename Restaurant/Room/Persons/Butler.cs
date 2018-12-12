@@ -78,7 +78,6 @@ namespace Room.Persons
             Console.WriteLine("Client " + cust.Name + " is paying bill");
             cust.Status = EStatus.paying;
             Timeline.Wait(20 * cust.NbrOfPeople);
-            room.DeleteClient(cust);
         }
     }
 }
