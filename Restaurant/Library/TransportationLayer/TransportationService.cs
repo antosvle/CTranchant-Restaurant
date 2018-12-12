@@ -1,5 +1,6 @@
 ﻿using Library.TransportationLayer;
 using Library.TransportationLayer.Socket;
+using Library.Utils.DTO;
 using Library.Utils.Nomenclature;
 using System;
 using System.Net.Sockets;
@@ -9,7 +10,10 @@ namespace Library.Utils
     public class TransportationService
     {
         private LocationEnum Hote;
-        
+
+        private CommandeDTO LastCommande = new CommandeDTO();
+        private bool CommandeIsUpdate = false;
+
         private ClientSocket ClientIHM;
         private ClientSocket ClientROOM;
         private ClientSocket ClientKITCHEN;
@@ -19,6 +23,7 @@ namespace Library.Utils
         public TransportationService(LocationEnum hote)
         {
             this.Hote = hote;
+
             HoteServer = new ServerSocket(hote, this);
             HoteServer.Start();
 
@@ -56,13 +61,21 @@ namespace Library.Utils
             int Commande = int.Parse(socketData.Split('&')[0]);
             String arg = socketData.Split('&')[1];
 
-            GlobalFactory Injector = GlobalFactory.GetInstance();
+            LastCommande.CommandeType = (CommandeEnum)Commande;
+            LastCommande.Argument = arg;
+
+            CommandeIsUpdate = true;
+        }
 
 
-            if (Hote == LocationEnum.ROOM)
-                Bar.GetResponseFromKitchen();
-            //else if (Hote == LocationEnum.KITCHEN)
-            //else if (Hote == LocationEnum.IHM)
+        public CommandeDTO ReceiveUpdate()
+        {
+            if (CommandeIsUpdate)
+            {
+                CommandeIsUpdate = false;
+                return LastCommande;
+            }
+            else return null;
         }
     }
 }
