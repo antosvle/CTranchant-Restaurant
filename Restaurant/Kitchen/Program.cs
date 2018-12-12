@@ -3,8 +3,7 @@ using System.Threading;
 using Library.Controller;
 using Kitchen.Model;
 using System.Collections.Generic;
-using Library.Utils;
-using Library.Utils.Nomenclature;
+
 
 namespace Kitchen
 {
@@ -12,7 +11,7 @@ namespace Kitchen
     {
         static void Main(string[] args)
         {
-            /*new Thread(() =>
+            new Thread(() =>
             {
                 Random random = new Random();
 
@@ -45,18 +44,7 @@ namespace Kitchen
 
             }).Start();
 
-            Restaurant.Start();*/
-
-
-            GlobalFactory injector = GlobalFactory.GetInstance();
-
-            TransportationService test = injector.GetTransportationService(LocationEnum.KITCHEN, LocationEnum.ROOM);
-            Thread.Sleep(12000);
-            test.UpdateExternalSide(CommandeEnum.RECIPE_READY, "arg_custom_from_KITCHEN");
-            Thread.Sleep(4000);
-            test.UpdateExternalSide(CommandeEnum.RECIPE_READY, "arg1_custom_from_KITCHEN");
-            Thread.Sleep(4000);
-            test.UpdateExternalSide(CommandeEnum.RECIPE_READY, "arg2_custom_from_KITCHEN");
+            Restaurant.Start();
         }
     }
 }
