@@ -15,8 +15,16 @@ namespace Library.DatabaseLayer.DAOimpl
 
         void ILogDAO.AddLog(string messageQuery, LocationEnum source)
         {
-            sdr = InitDatabaseService("INSERT INTO Logs VALUES (" + DateTime.Now + ", " + source + ", " + messageQuery + ")");
-            CloseConnection();
+            try
+            {
+                sdr = InitDatabaseService("INSERT INTO Logs VALUES (" + DateTime.Now + ", " + source + ", " + messageQuery + ")");
+                CloseConnection();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.StackTrace);
+            }
+            
         }
     }
 }

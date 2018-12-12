@@ -38,7 +38,6 @@ namespace Library.Utils
                 Console.WriteLine(e.GetBaseException());
                 return false;
             }
-            
             return true;
         }
 
