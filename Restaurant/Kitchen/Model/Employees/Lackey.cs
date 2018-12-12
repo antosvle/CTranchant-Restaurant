@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Kitchen.Model
 {
-    public class Lackey : Worker
+    public class Lackey : Waitable
     {
         public Lackey():
             base()

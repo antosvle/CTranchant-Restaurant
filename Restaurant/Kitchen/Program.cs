@@ -39,7 +39,7 @@ namespace Kitchen
 
                     Console.WriteLine(message);
 
-                    Model.Kitchen.Instance.Chief.Manage(new Order(dishes));
+                    Model.Kitchen.Instance.Chief.Manage(new Order(0, dishes));
                 }
 
             }).Start();

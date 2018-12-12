@@ -11,6 +11,16 @@ namespace Kitchen.Model
 
         private static int washersNumber = 2;
 
+        private static int fireNumber = 5;
+
+        private static int ovenNumber = 1;
+
+        private static int mixerNumber = 1;
+
+        private static int pressurerNumber = 1;
+
+        private static int workshopNumber = 4;
+
         public static Kitchen Instance { get; } = new Kitchen();
 
         public Chief Chief { get; private set; }
@@ -21,7 +31,9 @@ namespace Kitchen.Model
 
         public ISet<Washer> Washers { get; private set; } = new HashSet<Washer>();
 
-        public ManualResetEvent workersAvailability = new ManualResetEvent(false);
+        public ISet<Furniture> Furnitures { get; private set; } = new HashSet<Furniture>();
+
+        public ManualResetEvent waiting = new ManualResetEvent(false);
 
         private Kitchen()
         {
@@ -41,6 +53,31 @@ namespace Kitchen.Model
             {
                 Washers.Add(new Washer());
             }
+
+            for (int i = 0; i < fireNumber; i++)
+            {
+                Furnitures.Add(new Furniture("Fire"));
+            }
+
+            for (int i = 0; i < ovenNumber; i++)
+            {
+                Furnitures.Add(new Furniture("Oven"));
+            }
+
+            for (int i = 0; i < mixerNumber; i++)
+            {
+                Furnitures.Add(new Furniture("Mixer"));
+            }
+
+            for (int i = 0; i < pressurerNumber; i++)
+            {
+                Furnitures.Add(new Furniture("Pressurer"));
+            }
+
+            for (int i = 0; i < workshopNumber; i++)
+            {
+                Furnitures.Add(new Furniture("Workshop"));
+            }
         }
 
         public Cooker WaitAvailableCooker()
@@ -51,15 +88,15 @@ namespace Kitchen.Model
                 {
                     if (cooker.Available)
                     {
-                        workersAvailability.Reset();
+                        waiting.Reset();
 
                         return cooker;
                     }
                 }
 
-                lock (workersAvailability)
+                lock (waiting)
                 {
-                    workersAvailability.WaitOne();
+                    waiting.WaitOne();
                 }
             }
         }
@@ -72,22 +109,43 @@ namespace Kitchen.Model
                 {
                     if (lackey.Available)
                     {
-                        workersAvailability.Reset();
+                        waiting.Reset();
 
                         return lackey;
                     }
                 }
 
-                lock (workersAvailability)
+                lock (waiting)
                 {
-                    workersAvailability.WaitOne();
+                    waiting.WaitOne();
                 }
             }
         }
 
-        public void UpdateWorkersAvailability()
+        public Furniture WaitAvailableFurniture(string name)
         {
-            workersAvailability.Set();
+            while (true)
+            {
+                foreach (Furniture furniture in Furnitures)
+                {
+                    if (furniture.Name == name && furniture.Available)
+                    {
+                        waiting.Reset();
+
+                        return furniture;
+                    }
+                }
+
+                lock (waiting)
+                {
+                    waiting.WaitOne();
+                }
+            }
+        }
+
+        public void UpdateWaitables()
+        {
+            waiting.Set();
         }
     }
 }

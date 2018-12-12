@@ -1,14 +1,9 @@
 ﻿namespace Kitchen.Model
 {
-    public abstract class Worker
+    public abstract class Waitable
     {
-        private bool available;
-
-        protected Worker()
-        {
-            available = true;
-        }
-
+        private bool available = true;
+        
         public bool Available
         {
             get { return available; }
@@ -18,7 +13,7 @@
 
                 if (available)
                 {
-                    Kitchen.Instance.UpdateWorkersAvailability();
+                    Kitchen.Instance.UpdateWaitables();
                 }
             }
         }

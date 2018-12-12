@@ -9,6 +9,8 @@ namespace Kitchen.Model
 
         public string Name { get; private set; }
 
+        public IList<Instruction> Instructions { get; private set; } = new List<Instruction>();
+
         public ISet<Ingredient> Ingredients { get; private set; } = new HashSet<Ingredient>();
 
         private Recipe(string name)

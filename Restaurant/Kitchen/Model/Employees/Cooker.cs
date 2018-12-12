@@ -2,7 +2,7 @@
 
 namespace Kitchen.Model
 {
-    public class Cooker : Worker
+    public class Cooker : Waitable
     {
         public Cooker():
             base()
@@ -16,7 +16,10 @@ namespace Kitchen.Model
 
             Kitchen.Instance.WaitAvailableLackey().GatherIngredients(recipe.Ingredients);
 
-            Timeline.Wait(600); 
+            foreach (Instruction instruction in recipe.Instructions)
+            {
+                instruction.Execute();
+            }
 
             Shell.Log("COOKER END TASK: " + recipe.Description() + "." );
 
