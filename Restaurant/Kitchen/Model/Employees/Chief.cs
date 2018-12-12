@@ -35,6 +35,8 @@ namespace Kitchen.Model
 
                 Shell.Log("CHIEF END TASK");
 
+                Bar.Send(order);
+
             }).Start();
         }
     }

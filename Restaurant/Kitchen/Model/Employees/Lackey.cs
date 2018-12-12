@@ -12,22 +12,16 @@ namespace Kitchen.Model
         public void GatherIngredients(ISet<Ingredient> ingredients)
         {
             Available = false;
-
-            string message = "LACKEY START TASK: "; foreach (Ingredient ingredient in ingredients) { message += ingredient.Description(); } message += ".";
-
-            Shell.Log(message);
-
+            
             Timeline.Wait(20);
 
             foreach (Ingredient ingredient in ingredients)
             {
-                Ingredient.Get(ingredient);
+                Timeline.Wait(5);
+
+                Shell.Log("A lackey is picking up: " + ingredient.Description() + ".");
             }
-
-            message = "LACKEY END TASK: "; foreach (Ingredient ingredient in ingredients) { message += ingredient.Description(); } message += ".";
-
-            Shell.Log(message);
-
+            
             Available = true;
         }
     }

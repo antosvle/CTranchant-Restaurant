@@ -21,6 +21,8 @@ namespace Kitchen.Model
 
         private static int workshopNumber = 4;
 
+        private static int panNumber = 1;
+
         public static Kitchen Instance { get; } = new Kitchen();
 
         public Chief Chief { get; private set; }
@@ -33,6 +35,8 @@ namespace Kitchen.Model
 
         public ISet<Furniture> Furnitures { get; private set; } = new HashSet<Furniture>();
 
+        public ISet<Utensil> Utensils { get; private set; } = new HashSet<Utensil>();
+
         public ManualResetEvent waiting = new ManualResetEvent(false);
 
         private Kitchen()
@@ -40,44 +44,31 @@ namespace Kitchen.Model
             Chief = new Chief();
 
             for (int i = 0; i < cookersNumber; i++)
-            {
                 Cookers.Add(new Cooker());
-            }
 
             for (int i = 0; i < lackeysNumber; i++)
-            {
                 Lackeys.Add(new Lackey());
-            }
 
             for (int i = 0; i < washersNumber; i++)
-            {
                 Washers.Add(new Washer());
-            }
 
             for (int i = 0; i < fireNumber; i++)
-            {
                 Furnitures.Add(new Furniture("Fire"));
-            }
 
             for (int i = 0; i < ovenNumber; i++)
-            {
                 Furnitures.Add(new Furniture("Oven"));
-            }
 
             for (int i = 0; i < mixerNumber; i++)
-            {
                 Furnitures.Add(new Furniture("Mixer"));
-            }
 
             for (int i = 0; i < pressurerNumber; i++)
-            {
                 Furnitures.Add(new Furniture("Pressurer"));
-            }
 
             for (int i = 0; i < workshopNumber; i++)
-            {
                 Furnitures.Add(new Furniture("Workshop"));
-            }
+
+            for (int i = 0; i < panNumber; i++)
+                Utensils.Add(new Utensil("Pan"));
         }
 
         public Cooker WaitAvailableCooker()
@@ -122,6 +113,27 @@ namespace Kitchen.Model
             }
         }
 
+        public Washer WaitAvailableWasher()
+        {
+            while (true)
+            {
+                foreach (Washer washer in Washers)
+                {
+                    if (washer.Available)
+                    {
+                        waiting.Reset();
+
+                        return washer;
+                    }
+                }
+
+                lock (waiting)
+                {
+                    waiting.WaitOne();
+                }
+            }
+        }
+
         public Furniture WaitAvailableFurniture(string name)
         {
             while (true)
@@ -133,6 +145,27 @@ namespace Kitchen.Model
                         waiting.Reset();
 
                         return furniture;
+                    }
+                }
+
+                lock (waiting)
+                {
+                    waiting.WaitOne();
+                }
+            }
+        }
+
+        public Utensil WaitAvailableUtensil(string name)
+        {
+            while (true)
+            {
+                foreach (Utensil utensil in Utensils)
+                {
+                    if (utensil.Name == name && utensil.Available)
+                    {
+                        waiting.Reset();
+
+                        return utensil;
                     }
                 }
 

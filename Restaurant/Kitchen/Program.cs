@@ -15,17 +15,19 @@ namespace Kitchen
             {
                 Random random = new Random();
 
-                string[] recipes = {"Carbonara Pasta", "Pasta Bolognese", "Norwegian Pizza", "Squeegee", "Sushis", "Nems", "Pancakes"};
+                Filler.Fill();
+
+                string[] recipes = {"Chicken",  "Mashed Potatoes", "Mushroom Soop"};
 
                 while (true)
                 {
-                    Timeline.Wait(random.Next(240, 420));
+                    Timeline.Wait(random.Next(300, 420));
 
                     IList<string> dishes = new List<string>();
 
-                    for (int i = 0, n = random.Next(1, 8); i < n; i++)
+                    for (int i = 0, n = random.Next(1, 6); i < n; i++)
                     {
-                        dishes.Add(recipes[random.Next(0, 4)]);
+                        dishes.Add(recipes[random.Next(0, 3)]);
                     }
 
                     string message = "ORDER EMITTED: ";
@@ -37,9 +39,9 @@ namespace Kitchen
 
                     message += ".";
 
-                    Console.WriteLine(message);
-
-                    Model.Kitchen.Instance.Chief.Manage(new Order(0, dishes));
+                    Shell.Log(message);
+                    
+                    Model.Bar.Receive(new Order(0, dishes));
                 }
 
             }).Start();

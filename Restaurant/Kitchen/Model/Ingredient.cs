@@ -5,14 +5,16 @@
         public string Name { get; private set; }
         public int Quantity { get; private set; }
 
-        public Ingredient(string name, int quantity)
+        private Ingredient(string name, int quantity)
         {
             this.Name = name;
             this.Quantity = quantity;
         }
 
-        public static void Get(Ingredient ingredient)
-        {}
+        public static Ingredient Get(string name, int quantity)
+        {
+            return new Ingredient(name, quantity);
+        }
 
         public string Description()
         {

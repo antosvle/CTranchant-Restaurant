@@ -1,4 +1,6 @@
 ﻿using Library.Controller;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace Kitchen.Model
 {
@@ -12,16 +14,27 @@ namespace Kitchen.Model
         {
             Available = false;
 
-            Shell.Log("COOKER START TASK: " + recipe.Description() + ".");
-
             Kitchen.Instance.WaitAvailableLackey().GatherIngredients(recipe.Ingredients);
 
             foreach (Instruction instruction in recipe.Instructions)
             {
-                instruction.Execute();
-            }
+                ISet<Utensil> utensils = new HashSet<Utensil>();
 
-            Shell.Log("COOKER END TASK: " + recipe.Description() + "." );
+                foreach (string name in instruction.Ustensils)
+                {
+                    utensils.Add(Kitchen.Instance.WaitAvailableUtensil(name));
+                }
+
+                Shell.Log("A cooker is going to use a {" + instruction.Furniture + "} for {" + instruction.Time + "}s.");
+
+                instruction.Execute();
+
+                new Thread(() =>
+                {
+                    Kitchen.Instance.WaitAvailableWasher().Wash(utensils);
+
+                }).Start();
+            }
 
             Available = true;
         }

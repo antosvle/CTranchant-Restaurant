@@ -54,7 +54,6 @@ namespace Library.TransportationLayer.Socket
             });
         }
 
-
         private void ListenClient(TcpClient Client)
         {
             new Thread(delegate ()

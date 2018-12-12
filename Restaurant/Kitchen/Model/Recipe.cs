@@ -5,7 +5,7 @@ namespace Kitchen.Model
 {
     public class Recipe
     {
-        private static ISet<Recipe> recipes = new HashSet<Recipe>();
+        public static ISet<Recipe> Recipes { get; private set; } = new HashSet<Recipe>();
 
         public string Name { get; private set; }
 
@@ -20,7 +20,7 @@ namespace Kitchen.Model
 
         public static Recipe Get(string name)
         {
-            foreach (Recipe recipe in recipes)
+            foreach (Recipe recipe in Recipes)
             {
                 if (recipe.Name == name)
                 {
@@ -30,12 +30,8 @@ namespace Kitchen.Model
 
             {
                 Recipe recipe = new Recipe(name);
-                
-                recipe.Ingredients.Add(new Ingredient("Potato", 30));
 
-                recipe.Ingredients.Add(new Ingredient("Chocolate", 20));
-
-                recipes.Add(recipe);
+                Recipes.Add(recipe);
 
                 return recipe;
             }

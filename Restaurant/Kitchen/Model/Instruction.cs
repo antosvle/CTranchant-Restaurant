@@ -1,17 +1,20 @@
 ﻿using Library.Controller;
+using System.Collections.Generic;
 
 namespace Kitchen.Model
 {
     public class Instruction
     {
-        public int Time { get; private set; }
-
         public string Furniture { get; private set; }
 
-        public Instruction(int time, string furniture)
+        public ISet<string> Ustensils = new HashSet<string>();
+
+        public int Time { get; private set; }
+
+        public Instruction(string furniture, int time)
         {
-            Time = time;
             Furniture = furniture;
+            Time = time;
         }
 
         public void Execute()
@@ -21,7 +24,7 @@ namespace Kitchen.Model
             furniture.Available = false;
 
             Timeline.Wait(Time);
-
+            
             furniture.Available = true;
         }
     }

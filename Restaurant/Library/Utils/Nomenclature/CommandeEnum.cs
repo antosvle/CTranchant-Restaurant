@@ -8,6 +8,7 @@ namespace Library.Utils.Nomenclature
     {
         RECIPE_READY = 001,
         BOUGER_CUISINIER = 002,
-        SEND_ORDER = 003
+        SEND_ORDER = 003,
+        ORDER_COOKED = 004
     }
 }
