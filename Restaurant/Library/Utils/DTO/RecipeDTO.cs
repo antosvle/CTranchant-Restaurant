@@ -10,6 +10,6 @@ namespace Library.Utils.DTO
 
         public ISet<IngredientDTO> Ingredients { get; set; } = new HashSet<IngredientDTO>();
 
-        public IList<InstructionDTO> = new List<InstructionDTO>();
+        public IList<InstructionDTO> Instructions = new List<InstructionDTO>();
     }
 }
