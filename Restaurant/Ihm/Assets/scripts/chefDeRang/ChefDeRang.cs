@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChefDeRang : MonoBehaviour, IWorkers, Observer
+public class ChefDeRang : Observer, IWorkers
 {
 
 
@@ -71,7 +71,7 @@ public class ChefDeRang : MonoBehaviour, IWorkers, Observer
         targetToGo = new Vector3(x, y);
     }
 
-    public void OnNotify(string str)
+    public override void OnNotify(string str)
     {
         getInfo(str);
     }

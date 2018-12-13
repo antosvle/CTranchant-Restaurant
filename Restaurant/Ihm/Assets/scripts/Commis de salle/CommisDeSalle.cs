@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CommisDeSalle : MonoBehaviour, IWorkers, Observer
+public class CommisDeSalle : Observer, IWorkers
 {
 
     public Transform[] target;
@@ -71,7 +71,7 @@ public class CommisDeSalle : MonoBehaviour, IWorkers, Observer
         targetToGo = new Vector3(x, y);
     }
 
-    public void OnNotify(string str)
+    public override void OnNotify(string str)
     {
         getInfo(str);
     }

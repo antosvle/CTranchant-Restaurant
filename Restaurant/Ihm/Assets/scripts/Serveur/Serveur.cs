@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Serveur : MonoBehaviour, IWorkers, Observer {
+public class Serveur : Observer, IWorkers {
 
     Vector3 target;
     private bool isBusy = false;
@@ -21,7 +21,7 @@ public class Serveur : MonoBehaviour, IWorkers, Observer {
         transform.position = Vector3.MoveTowards(transform.position, home, 5 * Time.deltaTime);
     }
 
-    public void OnNotify(string str)
+    public override void OnNotify(string str)
     {
         getInfo(str);
     }

@@ -5,7 +5,7 @@ using System.Threading;
 using TMPro;
 using UnityEngine;
 
-public class Client : MonoBehaviour, Observer {
+public class Client : Observer {
    [SerializeField]
    private float speed;
     [SerializeField]
@@ -92,7 +92,7 @@ public class Client : MonoBehaviour, Observer {
         }
     }
 
-    public void OnNotify(string str)
+    public override void OnNotify(string str)
     {
         x = float.Parse(str.Split(' ')[1]);
         y = float.Parse(str.Split(' ')[2]);

@@ -20,7 +20,7 @@ public class KitchenParty: Observer {
     private void Start()
     {
         foreach(Switch @switch in FindObjectsOfType<Switch>()) {
-
+            Debug.Log("add obs");
             @switch.AddObserver(this);
         }
 
@@ -145,6 +145,7 @@ public class KitchenParty: Observer {
     {
         if (str.Split(' ')[0] == "partyChief")
         {
+            Debug.Log("order");
             this.order = str.Split(' ')[1];
         }
     }

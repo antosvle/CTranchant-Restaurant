@@ -886,11 +886,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926f356701bc14523b017a918d3b3000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 2
   animator: {fileID: 227488145}
   isWalking: 0
-  walkTime: 0
-  waitTime: 0
+  walkTime: 3
+  waitTime: 5
 --- !u!1 &239386686
 GameObject:
   m_ObjectHideFlags: 0
@@ -2784,6 +2784,35 @@ Transform:
   m_Father: {fileID: 979289518}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &455814030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1319716064}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 455814031}
+  m_Layer: 0
+  m_Name: Missing Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &455814031
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1319716064}
+  m_GameObject: {fileID: 455814030}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1319716065}
+  m_Father: {fileID: 920243711}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3224,11 +3253,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb0afab30fb64efd81f9298d0b5a0fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 2
   animator: {fileID: 587024998}
   isWalking: 0
-  walkTime: 0
-  waitTime: 0
+  walkTime: 2
+  waitTime: 4
 --- !u!95 &587024998
 Animator:
   serializedVersion: 3
@@ -4812,7 +4841,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1319716065}
+  - {fileID: 455814031}
   - {fileID: 1893972917}
   - {fileID: 541700295}
   - {fileID: 845373870}
@@ -5179,11 +5208,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e599f22465c4bd8b6e69f572abb2d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 2
   animator: {fileID: 1130590295}
   isWalking: 0
-  walkTime: 0
-  waitTime: 0
+  walkTime: 1
+  waitTime: 8
 --- !u!1 &1168692390
 GameObject:
   m_ObjectHideFlags: 0
@@ -24310,10 +24339,19 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_IsPrefabParent: 0
---- !u!4 &1319716065 stripped
+--- !u!4 &1319716065
 Transform:
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 1319716064}
+  m_GameObject: {fileID: 1402130206}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 455814031}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1325345880
 GameObject:
   m_ObjectHideFlags: 0
@@ -24645,6 +24683,21 @@ SpriteMask:
   m_FrontSortingOrder: 0
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
+--- !u!1 &1402130206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1319716064}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1319716065}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1414910641
 GameObject:
   m_ObjectHideFlags: 0
@@ -25510,7 +25563,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f57551d8038043689a47f67ec0a7839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Code: 0
 --- !u!4 &2012116555
 Transform:
   m_ObjectHideFlags: 0
@@ -25704,11 +25756,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e599f22465c4bd8b6e69f572abb2d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 2
   animator: {fileID: 2129564375}
   isWalking: 0
-  walkTime: 0
-  waitTime: 0
+  walkTime: 2
+  waitTime: 6
 --- !u!61 &2129564377
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25888,11 +25940,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb0afab30fb64efd81f9298d0b5a0fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 2
   animator: {fileID: 2130053797}
   isWalking: 0
-  walkTime: 0
-  waitTime: 0
+  walkTime: 1
+  waitTime: 5
 --- !u!95 &2130053797
 Animator:
   serializedVersion: 3
@@ -26045,11 +26097,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb0afab30fb64efd81f9298d0b5a0fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 2
   animator: {fileID: 2144934329}
   isWalking: 0
-  walkTime: 0
-  waitTime: 0
+  walkTime: 1
+  waitTime: 7
 --- !u!95 &2144934329
 Animator:
   serializedVersion: 3
