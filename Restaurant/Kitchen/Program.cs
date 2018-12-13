@@ -11,11 +11,12 @@ namespace Kitchen
     {
         static void Main(string[] args)
         {
+            TransportationService transportationService = new TransportationService(LocationEnum.KITCHEN);
+            Model.Bar.InitListener(transportationService);
+
+            /*
             new Thread(() =>
             {
-                TransportationService transportationService = new TransportationService(LocationEnum.KITCHEN);
-                Model.Bar.InitListener(transportationService);
-
                 Random random = new Random();
 
                 Filler.Fill();
@@ -47,7 +48,7 @@ namespace Kitchen
                     //Model.Bar.Receive(new Order(0, dishes));
                 }
 
-            }).Start();
+            }).Start();*/
 
             Restaurant.Start();
         }
