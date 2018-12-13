@@ -80,6 +80,7 @@
     <Compile Include="Assets\scripts\PathFollower.cs" />
     <Compile Include="Assets\scripts\Plongeur\PlongeurMovement.cs" />
     <Compile Include="Assets\scripts\Serveur\Serveur.cs" />
+    <Compile Include="Assets\scripts\Switch.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\kenney_sokobanpack\Spritesheet\sokoban_spritesheet@2.xml" />
