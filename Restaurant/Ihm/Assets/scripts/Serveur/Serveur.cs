@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Serveur : MonoBehaviour, IWorkers, IObserver {
+public class Serveur : MonoBehaviour, IWorkers, Observer {
 
     Vector3 target;
     private bool isBusy = false;

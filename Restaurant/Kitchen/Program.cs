@@ -4,6 +4,7 @@ using Library.Controller;
 using Kitchen.Model;
 using System.Collections.Generic;
 using Library.Utils;
+using Library.Utils.DTO;
 
 namespace Kitchen
 {
@@ -13,6 +14,12 @@ namespace Kitchen
         {
             TransportationService transportationService = new TransportationService(LocationEnum.KITCHEN);
             Model.Bar.InitListener(transportationService);
+
+            CommandeDTO commande = new CommandeDTO();
+            commande.CommandeType = Library.Utils.Nomenclature.CommandeEnum.BOUGER_CUISINIER;
+            commande.Argument = "partyChief counter";
+
+            Model.Bar.UpdateIHM(commande, LocationEnum.IHM);
 
             Filler.Fill();
 

@@ -56,5 +56,10 @@ namespace Kitchen.Model
                 argument
                 );
         }
+
+        public static void UpdateIHM(CommandeDTO commande, LocationEnum destination)
+        {
+            TransportationService.UpdateExternalSide(destination, commande.CommandeType, commande.Argument);
+        }
     }
 }

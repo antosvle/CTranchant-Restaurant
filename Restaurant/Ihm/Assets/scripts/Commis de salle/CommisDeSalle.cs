@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CommisDeSalle : MonoBehaviour, IWorkers, IObserver
+public class CommisDeSalle : MonoBehaviour, IWorkers, Observer
 {
 
     public Transform[] target;

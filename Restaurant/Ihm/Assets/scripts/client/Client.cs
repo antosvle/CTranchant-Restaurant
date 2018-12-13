@@ -5,7 +5,7 @@ using System.Threading;
 using TMPro;
 using UnityEngine;
 
-public class Client : MonoBehaviour, IObserver {
+public class Client : MonoBehaviour, Observer {
    [SerializeField]
    private float speed;
     [SerializeField]

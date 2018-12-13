@@ -5,7 +5,7 @@ using System.Threading;
 using TMPro;
 using UnityEngine;
 
-public class KitchenParty: MonoBehaviour, IObserver {
+public class KitchenParty: Observer {
 
     public float speed;
     private Vector3 target;
@@ -19,7 +19,12 @@ public class KitchenParty: MonoBehaviour, IObserver {
 
     private void Start()
     {
-        ChangeDirection("counter");
+        foreach(Switch @switch in FindObjectsOfType<Switch>()) {
+
+            @switch.AddObserver(this);
+        }
+
+        ChangeDirection("LeftToRight");
         wait = waitTimer;
     }
 
@@ -136,7 +141,7 @@ public class KitchenParty: MonoBehaviour, IObserver {
         }
     }
 
-    public void OnNotify(string str)
+    public override void OnNotify(string str)
     {
         if (str.Split(' ')[0] == "partyChief")
         {

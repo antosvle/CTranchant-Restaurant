@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChefDeRang : MonoBehaviour, IWorkers, IObserver
+public class ChefDeRang : MonoBehaviour, IWorkers, Observer
 {
 
 

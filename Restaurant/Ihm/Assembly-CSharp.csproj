@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{F136CE89-5587-62DA-9255-E21DB4943B6A}</ProjectGuid>
+    <ProjectGuid>{E88A7022-49DE-BAE5-7403-41728D5BC335}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -101,17 +101,17 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
-    <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/dev/CTranchant-Restaurant/Restaurant/res/Restaurant Simulator 2018-Nico/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/dev/CTranchant-Restaurant/Restaurant/res/Restaurant Simulator 2018-Nico/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    <Reference Include="UnityEditor.StandardEvents">
+      <HintPath>D:/dev/CTranchant-Restaurant/Restaurant/Ihm/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/dev/CTranchant-Restaurant/Restaurant/res/Restaurant Simulator 2018-Nico/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/dev/CTranchant-Restaurant/Restaurant/Ihm/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>D:/dev/CTranchant-Restaurant/Restaurant/res/Restaurant Simulator 2018-Nico/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+    <Reference Include="Unity.PackageManagerUI.Editor">
+      <HintPath>D:/dev/CTranchant-Restaurant/Restaurant/Ihm/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>D:/dev/CTranchant-Restaurant/Restaurant/Ihm/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -309,7 +309,7 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Library">
-      <HintPath>D:/dev/CTranchant-Restaurant/Restaurant/res/Restaurant Simulator 2018-Nico/Assets/Library.dll</HintPath>
+      <HintPath>D:/dev/CTranchant-Restaurant/Restaurant/Ihm/Assets/Library.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/antoi/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>

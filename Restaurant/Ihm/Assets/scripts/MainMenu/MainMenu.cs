@@ -8,8 +8,6 @@ public class MainMenu : MonoBehaviour {
 
     private void Start()
     {
-        GlobalFactory factory = GlobalFactory.GetInstance();
-        TransportationService socketManager = factory.GetTransportationService(LocationEnum.IHM);
     }
 
     public void StartGame()
