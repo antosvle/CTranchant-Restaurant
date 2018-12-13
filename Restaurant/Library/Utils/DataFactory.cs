@@ -88,6 +88,11 @@ namespace Library
             return new TaskDAO(GetSqlDriver(), GetInstance());
         }
 
+        internal IUstensilDAO GetUstensilDAO()
+        {
+            return new UstensilDAO(GetSqlDriver(), GetInstance());
+        }
+
 
         // DTO GETTERS
 
@@ -99,6 +104,11 @@ namespace Library
         public RecipeDTO GetRecipeDTO()
         {
             return new RecipeDTO();
+        }
+
+        public InstructionDTO GetInstructionDTO()
+        {
+            return new InstructionDTO();
         }
 
 

@@ -27,6 +27,28 @@ namespace Library.DatabaseLayer.DAOimpl
         }
 
 
+        TaskEntity ITaskDAO.GetOneTask(int recipe_id, int step)
+        {
+            TaskEntity entity = null;
+            sdr = InitDatabaseService("SELECT * FROM Tasks WHERE recipe_id = " + recipe_id + " AND step = " + step);
+
+            while (sdr.Read())
+            {
+                entity = injector.GetTaskEntity(
+                    sdr.GetInt32(0),
+                    sdr.GetInt32(1),
+                    sdr.GetString(2),
+                    sdr.GetInt32(3),
+                    sdr.GetInt32(4),
+                    sdr.GetInt32(5)
+                    );
+            }
+
+            CloseConnection();
+            return entity;
+        }
+
+
         List<TaskEntity> ITaskDAO.GetRecipeTasks(int recipe_id)
         {
             List<TaskEntity> taskEntities = null;

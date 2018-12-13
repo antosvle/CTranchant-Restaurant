@@ -15,19 +15,26 @@ namespace Library.DatabaseLayer
     {
         //Factory attribute
         private DataFactory Injector;
+
         //List of needed Data access object (DAO)
         private IIngredientDAO DaoIngredient;
         private IRecipeDAO DaoRecipe;
         private ITaskDAO DaoTask;
+        private IFurnitureDAO DaoFurniture;
+        private IUstensilDAO DaoUstensil;
+
 
         //Constructor
         public KitchenService(DataFactory Injector)
         {
             this.Injector = Injector;
+
             //DAO creation thanks to Factory and dependency injection
             DaoIngredient = Injector.GetIngredientDAO();
             DaoRecipe = Injector.GetRecipeDAO();
             DaoTask = Injector.GetTaskDAO();
+            DaoFurniture = Injector.GetFurnitureDAO();
+            DaoUstensil = Injector.GetUstensilDAO();
         }
 
 
@@ -72,6 +79,30 @@ namespace Library.DatabaseLayer
                 }
             }
             return recipe;
+        }
+
+
+        //Task Recuperation
+        public InstructionDTO GetOneInstruction(String recipe_name, int step)
+        {
+            InstructionDTO instructionDTO = Injector.GetInstructionDTO();
+            
+            //Query builder for task table
+            TaskEntity task = DaoTask.GetOneTask(DaoRecipe.GetOneRecipe(recipe_name).Recipe_id, step);
+            instructionDTO.Time = task.Task_time;
+
+            //Query builder for furniture table
+            FurnitureEntity furniture = DaoFurniture.GetOneFurniture(task.Furniture_id);
+            instructionDTO.Furniture = furniture.Furniture_name;
+
+            //Query builder for Utensils table
+            List<UstensilEntity> ustensil_list = DaoUstensil.GetUstensilEntities(task.Task_id);
+            foreach(UstensilEntity ustensilEntity in ustensil_list)
+            {
+                instructionDTO.Utensils.Add(ustensilEntity.Ustensil_name);
+            }
+
+            return instructionDTO;
         }
     }
 }

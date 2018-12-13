@@ -9,5 +9,6 @@ namespace Library.DatabaseLayer.DAO
     {
         List<TaskEntity> GetRecipeTasks(int recipe_id);
         Task_IngredientEntity GetIngredient_Task(int task_id);
+        TaskEntity GetOneTask(int recipe_id, int step);
     }
 }

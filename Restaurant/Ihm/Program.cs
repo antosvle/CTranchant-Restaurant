@@ -1,5 +1,6 @@
 ﻿using Library;
 using Library.DatabaseLayer;
+using Library.Utils;
 using Library.Utils.DTO;
 using System;
 using System.Collections.Generic;
@@ -16,14 +17,12 @@ namespace Ihm
 
             KitchenService test = injector.GetKitchenService();
 
-            RecipeDTO dto = test.GetOneRecipe("Cheesecake");
-  
-            foreach (IngredientDTO ingredient in dto.Ingredients)
-            {
-                Console.WriteLine(ingredient.Name);
-            }
-            Console.Read();
+            InstructionDTO dto = test.GetOneInstruction("Burger Maison",1);
 
+            Console.WriteLine(dto.Furniture);
+            Console.WriteLine(dto.Utensils[0]);
+            Console.WriteLine("done");
+            Console.Read();
         }
     }
 }
