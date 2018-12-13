@@ -28,12 +28,13 @@ namespace Room.Persons
                 if(evt.Event == WaiterEventEnum.cleanTable)
                 {
                     Console.WriteLine("Cleaning table " + evt.Table.Customer.Name);
-                    Timeline.Wait(30 * evt.Table.Customer.NbrOfPeople);
+                    Timeline.Wait(10 * evt.Table.Customer.NbrOfPeople);
                     Console.WriteLine("table " + evt.Table.Customer.Name + " cleaned");
+                    evt.Table.Customer = null; // free the table
                 }
                 else if(evt.Event == WaiterEventEnum.mealReady)
                 {
-                    // Goto comptoir and get meals
+                    // Goto bar and get meals
                     Console.WriteLine("Meals " + evt.Table.Customer.Name + " ready");
                     evt.Table.Customer.HaveReceivedFood = true;
                 }
