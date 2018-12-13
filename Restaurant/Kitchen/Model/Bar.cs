@@ -28,12 +28,12 @@ namespace Kitchen.Model
                         {
                             case CommandeEnum.ORDER:
 
-                                int table = int.Parse(commande.Argument.Split(' ')[0]);
+                                int table = int.Parse(commande.Argument.Split('|')[0]);
                                 List<String> dishesList = new List<String>();
 
-                                for(int i=1; i < commande.Argument.Split(' ').Length; i++)
+                                for(int i=1; i < commande.Argument.Split('|').Length; i++)
                                 {
-                                    dishesList.Add(commande.Argument.Split(' ')[i]);
+                                    dishesList.Add(commande.Argument.Split('|')[i]);
                                 }
 
                                 Kitchen.Instance.Chief.Manage(new Order(table, dishesList));

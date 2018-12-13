@@ -35,7 +35,7 @@ namespace Kitchen.Model
 
                 Shell.Log("CHIEF END TASK");
 
-                Bar.Send(order, Library.Utils.LocationEnum.ROOM);
+                Bar.Send(order, Library.Utils.LocationEnum.IHM);
 
             }).Start();
         }

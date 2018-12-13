@@ -47,7 +47,6 @@ namespace Library.TransportationLayer.Socket
                     Thread.Sleep(1000);
                     Console.Write("(?)  SERVER_" + Hote + " <> Waiting for a connection...\n\n");
                     TcpClient Client = Server.AcceptTcpClient();
-                    Console.WriteLine("(?)  SERVER_" + Hote + " <> Connected!\n");
 
                     ListenClient(Client);
                 }
@@ -68,7 +67,7 @@ namespace Library.TransportationLayer.Socket
                     while ((i = stream.Read(ByteBufffer, 0, ByteBufffer.Length)) != 0)
                     {
                         Data = Encoding.ASCII.GetString(ByteBufffer, 0, i);
-                        Console.WriteLine("<-----  SERVER_" + Hote + " <> Received: {0}\n", Data);
+                        Console.WriteLine("----->  SERVER_" + Hote + " <> Received: {0}\n", Data);
                         Callback.UpdateHostSide(Data);
                     }
                 }

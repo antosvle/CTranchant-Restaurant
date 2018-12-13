@@ -14,6 +14,8 @@ namespace Kitchen
             TransportationService transportationService = new TransportationService(LocationEnum.KITCHEN);
             Model.Bar.InitListener(transportationService);
 
+            Filler.Fill();
+
             /*
             new Thread(() =>
             {

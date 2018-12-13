@@ -44,7 +44,7 @@ namespace Library.TransportationLayer.Socket
                     NetworkStream stream = Client.GetStream();
 
                     stream.Write(Data, 0, Data.Length);
-                    Console.WriteLine("-----> CLIENT_" + Hote + " <> Sent: {0}\n", message);
+                    Console.WriteLine("<----- CLIENT_" + Hote + " <> Sent: {0}\n", message);
 
                     stream.Close();
                     Client.Close();
