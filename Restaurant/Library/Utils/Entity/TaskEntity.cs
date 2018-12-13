@@ -6,12 +6,12 @@ namespace Library.Utils.Entity
 {
     internal class TaskEntity
     {
-        private int task_id;
-        private int task_time;
-        private String task_description;
-        private int step;
-        private int recipe_id;
-        private int furniture_id;
+        private int task_id = 0;
+        private int task_time = 0;
+        private String task_description = null;
+        private int step = 0;
+        private int recipe_id = 0;
+        private int furniture_id = 0;
 
         internal TaskEntity(int id, int time, String description, int step, int recipe_id, int furniture_id)
         {

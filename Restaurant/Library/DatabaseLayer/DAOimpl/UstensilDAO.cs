@@ -29,7 +29,7 @@ namespace Library.DatabaseLayer.DAOimpl
         List<UstensilEntity> IUstensilDAO.GetUstensilEntities(int task_id)
         {
             List<int> list_ustensil_id = new List<int>();
-            sdr = InitDatabaseService("SELECT * FROM Task_utensil WHERE task_id = " + task_id);
+            sdr = InitDatabaseService("SELECT * FROM Task_utensil WHERE task_fk = " + task_id);
 
             while (sdr.Read())
             {

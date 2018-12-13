@@ -30,7 +30,7 @@ namespace Library.DatabaseLayer.DAOimpl
         TaskEntity ITaskDAO.GetOneTask(int recipe_id, int step)
         {
             TaskEntity entity = null;
-            sdr = InitDatabaseService("SELECT * FROM Tasks WHERE recipe_id = " + recipe_id + " AND step = " + step);
+            sdr = InitDatabaseService("SELECT * FROM Tasks WHERE recipe_fk = " + recipe_id + " AND step = " + step);
 
             while (sdr.Read())
             {
