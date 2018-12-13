@@ -3,7 +3,7 @@ using System.Threading;
 using Library.Controller;
 using Kitchen.Model;
 using System.Collections.Generic;
-
+using Library.Utils;
 
 namespace Kitchen
 {
@@ -13,6 +13,9 @@ namespace Kitchen
         {
             new Thread(() =>
             {
+                TransportationService transportationService = new TransportationService(LocationEnum.KITCHEN);
+                Model.Bar.InitListener(transportationService);
+
                 Random random = new Random();
 
                 Filler.Fill();
@@ -41,7 +44,7 @@ namespace Kitchen
 
                     Shell.Log(message);
                     
-                    Model.Bar.Receive(new Order(0, dishes));
+                    //Model.Bar.Receive(new Order(0, dishes));
                 }
 
             }).Start();
