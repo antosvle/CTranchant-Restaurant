@@ -20,7 +20,7 @@ namespace Kitchen.Model
             {
                 ISet<Utensil> utensils = new HashSet<Utensil>();
 
-                foreach (string name in instruction.Ustensils)
+                foreach (string name in instruction.Utensils)
                 {
                     utensils.Add(Kitchen.Instance.WaitAvailableUtensil(name));
                 }

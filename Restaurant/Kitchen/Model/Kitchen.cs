@@ -6,22 +6,16 @@ namespace Kitchen.Model
     public class Kitchen
     {
         private static int cookersNumber = 6;
-
         private static int lackeysNumber = 2;
-
         private static int washersNumber = 2;
-
         private static int fireNumber = 5;
-
         private static int ovenNumber = 1;
-
         private static int mixerNumber = 1;
-
         private static int pressurerNumber = 1;
-
         private static int workshopNumber = 4;
-
-        private static int panNumber = 1;
+        private static int panNumber = 5;
+        private static int woodenSpoonNumber = 3;
+        private static int kitchenKnifeNumber = 2;
 
         public static Kitchen Instance { get; } = new Kitchen();
 
@@ -69,6 +63,12 @@ namespace Kitchen.Model
 
             for (int i = 0; i < panNumber; i++)
                 Utensils.Add(new Utensil("Pan"));
+
+            for (int i = 0; i < woodenSpoonNumber; i++)
+                Utensils.Add(new Utensil("Wooden Spoon"));
+
+            for (int i = 0; i < kitchenKnifeNumber; i++)
+                Utensils.Add(new Utensil("Kitchen Knife"));
         }
 
         public Cooker WaitAvailableCooker()

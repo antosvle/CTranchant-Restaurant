@@ -7,7 +7,7 @@ namespace Kitchen.Model
     {
         public string Furniture { get; private set; }
 
-        public ISet<string> Ustensils = new HashSet<string>();
+        public ISet<string> Utensils = new HashSet<string>();
 
         public int Time { get; private set; }
 

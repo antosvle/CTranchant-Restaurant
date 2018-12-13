@@ -9,5 +9,7 @@ namespace Library.Utils.DTO
         public string Name { get; set; } = null;
 
         public ISet<IngredientDTO> Ingredients { get; set; } = new HashSet<IngredientDTO>();
+
+        public IList<InstructionDTO> = new List<InstructionDTO>();
     }
 }

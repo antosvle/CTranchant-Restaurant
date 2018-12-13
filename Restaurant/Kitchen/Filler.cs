@@ -17,9 +17,12 @@ namespace Kitchen
             recipe1.Ingredients.Add(Ingredient.Get("Water", 1000));
             recipe1.Ingredients.Add(Ingredient.Get("Cream", 200));
             recipe1.Ingredients.Add(Ingredient.Get("Butter", 100));
-            var instruction1 = new Instruction("Fire", 300);
-            instruction1.Ustensils.Add("Pan");
-            recipe1.Instructions.Add(new Instruction("Workshop", 120));
+            var instruction1 = new Instruction("Workshop", 120);
+            instruction1.Utensils.Add("Kitchen Knife");
+            var instruction2 = new Instruction("Fire", 300);
+            instruction2.Utensils.Add("Pan");
+            instruction2.Utensils.Add("Wooden Spoon");
+            recipe1.Instructions.Add(instruction2);
             recipe1.Instructions.Add(new Instruction("Mixer", 120));
             recipe1.Instructions.Add(instruction1);
 
@@ -28,15 +31,17 @@ namespace Kitchen
             recipe2.Ingredients.Add(Ingredient.Get("Milk", 20));
             recipe2.Ingredients.Add(Ingredient.Get("Butter", 200));
             recipe2.Ingredients.Add(Ingredient.Get("Pepper", 5));
-
-            recipe2.Instructions.Add(new Instruction("Workshop", 90));
+            var instruction3 = new Instruction("Workshop", 90);
+            instruction3.Utensils.Add("Wooden Spoon");
+            var instruction4 = new Instruction("Workshop", 90);
+            instruction4.Utensils.Add("Pan");
+            recipe2.Instructions.Add(instruction3);
             recipe2.Instructions.Add(new Instruction("Mixer", 200));
-            recipe2.Instructions.Add(new Instruction("Fire", 90));
+            recipe2.Instructions.Add(instruction4);
 
             var recipe3 = Recipe.Get("Chicken");
             recipe3.Ingredients.Add(Ingredient.Get("Chicken", 1));
             recipe3.Ingredients.Add(Ingredient.Get("Garlic", 2));
-
             recipe3.Instructions.Add(new Instruction("Workshop", 200));
             recipe3.Instructions.Add(new Instruction("Oven", 300));
         }
