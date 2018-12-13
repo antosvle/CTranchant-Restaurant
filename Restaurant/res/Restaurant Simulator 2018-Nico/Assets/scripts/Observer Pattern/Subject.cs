@@ -8,11 +8,11 @@ public class Subject : MonoBehaviour, IObservable
     private List<Observer> observers = new List<Observer>();
 
     //Method to notify the observers
-    public void Notify()
+    public void Notify(string str)
     {
         foreach (var observer in observers) 
         { 
-            observer.OnNotify("");
+            observer.OnNotify(str);
         }
     }
 

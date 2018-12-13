@@ -9,10 +9,10 @@ namespace Main
         {
             TransportationService service = new TransportationService(LocationEnum.IHM);
 
-            service.UpdateExternalSide(LocationEnum.KITCHEN,
-                Library.Utils.Nomenclature.CommandeEnum.ORDER,
-                "45 BurgerMaison Lasagne"
-                );
+            //service.UpdateExternalSide(LocationEnum.KITCHEN,
+             //   Library.Utils.Nomenclature.CommandeEnum.ORDER,
+              //  "45|Mashed Potatoes|Mushroom Soop"
+              //  );
         }
     }
 }

@@ -39,7 +39,7 @@ public class KitchenChief : Subject
 
         if (nbOrder >= 1)
         {
-            Notify();
+            Notify("");
             nbOrder--;
         }
     }
