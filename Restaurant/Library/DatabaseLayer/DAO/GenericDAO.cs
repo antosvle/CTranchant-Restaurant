@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading;
 
 namespace Library.DatabaseLayer.DAO
 {
@@ -9,16 +10,18 @@ namespace Library.DatabaseLayer.DAO
         protected SqlConnection driverSql;
         protected DataFactory injector;
         protected SqlDataReader sdr = null;
-        private readonly object _locker = new object();
+        private static Semaphore _pool;
 
         internal GenericDAO(SqlConnection driverSql, DataFactory injector)
         {
             this.driverSql = driverSql;
             this.injector = injector;
+            _pool = new Semaphore(0, 2);
         }
 
         protected void OpenConnection()
         {
+            _pool.WaitOne();
             driverSql.Open();
         }
 
@@ -28,6 +31,7 @@ namespace Library.DatabaseLayer.DAO
             {
                 driverSql.Close();
                 sdr.Close();
+                _pool.Release(1);
             }        
         }
 

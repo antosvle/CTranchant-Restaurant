@@ -11,7 +11,7 @@ namespace Main
 
             service.UpdateExternalSide(LocationEnum.KITCHEN,
                Library.Utils.Nomenclature.CommandeEnum.ORDER,
-                  "45|Burger Maison|Choucroute"
+                  "45|Burger Maison"
                 );
         }
     }
