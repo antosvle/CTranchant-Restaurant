@@ -5,11 +5,15 @@ using Kitchen.Model;
 using System.Collections.Generic;
 using Library.Utils;
 using Library.Utils.DTO;
+using Library.DatabaseLayer;
+using Library;
 
 namespace Kitchen
 {
     class Program
     {
+        public static KitchenService Service { get; } = new KitchenService(DataFactory.GetInstance());
+
         static void Main(string[] args)
         {
             TransportationService transportationService = new TransportationService(LocationEnum.KITCHEN);

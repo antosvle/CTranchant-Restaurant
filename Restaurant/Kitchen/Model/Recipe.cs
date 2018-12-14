@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.Utils.DTO;
+using System;
 using System.Collections.Generic;
 
 namespace Kitchen.Model
@@ -29,7 +30,15 @@ namespace Kitchen.Model
             }
 
             {
+                RecipeDTO dto = Program.Service.GetOneRecipe(name);
+
                 Recipe recipe = new Recipe(name);
+
+                ISet<Ingredient> ingredients = new HashSet<Ingredient>();
+
+                foreach (dto.Ingredients)
+
+                recipe.Ingredients = dto.Ingredients;
 
                 Recipes.Add(recipe);
 
