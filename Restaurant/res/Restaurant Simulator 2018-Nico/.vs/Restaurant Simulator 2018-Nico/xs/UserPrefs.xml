@@ -1,0 +1,17 @@
+﻿<Properties StartupConfiguration="{F136CE89-5587-62DA-9255-E21DB4943B6A}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/Kitchen Chief/KitchenChief.cs">
+    <Files>
+      <File FileName="Assets/scripts/Switch.cs" Line="14" Column="2" />
+      <File FileName="Assets/scripts/Observer Pattern/IObservable.cs" Line="4" Column="2" />
+      <File FileName="Assets/scripts/Observer Pattern/Subject.cs" Line="10" Column="37" />
+      <File FileName="Assets/scripts/Kitchen Chief/KitchenChief.cs" Line="42" Column="24" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
