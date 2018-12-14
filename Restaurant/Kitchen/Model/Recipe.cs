@@ -30,15 +30,26 @@ namespace Kitchen.Model
             }
 
             {
-                RecipeDTO dto = Program.Service.GetOneRecipe(name);
+                RecipeDTO recipeDTO = Program.Service.GetOneRecipe(name);
 
                 Recipe recipe = new Recipe(name);
 
-                ISet<Ingredient> ingredients = new HashSet<Ingredient>();
+                foreach (IngredientDTO ingredientDTO in recipeDTO.Ingredients)
+                {
+                    recipe.Ingredients.Add(new Ingredient(ingredientDTO.Name, ingredientDTO.Quantity));
+                }
 
-                foreach (dto.Ingredients)
+                foreach (InstructionDTO instructionDTO in recipeDTO.Instructions)
+                {
+                    Instruction instruction = new Instruction(instructionDTO.Furniture, instructionDTO.Time);
 
-                recipe.Ingredients = dto.Ingredients;
+                    foreach (string utensil in instructionDTO.Utensils)
+                    {
+                        instruction.Utensils.Add(utensil);
+                    }
+
+                    recipe.Instructions.Add(instruction);
+                }
 
                 Recipes.Add(recipe);
 
