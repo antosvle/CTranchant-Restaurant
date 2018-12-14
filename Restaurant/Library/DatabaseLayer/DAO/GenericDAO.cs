@@ -10,19 +10,18 @@ namespace Library.DatabaseLayer.DAO
         protected SqlConnection driverSql;
         protected DataFactory injector;
         protected SqlDataReader sdr = null;
-        private static Semaphore _pool;
+        private static Semaphore _pool = new Semaphore(0, 1);
 
         internal GenericDAO(SqlConnection driverSql, DataFactory injector)
         {
             this.driverSql = driverSql;
             this.injector = injector;
-            _pool = new Semaphore(0, 2);
         }
 
         protected void OpenConnection()
         {
-            _pool.WaitOne();
             driverSql.Open();
+            _pool.WaitOne();
         }
 
         protected void CloseConnection()
@@ -31,7 +30,7 @@ namespace Library.DatabaseLayer.DAO
             {
                 driverSql.Close();
                 sdr.Close();
-                _pool.Release(1);
+                _pool.Release();
             }        
         }
 

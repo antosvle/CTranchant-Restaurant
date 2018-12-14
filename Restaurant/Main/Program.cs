@@ -7,7 +7,7 @@ namespace Main
     {
         static void Main(string[] args)
         {
-            TransportationService service = new TransportationService(LocationEnum.IHM);
+            TransportationService service = new TransportationService(LocationEnum.ROOM);
 
             service.UpdateExternalSide(LocationEnum.KITCHEN,
                Library.Utils.Nomenclature.CommandeEnum.ORDER,
