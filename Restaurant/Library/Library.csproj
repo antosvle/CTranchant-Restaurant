@@ -1,15 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFrameworkVersion>v2.1</TargetFrameworkVersion>
+    <FileUpgradeFlags>40</FileUpgradeFlags>
+    <UpgradeBackupLocation>D:\dev\projets\CTranchant-Restaurant\Restaurant\Backup\Library\</UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath></OutputPath>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
   </ItemGroup>
-
 </Project>
