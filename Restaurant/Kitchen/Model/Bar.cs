@@ -46,7 +46,7 @@ namespace Kitchen.Model
 
         public static void Send(Order order, LocationEnum destination)
         {
-            String argument = order.Table + " ";
+            String argument = order.Table + "|";
 
             foreach(String dishes in order.Dishes) { argument += dishes + " "; }
 

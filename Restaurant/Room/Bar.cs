@@ -34,7 +34,7 @@ namespace Room
                                     dishesList.Add(commande.Argument.Split('|')[i]);
                                 }
 
-                                GetResponseFromKitchen("");
+                                GetResponseFromKitchen(table.ToString());
                                 break;
                         }
                     }

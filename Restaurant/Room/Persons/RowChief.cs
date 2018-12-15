@@ -68,7 +68,7 @@ namespace Room.Persons
                                 dishes += dishe + "|";
                             }
                             dishes = dishes.Remove(dishes.Length - 1);
-                            Room.socketManager.UpdateExternalSide(LocationEnum.KITCHEN, Library.Utils.Nomenclature.CommandeEnum.ORDER, evt.Table.Id + '|' + dishes);
+                            Room.socketManager.UpdateExternalSide(LocationEnum.KITCHEN, Library.Utils.Nomenclature.CommandeEnum.ORDER, evt.Table.Id + "|" + dishes);
                         }
                     }
                 }

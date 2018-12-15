@@ -12,8 +12,9 @@ namespace Room
         {
             GlobalFactory factory = GlobalFactory.GetInstance();
 
+            Room.socketManager = factory.GetTransportationService(LocationEnum.ROOM);
             Room room = Room.GetInstance();
-            //Room.socketManager = factory.GetTransportationService(LocationEnum.ROOM);
+
             new Thread(() =>
             {
                 room.Run();
