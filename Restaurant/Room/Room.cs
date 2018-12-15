@@ -137,9 +137,9 @@ namespace Room
                 List<string> dishes = null;
 
                 //Scenario (voir script sur git)
-                //if (i == 1) dishes = new List<string>() { "Salade de cabilaud", "Gigot d agneau", "Tarte aux pommes"};
-                if(true) dishes = new List<string>() { "Burger Maison"};
-                //else dishes = new List<string>() { "Salade de cabilaud", "Flan coco"};
+                if (i == 1) dishes = new List<string>() { "Salade de cabilaud", "Gigot d agneau", "Tarte aux pommes"};
+                if(i == 2) dishes = new List<string>() { "Burger Maison"};
+                else dishes = new List<string>() { "Salade de cabilaud", "Flan coco"};
 
                 Customer cust = new Customer(2, i.ToString(), new Order(dishes));
                 reception.AddCustomer(cust);
