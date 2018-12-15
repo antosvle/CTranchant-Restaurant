@@ -45,7 +45,7 @@ namespace Library.TransportationLayer.Socket
                 while (true)
                 {
                     Thread.Sleep(1000);
-                    Console.Write("(?)  SERVER_" + Hote + " <> Waiting for a connection...\n\n");
+                    Console.Write("(?) SOCKET_SERVER_" + Hote + " <> Waiting for a connection...\n");
                     TcpClient Client = Server.AcceptTcpClient();
 
                     ListenClient(Client);
@@ -64,10 +64,14 @@ namespace Library.TransportationLayer.Socket
                     NetworkStream stream = Client.GetStream();
                     int i;
 
+                    LocationEnum sender = LocationEnum.UNKNOWN;
+                    if (Hote == LocationEnum.KITCHEN) sender = LocationEnum.ROOM;
+                    else if (Hote == LocationEnum.ROOM) sender = LocationEnum.KITCHEN;
+
                     while ((i = stream.Read(ByteBufffer, 0, ByteBufffer.Length)) != 0)
                     {
                         Data = Encoding.ASCII.GetString(ByteBufffer, 0, i);
-                        Console.WriteLine("----->  SERVER_" + Hote + " <> Received: {0}\n", Data);
+                        Console.WriteLine("\n--> SOCKET_SERVER_" + Hote + " <> Received: {0} FROM " + sender + "\n", Data);
                         Callback.UpdateHostSide(Data);
                     }
                 }

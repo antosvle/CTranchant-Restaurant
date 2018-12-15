@@ -8,6 +8,7 @@ namespace Library.Utils
     {
         KITCHEN,
         ROOM,
-        IHM
+        IHM,
+        UNKNOWN
     }
 }
