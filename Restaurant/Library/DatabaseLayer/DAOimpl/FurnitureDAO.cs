@@ -21,7 +21,7 @@ namespace Library.DatabaseLayer.DAOimpl
                 entity = injector.GetFurnitureEntity(sdr.GetInt32(0), sdr.GetString(1), sdr.GetInt32(2));
             }
 
-            CloseConnection();
+            CloseConnection(sdr);
             return entity;
         }
     }

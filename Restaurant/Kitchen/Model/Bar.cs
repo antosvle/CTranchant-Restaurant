@@ -48,7 +48,8 @@ namespace Kitchen.Model
         {
             String argument = order.Table + "|";
 
-            foreach(String dishes in order.Dishes) { argument += dishes + " "; }
+            foreach(String dishes in order.Dishes) { argument += dishes + "|"; }
+            argument = argument.Remove(argument.Length - 1);
 
             TransportationService.UpdateExternalSide(
                 destination, 

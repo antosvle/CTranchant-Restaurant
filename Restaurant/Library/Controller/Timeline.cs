@@ -28,7 +28,7 @@ namespace Library.Controller
             {
                 Thread.Sleep(unitDuration);
 
-                Timeline.running.WaitOne();
+                Timeline.running.WaitOne(); 
 
                 Timeline.Advance();
             }

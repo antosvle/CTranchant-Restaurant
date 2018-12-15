@@ -21,7 +21,7 @@ namespace Library.DatabaseLayer.DAOimpl
                 list.Add(injector.GetIngredientEntity(sdr.GetInt32(0), sdr.GetString(1)));
             }
 
-            CloseConnection();
+            CloseConnection(sdr);
             return list;
         }
 
@@ -35,7 +35,7 @@ namespace Library.DatabaseLayer.DAOimpl
                 ingredient = injector.GetIngredientEntity(sdr.GetInt32(0), sdr.GetString(1));
             }
 
-            CloseConnection();
+            CloseConnection(sdr);
             return ingredient;
         }
     }

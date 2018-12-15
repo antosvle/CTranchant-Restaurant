@@ -21,7 +21,7 @@ namespace Library.DatabaseLayer.DAOimpl
                 utensil = injector.GetUstensilEntity(sdr.GetInt32(0), sdr.GetString(1), sdr.GetInt32(2));
             }
 
-            CloseConnection();
+            CloseConnection(sdr);
             return utensil;
         }
 
@@ -36,7 +36,7 @@ namespace Library.DatabaseLayer.DAOimpl
                 list_ustensil_id.Add(sdr.GetInt32(0));
             }
 
-            CloseConnection();
+            CloseConnection(sdr);
 
             List<UstensilEntity> entities = new List<UstensilEntity>();
             foreach(int utensil_id in list_ustensil_id)

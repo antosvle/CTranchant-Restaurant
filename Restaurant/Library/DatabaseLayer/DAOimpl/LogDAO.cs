@@ -18,7 +18,7 @@ namespace Library.DatabaseLayer.DAOimpl
             try
             {
                 sdr = InitDatabaseService("INSERT INTO Logs VALUES (" + DateTime.Now + ", " + source + ", " + messageQuery + ")");
-                CloseConnection();
+                CloseConnection(sdr);
             }
             catch (SqlException e)
             {

@@ -23,7 +23,7 @@ namespace Library.DatabaseLayer.DAOimpl
                 recipe_ingredients.Quantity.Add(sdr.GetInt32(2));
             }
 
-            CloseConnection();
+            CloseConnection(sdr);
             return recipe_ingredients;
         }
 
@@ -45,7 +45,7 @@ namespace Library.DatabaseLayer.DAOimpl
                     );
             }
 
-            CloseConnection();
+            CloseConnection(sdr);
             return recipeEntity;
         }
     }
