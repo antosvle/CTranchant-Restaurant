@@ -45,6 +45,8 @@ namespace Room
             // Furnitures
             reception = new Reception(40);
 
+            Bar.InitListener();
+
             rows = new List<Row>();
             for(int i = 0; i < 4; i++)
             { rows.Add(new Row()); }
@@ -129,11 +131,17 @@ namespace Room
         public void Run()
         {
             int i = 0;
-            while(i++ < 7)
+            while(i++ < 3)
             {
                 Console.WriteLine("");
-                List<string> dishes = new List<string>() { "", "", "", "", "" };
-                Customer cust = new Customer(5, i.ToString(), new Order(dishes));
+                List<string> dishes = null;
+
+                //Scenario (voir script sur git)
+                //if (i == 1) dishes = new List<string>() { "Salade de cabilaud", "Gigot d agneau", "Tarte aux pommes"};
+                if(true) dishes = new List<string>() { "Burger Maison"};
+                //else dishes = new List<string>() { "Salade de cabilaud", "Flan coco"};
+
+                Customer cust = new Customer(2, i.ToString(), new Order(dishes));
                 reception.AddCustomer(cust);
                 customers.Add(cust, new Thread(new ThreadStart(cust.Run)));
                 customers.GetValueOrDefault(cust).Name = "customer " + cust.Name;

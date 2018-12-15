@@ -24,7 +24,7 @@ namespace Main
 
             com.UpdateExternalSide(
                 LocationEnum.KITCHEN, 
-                Library.Utils.Nomenclature.CommandeEnum.ORDER, 
+                Library.Utils.Nomenclature.CommandeEnum.ORDER,
                 "2|Burger Maison"
                 );
         }

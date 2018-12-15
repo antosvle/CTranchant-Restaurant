@@ -58,10 +58,17 @@ namespace Room.Persons
                             evt.Table.Customer.HaveMenus = false;
                             Timeline.Wait(2 * evt.Table.Customer.NbrOfPeople);
                             evt.Table.Customer.Status = EStatus.nothing;
-                            evt.Table.Row.Area.AddWaiterEvent(new WaiterEvent(WaiterEventEnum.mealReady, evt.Table));
+                            //evt.Table.Row.Area.AddWaiterEvent(new WaiterEvent(WaiterEventEnum.mealReady, evt.Table));
 
-                            // send order to socket
-                            //Room.socketManager.UpdateExternalSide(LocationEnum.KITCHEN, Library.Utils.Nomenclature.CommandeEnum.SEND_ORDER, "");
+
+                            // Send order to KITCHEN
+                            String dishes = null;
+                            foreach(string dishe in order.Dishes)
+                            {
+                                dishes += dishe + "|";
+                            }
+                            dishes = dishes.Remove(dishes.Length - 1);
+                            Room.socketManager.UpdateExternalSide(LocationEnum.KITCHEN, Library.Utils.Nomenclature.CommandeEnum.ORDER, evt.Table.Id + '|' + dishes);
                         }
                     }
                 }
