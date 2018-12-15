@@ -146,7 +146,7 @@ namespace Room
                 customers.Add(cust, new Thread(new ThreadStart(cust.Run)));
                 customers.GetValueOrDefault(cust).Name = "customer " + cust.Name;
                 customers.GetValueOrDefault(cust).Start();
-                Timeline.Wait(50);
+                Timeline.Wait(100);
             }
             while(true);
         }
