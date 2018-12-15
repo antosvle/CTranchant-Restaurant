@@ -10,6 +10,7 @@ namespace Room
     {
         static void Main(string[] args)
         {
+            Thread.Sleep(5000);
             GlobalFactory factory = GlobalFactory.GetInstance();
 
             Room.socketManager = factory.GetTransportationService(LocationEnum.ROOM);
