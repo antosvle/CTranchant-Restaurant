@@ -1,4 +1,7 @@
-﻿using Library.Utils;
+﻿using Library;
+using Library.DatabaseLayer;
+using Library.Utils;
+using Library.Utils.DTO;
 using System;
 
 namespace Main
@@ -7,11 +10,22 @@ namespace Main
     {
         static void Main(string[] args)
         {
-            TransportationService service = new TransportationService(LocationEnum.ROOM);
+            /*DataFactory factory = DataFactory.GetInstance();
+            KitchenService service = factory.GetKitchenService();
+            RecipeDTO recipe = service.GetOneRecipe("Cheesecake");
 
-            service.UpdateExternalSide(LocationEnum.KITCHEN,
-               Library.Utils.Nomenclature.CommandeEnum.ORDER,
-                  "45|Burger Maison"
+            Console.WriteLine("GO :");
+            Console.WriteLine(recipe.Ingredients.Count);
+            Console.WriteLine(recipe.Name);
+            Console.WriteLine("DONE");
+            Console.Read();*/
+
+            TransportationService com = new TransportationService(LocationEnum.ROOM);
+
+            com.UpdateExternalSide(
+                LocationEnum.KITCHEN, 
+                Library.Utils.Nomenclature.CommandeEnum.ORDER, 
+                "45|Cheesecake"
                 );
         }
     }

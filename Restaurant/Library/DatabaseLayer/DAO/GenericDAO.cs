@@ -21,7 +21,7 @@ namespace Library.DatabaseLayer.DAO
         protected void OpenConnection()
         {
             driverSql.Open();
-            _pool.WaitOne();
+            //_pool.WaitOne();
         }
 
         protected void CloseConnection()
@@ -30,7 +30,7 @@ namespace Library.DatabaseLayer.DAO
             {
                 driverSql.Close();
                 sdr.Close();
-                _pool.Release();
+                //_pool.Release();
             }        
         }
 
