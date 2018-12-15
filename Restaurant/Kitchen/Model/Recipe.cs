@@ -39,6 +39,19 @@ namespace Kitchen.Model
                     recipe.Ingredients.Add(new Ingredient(ingredientDTO.Name, ingredientDTO.Quantity));
                 }
 
+                for (int i=1; true; i++)
+                {
+                    try
+                    {
+                        InstructionDTO instruction = Program.Service.GetOneInstruction(recipeDTO.Name, i);
+                        recipeDTO.Instructions.Add(instruction);
+                    }
+                    catch(Exception)
+                    {
+                        break;
+                    }
+                }
+
                 foreach (InstructionDTO instructionDTO in recipeDTO.Instructions)
                 {
                     Instruction instruction = new Instruction(instructionDTO.Furniture, instructionDTO.Time);
