@@ -16,6 +16,7 @@ namespace Kitchen
 
         static void Main(string[] args)
         {
+            Thread.Sleep(5000);
             TransportationService transportationService = new TransportationService(LocationEnum.KITCHEN);
             Model.Bar.InitListener(transportationService);
 
