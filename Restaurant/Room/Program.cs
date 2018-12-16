@@ -3,6 +3,7 @@ using System;
 using System.Threading;
 using Library.Utils;
 using Library.Controller;
+using Library.DatabaseLayer;
 
 namespace Room
 {
@@ -10,6 +11,8 @@ namespace Room
     {
         static void Main(string[] args)
         {
+            LogService.WriteLog(LocationEnum.ROOM, "MainProcess Room Class: Program.cs Method: Main Message: Start the Room");
+
             Thread.Sleep(5000);
             GlobalFactory factory = GlobalFactory.GetInstance();
 
