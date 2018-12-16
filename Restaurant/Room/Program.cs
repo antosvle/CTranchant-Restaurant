@@ -21,6 +21,7 @@ namespace Room
 
             new Thread(() =>
             {
+                LogService.WriteLog(LocationEnum.ROOM, "Class: Program.cs Method: Main Message: Start the room");
                 room.Run();
             }).Start();
 
