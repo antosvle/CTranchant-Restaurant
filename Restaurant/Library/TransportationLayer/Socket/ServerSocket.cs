@@ -1,4 +1,5 @@
-﻿using Library.Utils;
+﻿using Library.DatabaseLayer;
+using Library.Utils;
 using System;
 using System.IO;
 using System.Net;
@@ -40,6 +41,8 @@ namespace Library.TransportationLayer.Socket
         { 
             WaitConnection = new Thread(delegate ()
             {
+                LogService.WriteLog(LocationEnum.LIBRARY, "Class: ServerSocket.cs Method: InitServerTask Message: Start socket server and wait a connection.");
+
                 Server.Start();
     
                 while (true)
@@ -56,7 +59,9 @@ namespace Library.TransportationLayer.Socket
         private void ListenClient(TcpClient Client)
         {
             new Thread(delegate ()
-            { 
+            {
+                LogService.WriteLog(LocationEnum.LIBRARY, "Class: ServerSocket.cs Method: ListenClient Message: Listen the data flow during a connection.");
+
                 if (Client != null)
                 {
                     Byte[] ByteBufffer = new byte[256];

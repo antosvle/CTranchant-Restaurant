@@ -1,4 +1,5 @@
-﻿using Library.Utils;
+﻿using Library.DatabaseLayer;
+using Library.Utils;
 using System.Threading;
 
 namespace Library.Controller
@@ -10,6 +11,8 @@ namespace Library.Controller
         {
             new Thread(() =>
             {
+                LogService.WriteLog(LocationEnum.LIBRARY, "Class: Restaurant.cs Method: Start Message: Load shell session.");
+
                 while (true)
                 {
                     Shell.Interprete();

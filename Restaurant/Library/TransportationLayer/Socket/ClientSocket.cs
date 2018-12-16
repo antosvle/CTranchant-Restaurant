@@ -4,6 +4,7 @@ using System.Text;
 using System.Net.Sockets;
 using System.Threading;
 using Library.Utils;
+using Library.DatabaseLayer;
 
 namespace Library.TransportationLayer.Socket
 {
@@ -39,6 +40,8 @@ namespace Library.TransportationLayer.Socket
             try {
                 new Thread(delegate ()
                 {
+                    LogService.WriteLog(LocationEnum.LIBRARY, "Class: ClientSocket.cs Method: Send Message: Send a socket message."); 
+
                     TcpClient Client = new TcpClient(ipAdress, port);
                     Byte[] Data = Encoding.ASCII.GetBytes(message);
                     NetworkStream stream = Client.GetStream();

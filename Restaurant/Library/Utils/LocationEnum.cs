@@ -9,6 +9,7 @@ namespace Library.Utils
         KITCHEN,
         ROOM,
         IHM,
+        LIBRARY,
         UNKNOWN
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Library.DatabaseLayer;
+using Library.Utils;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -22,6 +24,8 @@ namespace Library.Controller
 
         public static void Start()
         {
+            LogService.WriteLog(LocationEnum.LIBRARY, "Class: Timeline.cs Method: Start Message: Start Timeline.");
+
             Timeline.running.Set();
 
             while (true)
