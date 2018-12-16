@@ -1,4 +1,6 @@
 ﻿using Library.Controller;
+using Library.DatabaseLayer;
+using Library.Utils;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -31,6 +33,7 @@ namespace Kitchen.Model
 
                 new Thread(() =>
                 {
+                    LogService.WriteLog(LocationEnum.KITCHEN, "Class: Coocker.cs Method: Prepare Message: Wait an available washer to wash an utensil");
                     Kitchen.Instance.WaitAvailableWasher().Wash(utensils);
 
                 }).Start();

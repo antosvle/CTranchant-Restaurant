@@ -1,4 +1,6 @@
 ﻿using Library.Controller;
+using Library.DatabaseLayer;
+using Library.Utils;
 using System.Threading;
 
 namespace Kitchen.Model
@@ -11,6 +13,8 @@ namespace Kitchen.Model
 
             new Thread(() =>
             {
+                LogService.WriteLog(LocationEnum.KITCHEN, "Class: Chief.cs Method: Manage Message: Chief start task");
+
                 int count = order.Dishes.Count;
 
                 Semaphore semaphore = new Semaphore(0, count);

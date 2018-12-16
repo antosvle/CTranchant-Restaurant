@@ -1,4 +1,5 @@
-﻿using Library.Utils;
+﻿using Library.DatabaseLayer;
+using Library.Utils;
 using Library.Utils.DTO;
 using Library.Utils.Nomenclature;
 using System;
@@ -16,6 +17,8 @@ namespace Kitchen.Model
             TransportationService = transportationService;
 
             new Thread(delegate () {
+
+                LogService.WriteLog(LocationEnum.KITCHEN, "Class: Bar.cs Method: InitListener Message: Listen to the room to grab all orders to be cooked");
 
                 while (true)
                 {
