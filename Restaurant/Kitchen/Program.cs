@@ -16,6 +16,8 @@ namespace Kitchen
 
         static void Main(string[] args)
         {
+            LogService.WriteLog(LocationEnum.KITCHEN, "MainProcess Kitchen Class: Program.cs Method: Main Message: Start the Kitchen");
+
             Thread.Sleep(5000);
             TransportationService transportationService = new TransportationService(LocationEnum.KITCHEN);
             Model.Bar.InitListener(transportationService);
