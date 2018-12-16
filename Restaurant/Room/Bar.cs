@@ -1,4 +1,6 @@
-﻿using Library.Utils.DTO;
+﻿using Library.DatabaseLayer;
+using Library.Utils;
+using Library.Utils.DTO;
 using Library.Utils.Nomenclature;
 using Room.Components;
 using Room.Events;
@@ -14,6 +16,8 @@ namespace Room
         public static void InitListener()
         {
             new Thread(delegate () {
+
+                LogService.WriteLog(LocationEnum.ROOM, "Class: Bar.cs Method: InitListener Message: Listen to the kitchen to grab all orders cooked");
 
                 while (true)
                 {

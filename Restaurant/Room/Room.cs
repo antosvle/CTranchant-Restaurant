@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Library.Utils;
+using Library.DatabaseLayer;
 
 namespace Room
 {
@@ -83,6 +84,7 @@ namespace Room
             for(int i = 0; i < 4; i++)
             {
                 Waiter waiter = new Waiter(areas[i % 2]);
+                LogService.WriteLog(LocationEnum.ROOM, "Class: Room.cs Method: Room Message: Add a new waiter");
                 waiters.Add(waiter, new Thread(new ThreadStart(waiter.Run)));
                 waiters[waiter].Start();
             }
@@ -91,13 +93,16 @@ namespace Room
             for(int i = 0; i < rows.Count; i++)
             {
                 RowChief rc = new RowChief(this, rows[i]);
+                LogService.WriteLog(LocationEnum.ROOM, "Class: Room.cs Method: Room Message: Add a new rowChief");
                 rowChiefs.Add(rc, new Thread(new ThreadStart(rc.Run)));
                 rowChiefs[rc].Start();
             }
 
+            LogService.WriteLog(LocationEnum.ROOM, "Class: Room.cs Method: Room Message: Add a new butler");
             tButler = new Thread(new ThreadStart(butler.Run));
             tButler.Start();
 
+            LogService.WriteLog(LocationEnum.ROOM, "Class: Room.cs Method: Room Message: Add a new roomClerck");
             tClerk = new Thread(new ThreadStart(roomClerk.Run));
             tClerk.Start();
         }
@@ -143,6 +148,7 @@ namespace Room
 
                 Customer cust = new Customer(2, i.ToString(), new Order(dishes));
                 reception.AddCustomer(cust);
+                LogService.WriteLog(LocationEnum.ROOM, "Class: Room.cs Method: Room Message: Add a new customer");
                 customers.Add(cust, new Thread(new ThreadStart(cust.Run)));
                 customers.GetValueOrDefault(cust).Name = "customer " + cust.Name;
                 customers.GetValueOrDefault(cust).Start();
