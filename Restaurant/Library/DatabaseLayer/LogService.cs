@@ -9,7 +9,7 @@ namespace Library.DatabaseLayer
         //Factory attribute
         private DataFactory Injector;
         //List of needed Data access object (DAO)
-        private ILogDAO Dao;
+        private static ILogDAO Dao;
 
 
         //Constructor
@@ -22,9 +22,9 @@ namespace Library.DatabaseLayer
 
 
         //Logs storage
-        public void WriteLog(LocationEnum source, Type objectType, String message)
+        public static void WriteLog(LocationEnum source, String message)
         {
-            String messageQuery = objectType.ToString() + " <> " + message;
+            String messageQuery = source + " <> " + message;
             Dao.AddLog(messageQuery, source);
         }
     }
