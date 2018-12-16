@@ -116,9 +116,9 @@ namespace Room.Persons
                 if(haveOrdered)
                 {
                     WaitForFood();
-                    Console.WriteLine("Customer " + name + " is eating");
+                    Console.WriteLine("ROOM <Customer " + name + " is eating>");
                     Timeline.Wait(200);
-                    Console.WriteLine("Customer " + name + " have finished eating");
+                    Console.WriteLine("ROOM <Customer " + name + " have finished eating>");
                     status = EStatus.waitingPaying;
                     Pay();
                 }

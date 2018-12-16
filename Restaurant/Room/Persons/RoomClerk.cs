@@ -18,24 +18,22 @@ namespace Room.Persons
 
                 if (evt.Event == RCEvent.Bread)
                 {
-                    Console.WriteLine("Putting Bread for table " + evt.Customer.Name);
+                    Console.WriteLine("ROOM <Putting Bread for table " + evt.Customer.Name + ">");
                     Timeline.Wait(60);
                     evt.Customer.Status = EStatus.nothing;
                 }
                 else if (evt.Event == RCEvent.Water)
                 {
-                    Console.WriteLine("Putting Water for table " + evt.Customer.Name);
+                    Console.WriteLine("ROOM <Putting Water for table " + evt.Customer.Name + ">");
                     Timeline.Wait(60);
                     evt.Customer.Status = EStatus.nothing;
                 }
                 else if (evt.Event == RCEvent.Wine)
                 {
-                    Console.WriteLine("Bringing menu, taking wine order, bringing wine for table " + evt.Customer.Name);
+                    Console.WriteLine("ROOM <Bringing menu, taking wine order, bringing wine for table " + evt.Customer.Name + ">");
                     Timeline.Wait(60);
                     evt.Customer.Status = EStatus.nothing;
                 }
-                else
-                    Console.WriteLine("Wrong event type");
             }
         }
     }

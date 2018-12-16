@@ -39,13 +39,13 @@ namespace Room.Persons
                     room.DeleteClient(cust);
                 }
                 else
-                    Console.WriteLine("Customer should not be at reception with status " + cust.Status);
+                    Console.WriteLine("ROOM <Customer should not be at reception with status " + cust.Status + ">");
             }
         }
 
         public bool WelcomeCustomer(Customer cust)
         {
-            Console.WriteLine("Welcoming client " + cust.Name + " : " + cust.NbrOfPeople.ToString() + " people");
+            Console.WriteLine("ROOM <Welcoming client " + cust.Name + " : " + cust.NbrOfPeople.ToString() + " people>");
 
             foreach(Table table in room.Tables) // search if they had reserved a table
             {
@@ -69,13 +69,13 @@ namespace Room.Persons
                 }
             }
 
-            Console.WriteLine("not enough place, rejecting client");
+            Console.WriteLine("ROOM <not enough place, rejecting client>");
             return false;
         }
 
         public void PayBill(Customer cust)
         {
-            Console.WriteLine("Client " + cust.Name + " is paying bill");
+            Console.WriteLine("ROOM <Client " + cust.Name + " is paying bill>");
             cust.Status = EStatus.paying;
             Timeline.Wait(20 * cust.NbrOfPeople);
         }
